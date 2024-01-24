@@ -32,6 +32,7 @@ const GlobalStyle = createGlobalStyle`
     background:none;
     border:0;
     cursor:pointer;
+    outline: none;
   }
   a {
     text-decoration:none
@@ -39,6 +40,12 @@ const GlobalStyle = createGlobalStyle`
   table {
     border-collapse:collapse;
     border-spacing:0
+  }
+  input {
+    outline: none;
+  }
+  li {
+    list-style: none;
   }
 `;
 
