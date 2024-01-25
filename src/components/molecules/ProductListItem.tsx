@@ -26,18 +26,10 @@ const ProductListItem = ({
   like,
   review,
 }: ProductListItem) => {
-  const titleStyle = {
-    lineHeight: '150%',
-    overflow: 'hidden',
-    display: '-webkit-box',
-    WebkitBoxOrient: 'vertical',
-    WebkitLineClamp: 2,
-  };
-
   return (
-    <Container style={{ width: isSmall ? '120px' : '160px' }}>
+    <Container style={{ width: isSmall ? '12rem' : '16rem' }}>
       <ProductImg
-        size={isSmall ? '120px' : '160px'}
+        size={isSmall ? '12rem' : '16rem'}
         src={imgUrl || '/public/images/product-item-ex.svg'}
       />
 
@@ -50,7 +42,14 @@ const ProductListItem = ({
       <RegularText
         size={isSmall ? 14 : 16}
         color={theme.color.gray.main}
-        style={titleStyle}
+        // 두 줄 이상 텍스트 넘어가면 말줄임표
+        style={{
+          lineHeight: '150%',
+          overflow: 'hidden',
+          display: '-webkit-box',
+          WebkitBoxOrient: 'vertical',
+          WebkitLineClamp: 2,
+        }}
       >
         {title || '[대용량] 100% 국내산 호랑이 독 닭가슴살 소장'}
       </RegularText>
@@ -109,11 +108,11 @@ export default ProductListItem;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.8rem;
 `;
 
 const FlexBox = styled.div`
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.8rem;
 `;
