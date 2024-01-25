@@ -1,6 +1,3 @@
-import React from 'react';
-import { styled } from 'styled-components';
-
 interface FlexBox {
   children: React.ReactNode;
   col?: boolean;
@@ -10,11 +7,21 @@ interface FlexBox {
   style?: any;
 }
 const FlexBox = ({ children, col, gap, justify, align, style }: FlexBox) => {
-  return <Container></Container>;
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: col ? 'column' : 'row',
+        gap: gap || '0',
+        // 설정안했을 시의 기본값으로 flex-start가 나을지 center가 나을지 의논
+        justifyContent: justify || 'flex-start',
+        alignItems: align || 'flex-start',
+        ...style,
+      }}
+    >
+      {children}
+    </div>
+  );
 };
 
 export default FlexBox;
-
-const Container = styled.div`
-  display: flex;
-`;
