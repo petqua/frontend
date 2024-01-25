@@ -12,6 +12,15 @@ interface FontProps {
   fontTheme: string;
 }
 
+export const LightText = ({ children, size, color, style }: TextProps) => {
+  const fontTheme = `light${size}`;
+  return (
+    <Text fontTheme={fontTheme} style={{ ...style, color: color }}>
+      {children}
+    </Text>
+  );
+};
+
 export const RegularText = ({ children, size, color, style }: TextProps) => {
   const fontTheme = `regular${size}`;
   return (

@@ -1,20 +1,24 @@
-import styled, { css } from 'styled-components';
-import { BoldText, MediumText, RegularText } from '../atoms/Text';
 import { theme } from '../../styles/theme';
-import ProductImg from '../atoms/ProductImg';
-import FlexBox from '../atoms/FlexBox';
+import {
+  LightText,
+  RegularText,
+  MediumText,
+  BoldText,
+  ProductImg,
+  FlexBox,
+} from '../atoms';
 
 interface ProductListItem {
   isMain?: boolean;
-  isSmall: boolean;
+  isSmall?: boolean;
   imgUrl: string;
   store?: string;
   title: string;
   price: string;
   discountRate: string;
   discountedPrice: string;
-  like: number;
-  review: number;
+  like?: number;
+  review?: number;
 }
 
 const ProductListItem = ({
@@ -88,26 +92,18 @@ const ProductListItem = ({
                 src="/public/icons/bubble-like-filled.svg"
                 style={{ width: '0.8rem', height: '0.8rem' }}
               />
-              <RegularText
-                size={12}
-                color={theme.color.blue[70]}
-                style={{ fontWeight: '300' }}
-              >
+              <LightText size={12} color={theme.color.blue[70]}>
                 {like || 23}
-              </RegularText>
+              </LightText>
             </FlexBox>
             <FlexBox align="center" gap="0.4rem">
               <img
                 src="/public/icons/bubble-like-filled.svg"
                 style={{ width: '0.8rem', height: '0.8rem' }}
               />
-              <RegularText
-                size={12}
-                color={theme.color.blue.main}
-                style={{ fontWeight: '300' }}
-              >
+              <LightText size={12} color={theme.color.blue.main}>
                 {review || 23}
-              </RegularText>
+              </LightText>
             </FlexBox>
           </FlexBox>
         )}
