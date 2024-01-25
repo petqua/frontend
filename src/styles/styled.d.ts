@@ -22,6 +22,7 @@ interface Font {
   regular16: RuleSet<object>;
   regular14: RuleSet<object>;
   regular12: RuleSet<object>;
+  [key: string]: RuleSet<object>;
 }
 
 interface Color {
