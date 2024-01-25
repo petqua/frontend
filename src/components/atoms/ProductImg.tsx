@@ -16,7 +16,7 @@ const ProductImg = ({ size, src }: ProductImg) => {
 export default ProductImg;
 
 const ImgContainer = styled.div`
-  background-color: transparent;
+  background-color: ${({ theme }) => theme.color.gray[30]};
   border-radius: 1.2rem;
   overflow: hidden;
 `;
