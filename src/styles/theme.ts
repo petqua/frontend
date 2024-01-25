@@ -85,6 +85,11 @@ const regular24 = css`
   font-weight: 400;
 `;
 
+const regular20 = css`
+  font-size: 2rem;
+  font-weight: 400;
+`;
+
 const regular18 = css`
   font-size: 1.8rem;
   font-weight: 400;
@@ -123,6 +128,7 @@ const font = {
   medium12,
   regular28,
   regular24,
+  regular20,
   regular18,
   regular16,
   regular14,
