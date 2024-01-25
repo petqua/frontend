@@ -2,8 +2,10 @@ import styled, { css } from 'styled-components';
 import { BoldText, MediumText, RegularText } from '../atoms/Text';
 import { theme } from '../../styles/theme';
 import ProductImg from '../atoms/ProductImg';
+import FlexBox from '../atoms/FlexBox';
 
 interface ProductListItem {
+  isMain?: boolean;
   isSmall: boolean;
   imgUrl: string;
   store?: string;
@@ -16,6 +18,7 @@ interface ProductListItem {
 }
 
 const ProductListItem = ({
+  isMain,
   isSmall,
   imgUrl,
   store,
@@ -27,92 +30,90 @@ const ProductListItem = ({
   review,
 }: ProductListItem) => {
   return (
-    <Container style={{ width: isSmall ? '12rem' : '16rem' }}>
+    <FlexBox
+      col={!isMain}
+      align={isMain ? 'center' : ''}
+      gap="0.8rem"
+      style={{ width: isMain ? '100%' : isSmall ? '12rem' : '16rem' }}
+    >
       <ProductImg
-        size={isSmall ? '12rem' : '16rem'}
-        src={imgUrl || '/public/images/product-item-ex.svg'}
+        size={isMain ? '16.8rem' : isSmall ? '12rem' : '16rem'}
+        src={imgUrl}
       />
 
-      {!isSmall && (
-        <MediumText size={12} color={theme.color.gray[50]}>
-          {store || 'S아쿠아'}
+      <FlexBox col gap="0.8rem" style={{ width: isMain ? '14rem' : '' }}>
+        {!isSmall && (
+          <MediumText size={isMain ? 16 : 12} color={theme.color.gray[50]}>
+            {store || 'S아쿠아'}
+          </MediumText>
+        )}
+
+        <MediumText
+          size={isMain ? 20 : isSmall ? 14 : 16}
+          color={theme.color.gray.main}
+          // 두 줄 이상 텍스트 넘어가면 말줄임표
+          style={{
+            lineHeight: '150%',
+            overflow: 'hidden',
+            display: '-webkit-box',
+            WebkitBoxOrient: 'vertical',
+            WebkitLineClamp: 2,
+            marginBottom: isMain ? '1.2rem' : '',
+          }}
+        >
+          {title || '[대용량] 100% 국내산 호랑이 독 닭가슴살 소장'}
         </MediumText>
-      )}
 
-      <RegularText
-        size={isSmall ? 14 : 16}
-        color={theme.color.gray.main}
-        // 두 줄 이상 텍스트 넘어가면 말줄임표
-        style={{
-          lineHeight: '150%',
-          overflow: 'hidden',
-          display: '-webkit-box',
-          WebkitBoxOrient: 'vertical',
-          WebkitLineClamp: 2,
-        }}
-      >
-        {title || '[대용량] 100% 국내산 호랑이 독 닭가슴살 소장'}
-      </RegularText>
-
-      <RegularText
-        size={12}
-        color={theme.color.gray[60]}
-        style={{ textDecoration: 'line-through' }}
-      >
-        {price || '30,000'}원
-      </RegularText>
-
-      <FlexBox>
-        <RegularText size={16} color={theme.color.tint.red}>
-          {discountRate || 30}%
+        <RegularText
+          size={isMain ? 14 : 12}
+          color={theme.color.gray[60]}
+          style={{ textDecoration: 'line-through' }}
+        >
+          {price || '30,000'}원
         </RegularText>
-        <BoldText size={16} color={theme.color.gray.main}>
-          {discountedPrice || '21,000'}원
-        </BoldText>
-      </FlexBox>
 
-      <FlexBox>
-        <FlexBox>
-          <img
-            src="/public/icons/bubble-like-filled.svg"
-            style={{ width: '8px', height: '8px', backgroundColor: 'beige' }}
-          />
-          <RegularText
-            size={12}
-            color={theme.color.blue[70]}
-            style={{ fontWeight: '300' }}
-          >
-            {like || 23}
+        <FlexBox align="center" gap="0.8rem">
+          <RegularText size={16} color={theme.color.tint.red}>
+            {discountRate || 30}%
           </RegularText>
+          <BoldText size={16} color={theme.color.gray.main}>
+            {discountedPrice || '21,000'}원
+          </BoldText>
         </FlexBox>
-        <FlexBox style={{ gap: '4px' }}>
-          <img
-            src="/public/icons/bubble-like-filled.svg"
-            style={{ width: '8px', height: '8px' }}
-          />
-          <RegularText
-            size={12}
-            color={theme.color.blue.main}
-            style={{ fontWeight: '300' }}
-          >
-            {review || 23}
-          </RegularText>
-        </FlexBox>
+
+        {!isMain && (
+          <FlexBox align="center" gap="0.8rem">
+            <FlexBox align="center" gap="0.4rem">
+              <img
+                src="/public/icons/bubble-like-filled.svg"
+                style={{ width: '0.8rem', height: '0.8rem' }}
+              />
+              <RegularText
+                size={12}
+                color={theme.color.blue[70]}
+                style={{ fontWeight: '300' }}
+              >
+                {like || 23}
+              </RegularText>
+            </FlexBox>
+            <FlexBox align="center" gap="0.4rem">
+              <img
+                src="/public/icons/bubble-like-filled.svg"
+                style={{ width: '0.8rem', height: '0.8rem' }}
+              />
+              <RegularText
+                size={12}
+                color={theme.color.blue.main}
+                style={{ fontWeight: '300' }}
+              >
+                {review || 23}
+              </RegularText>
+            </FlexBox>
+          </FlexBox>
+        )}
       </FlexBox>
-    </Container>
+    </FlexBox>
   );
 };
 
 export default ProductListItem;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-`;
-
-const FlexBox = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-`;

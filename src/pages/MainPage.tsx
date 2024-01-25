@@ -4,8 +4,9 @@ import ProductListItem from '../components/molecules/ProductListItem';
 const MainPage = () => {
   return (
     <>
-      <Outlet />
+      {/* <Outlet /> */}
       <div>메인페이지</div>
+      {/* <ProductListItem isMain /> */}
     </>
   );
 };
