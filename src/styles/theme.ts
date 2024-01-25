@@ -85,6 +85,11 @@ const regular24 = css`
   font-weight: 400;
 `;
 
+const regular20 = css`
+  font-size: 2rem;
+  font-weight: 400;
+`;
+
 const regular18 = css`
   font-size: 1.8rem;
   font-weight: 400;
@@ -101,6 +106,41 @@ const regular14 = css`
 `;
 
 const regular12 = css`
+  font-size: 1.2rem;
+  font-weight: 400;
+`;
+
+const light28 = css`
+  font-size: 2.8rem;
+  font-weight: 400;
+`;
+
+const light24 = css`
+  font-size: 2.4rem;
+  font-weight: 400;
+`;
+
+const light20 = css`
+  font-size: 2rem;
+  font-weight: 400;
+`;
+
+const light18 = css`
+  font-size: 1.8rem;
+  font-weight: 400;
+`;
+
+const light16 = css`
+  font-size: 1.6rem;
+  font-weight: 400;
+`;
+
+const light14 = css`
+  font-size: 1.4rem;
+  font-weight: 400;
+`;
+
+const light12 = css`
   font-size: 1.2rem;
   font-weight: 400;
 `;
@@ -123,10 +163,18 @@ const font = {
   medium12,
   regular28,
   regular24,
+  regular20,
   regular18,
   regular16,
   regular14,
   regular12,
+  light28,
+  light24,
+  light20,
+  light18,
+  light16,
+  light14,
+  light12,
 };
 
 const color = {
