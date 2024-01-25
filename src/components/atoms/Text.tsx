@@ -39,7 +39,7 @@ export const BoldText = ({ children, size, color, style }: TextProps) => {
   );
 };
 
-const Text = styled.div<FontProps>`
+const Text = styled.p<FontProps>`
   ${({ theme, fontTheme }) => theme.font[fontTheme]}
   line-height: 1;
 `;
