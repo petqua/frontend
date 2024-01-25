@@ -34,5 +34,6 @@ module.exports = {
     'no-multiple-empty-lines': 'error',
     'no-duplicate-imports': 'error',
     'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
+    'react/prop-types': 'off',
   },
 };
