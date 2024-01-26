@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
     padding:0;
     font:inherit;
     color:inherit;
+    font-family: Pretendard;
   }
   *, :after, :before {
     box-sizing:border-box;
