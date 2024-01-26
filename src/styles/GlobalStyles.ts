@@ -35,6 +35,9 @@ const GlobalStyle = createGlobalStyle`
     cursor:pointer;
     outline: none;
   }
+  button:focus {
+    outline: none;
+  }
   a {
     text-decoration:none
   }
