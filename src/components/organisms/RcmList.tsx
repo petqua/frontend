@@ -1,7 +1,9 @@
 import { FlexBox } from '../atoms';
-import { ProductListItem } from '../molecules';
-import PreviewListTitle from '../molecules/PreviewListTitle';
-import RowScrollContainer from '../molecules/RowScrollContainer';
+import {
+  ProductListItem,
+  PreviewListTitle,
+  RowScrollContainer,
+} from '../molecules';
 
 const RcmList = () => {
   const RCM_LIST = [
