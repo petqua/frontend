@@ -1,3 +1,4 @@
 import CategoryList from './CategoryList';
+import RcmList from './RcmList';
 
-export { CategoryList };
+export { CategoryList, RcmList };

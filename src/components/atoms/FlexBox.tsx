@@ -5,8 +5,17 @@ interface FlexBox {
   justify?: string;
   align?: string;
   style?: any;
+  onClick?: () => void;
 }
-const FlexBox = ({ children, col, gap, justify, align, style }: FlexBox) => {
+const FlexBox = ({
+  children,
+  col,
+  gap,
+  justify,
+  align,
+  style,
+  onClick,
+}: FlexBox) => {
   return (
     <div
       style={{
@@ -18,6 +27,7 @@ const FlexBox = ({ children, col, gap, justify, align, style }: FlexBox) => {
         alignItems: align || 'flex-start',
         ...style,
       }}
+      onClick={onClick}
     >
       {children}
     </div>
