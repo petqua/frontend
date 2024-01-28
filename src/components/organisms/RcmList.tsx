@@ -76,7 +76,7 @@ const RcmList = () => {
     <FlexBox col gap="2rem" style={{ padding: '2.4rem 0' }}>
       <PreviewListTitle title="펫쿠아 강력 추천!" path="/recommend" />
       <ProductListItem isMain data={RCM_LIST[0]} />
-      <RowScrollContainer gap="1.2rem">
+      <RowScrollContainer gap="1.2rem" row={1} col={6}>
         {RCM_LIST.filter((el, idx) => idx > 0).map((el, idx) => (
           <ProductListItem key={idx} isSmall data={el} />
         ))}
