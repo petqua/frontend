@@ -118,13 +118,17 @@ const NewList = () => {
   ];
 
   return (
-    <FlexBox col gap="2rem" style={{ padding: '2.4rem 0' }}>
+    <FlexBox col gap="2.4rem" style={{ padding: '2.4rem 0' }}>
       <PreviewListTitle
         title="수입입고 소식"
         subTitle="업체별 입고 현황"
         path="/new"
       />
-      <RowScrollContainer gap="1.2rem" row={2} col={6}>
+      <RowScrollContainer
+        row={2}
+        col={6}
+        style={{ gridRowGap: '2.4rem', gridColumnGap: '1.2rem' }}
+      >
         {RCM_LIST.map((el, idx) => (
           <ProductListItem key={idx} isSmall data={el} />
         ))}
