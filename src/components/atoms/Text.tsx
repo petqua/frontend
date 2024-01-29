@@ -9,13 +9,13 @@ interface TextProps {
 
 interface FontProps {
   theme: DefaultTheme;
-  fontTheme: string;
+  $fontTheme: string;
 }
 
 export const LightText = ({ children, size, color, style }: TextProps) => {
   const fontTheme = `light${size}`;
   return (
-    <Text fontTheme={fontTheme} style={{ ...style, color: color }}>
+    <Text $fontTheme={fontTheme} style={{ ...style, color: color }}>
       {children}
     </Text>
   );
@@ -24,7 +24,7 @@ export const LightText = ({ children, size, color, style }: TextProps) => {
 export const RegularText = ({ children, size, color, style }: TextProps) => {
   const fontTheme = `regular${size}`;
   return (
-    <Text fontTheme={fontTheme} style={{ ...style, color: color }}>
+    <Text $fontTheme={fontTheme} style={{ ...style, color: color }}>
       {children}
     </Text>
   );
@@ -33,7 +33,7 @@ export const RegularText = ({ children, size, color, style }: TextProps) => {
 export const MediumText = ({ children, size, color, style }: TextProps) => {
   const fontTheme = `medium${size}`;
   return (
-    <Text fontTheme={fontTheme} style={{ ...style, color: color }}>
+    <Text $fontTheme={fontTheme} style={{ ...style, color: color }}>
       {children}
     </Text>
   );
@@ -42,13 +42,13 @@ export const MediumText = ({ children, size, color, style }: TextProps) => {
 export const BoldText = ({ children, size, color, style }: TextProps) => {
   const fontTheme = `bold${size}`;
   return (
-    <Text fontTheme={fontTheme} style={{ ...style, color: color }}>
+    <Text $fontTheme={fontTheme} style={{ ...style, color: color }}>
       {children}
     </Text>
   );
 };
 
 const Text = styled.p<FontProps>`
-  ${({ theme, fontTheme }) => theme.font[fontTheme]}
+  ${({ theme, $fontTheme }) => theme.font[$fontTheme]}
   line-height: 1;
 `;
