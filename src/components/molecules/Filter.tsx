@@ -28,6 +28,6 @@ const Container = styled.div`
   gap: 0.4rem;
   align-items: center;
   padding: 0.6rem 1.2rem;
-  border-radius: 20px;
-  border: 0.5px solid var(--gray-50, #b9bdc5);
+  border-radius: 2rem;
+  border: 0.5px solid ${({ theme }) => theme.color.gray[50]};
 `;
