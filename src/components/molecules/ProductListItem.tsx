@@ -18,6 +18,7 @@ interface ProductListItemData {
   like?: number;
   review?: number;
 }
+
 interface ProductListItem {
   isMain?: boolean;
   isSmall?: boolean;

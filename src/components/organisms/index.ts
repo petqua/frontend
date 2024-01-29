@@ -1,4 +1,4 @@
 import CategoryList from './CategoryList';
-import RcmList from './RcmList';
+import RecommendList from './RecommendList';
 
-export { CategoryList, RcmList };
+export { CategoryList, RecommendList };
