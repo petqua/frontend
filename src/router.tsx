@@ -1,5 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Ex1Page, Ex2Page, HomePage, MainPage } from './pages';
+import { Ex1Page, Ex2Page, HomePage, MainPage, ProductListPage } from './pages';
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +20,11 @@ export const router = createBrowserRouter([
   {
     path: '/home',
     element: <HomePage />,
+    errorElement: <div>Unknown Error</div>,
+  },
+  {
+    path: '/productList',
+    element: <ProductListPage />,
     errorElement: <div>Unknown Error</div>,
   },
 ]);
