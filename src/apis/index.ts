@@ -1,3 +1,3 @@
-import { getBannersAPI } from './homeAPI';
+import { getAnnouncementsAPI, getBannersAPI } from './homeAPI';
 
-export { getBannersAPI };
+export { getBannersAPI, getAnnouncementsAPI };
