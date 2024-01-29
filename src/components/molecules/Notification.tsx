@@ -11,11 +11,24 @@ const Container = styled.div`
   cursor: pointer;
 `;
 
-const Notification = () => {
+interface Annoucement {
+  id: number;
+  title: string;
+  linkUrl: string;
+}
+interface Notification {
+  announcementList: Array<Annoucement>;
+}
+
+const MOCK_DATA = '[공지] 펫쿠아 프론트엔드 개발자 구인 중!';
+
+const Notification = ({ announcementList }: Notification) => {
   return (
     <Container>
       <RegularText size={12} color={theme.color.gray.main}>
-        [공지] 펫쿠아 앱 출시 기념 이벤트 진행중 ! 안전운송 사전 신청하러 가기
+        {announcementList && announcementList.length > 0
+          ? announcementList[0].title
+          : MOCK_DATA}
       </RegularText>
     </Container>
   );
