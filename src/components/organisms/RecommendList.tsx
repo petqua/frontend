@@ -5,7 +5,7 @@ import {
   RowScrollContainer,
 } from '../molecules';
 
-const RcmList = () => {
+const RecommendList = () => {
   const RCM_LIST = [
     {
       imgUrl: '',
@@ -77,12 +77,12 @@ const RcmList = () => {
       <PreviewListTitle title="펫쿠아 강력 추천!" path="/recommend" />
       <ProductListItem isMain data={RCM_LIST[0]} />
       <RowScrollContainer gap="1.2rem" row={1} col={6}>
-        {RCM_LIST.filter((el, idx) => idx > 0).map((el, idx) => (
-          <ProductListItem key={idx} isSmall data={el} />
+        {RCM_LIST.filter((item, idx) => idx > 0).map((item, idx) => (
+          <ProductListItem key={idx} isSmall data={item} />
         ))}
       </RowScrollContainer>
     </FlexBox>
   );
 };
 
-export default RcmList;
+export default RecommendList;

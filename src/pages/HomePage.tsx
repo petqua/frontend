@@ -1,5 +1,5 @@
 import { Carousel, FullScreen, Notification } from '../components/molecules';
-import { CategoryList, RcmList, NewList } from '../components/organisms';
+import { CategoryList, RecommendList, NewList } from '../components/organisms';
 
 const CAROUSEL_IMAGES = [
   '/images/1.jpg',
@@ -14,8 +14,8 @@ const HomePage = () => {
       <Notification />
       <Carousel carouselList={CAROUSEL_IMAGES} />
       <Notification />
-      {/* <CategoryList /> */}
-      <RcmList />
+      <CategoryList />
+      <RecommendList />
       <NewList />
     </FullScreen>
   );

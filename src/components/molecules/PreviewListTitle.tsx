@@ -14,7 +14,7 @@ const PreviewListTitle = ({ title, subTitle, path }: PreviewListTitle) => {
     <FlexBox
       justify="space-between"
       align="flex-end"
-      style={{ padding: '0 14px', width: '100%' }}
+      style={{ padding: '0 1.4rem', width: '100%' }}
     >
       <FlexBox col gap="0.8rem">
         <BoldText size={22} color={theme.color.gray.main}>
