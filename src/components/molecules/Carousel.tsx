@@ -32,8 +32,14 @@ const Button = styled.button<Button>`
   z-index: 1;
 `;
 
+interface Banner {
+  id: string;
+  imageUrl: string;
+  linkUrl: string;
+}
+
 interface Carousel {
-  carouselList: Array<string>;
+  carouselList: Array<Banner>;
 }
 
 const Carousel = ({ carouselList }: Carousel) => {
@@ -81,9 +87,9 @@ const Carousel = ({ carouselList }: Carousel) => {
         <IoIosArrowBack size={36} />
       </Button>
       <CarouselBox ref={carouselRef}>
-        {carouselArray.map((src, idx) => (
-          <Img key={idx} src={src} />
-        ))}
+        {carouselArray.map(
+          (val, idx) => val && <Img key={idx} src={val.imageUrl} />,
+        )}
       </CarouselBox>
       <Button onClick={() => handleClick(1)} $isLeft={false}>
         <IoIosArrowForward size={36} />

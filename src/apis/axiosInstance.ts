@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const { DEV } = import.meta.env;
-
-const baseURL = DEV ? '/api' : 'https://bewater-api.com';
+// proxy 설정때문에 이렇게 해야함
+const baseURL = DEV ? '' : 'https://api.petqua.co.kr';
 
 export const client = axios.create({
   baseURL: baseURL,
