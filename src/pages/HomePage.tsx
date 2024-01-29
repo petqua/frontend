@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { Carousel, FullScreen, Notification } from '../components/molecules';
-import { CategoryList } from '../components/organisms';
+import { CategoryList, RecommendList, NewList } from '../components/organisms';
 import { getBannersAPI } from '../apis';
 
 // 일단 서버에서 내려주는 값이 없어서 이렇게 해놓음.
@@ -44,6 +44,8 @@ const HomePage = () => {
       )}
       <Notification />
       <CategoryList />
+      <RecommendList />
+      <NewList />
     </FullScreen>
   );
 };

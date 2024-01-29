@@ -1,3 +1,5 @@
 import CategoryList from './CategoryList';
+import RecommendList from './RecommendList';
+import NewList from './NewList';
 
-export { CategoryList };
+export { CategoryList, RecommendList, NewList };
