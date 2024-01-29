@@ -11,13 +11,13 @@ const Container = styled.div`
   cursor: pointer;
 `;
 
-interface annoucement {
+interface Annoucement {
   id: number;
   title: string;
   linkUrl: string;
 }
 interface Notification {
-  announcementList: Array<annoucement>;
+  announcementList: Array<Annoucement>;
 }
 
 const MOCK_DATA = '[공지] 펫쿠아 프론트엔드 개발자 구인 중!';
