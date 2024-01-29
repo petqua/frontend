@@ -5,6 +5,8 @@ import Notification from './Notification';
 import Carousel from './Carousel';
 import PreviewListTitle from './PreviewListTitle';
 import RowScrollContainer from './RowScrollContainer';
+import Filter from './Filter';
+import Modal from './Modal';
 
 export {
   ProductListItem,
@@ -14,4 +16,6 @@ export {
   Carousel,
   PreviewListTitle,
   RowScrollContainer,
+  Modal,
+  Filter,
 };
