@@ -4,13 +4,23 @@ interface RowScrollContainer {
   children: React.ReactNode;
   gap?: string;
   style?: any;
+  row: number;
+  col: number;
 }
 
-const RowScrollContainer = ({ children, gap, style }: RowScrollContainer) => {
+const RowScrollContainer = ({
+  children,
+  gap,
+  style,
+  row,
+  col,
+}: RowScrollContainer) => {
   return (
     <Container
       style={{
         gap,
+        gridTemplateRows: `repeat(${row}, 1fr)`,
+        gridTemplateColumns: `repeat(${col}, 1fr)`,
         ...style,
       }}
     >
@@ -22,9 +32,9 @@ const RowScrollContainer = ({ children, gap, style }: RowScrollContainer) => {
 export default RowScrollContainer;
 
 const Container = styled.div`
-  padding: 0 1.2rem;
-  display: flex;
   width: 100%;
+  padding: 0 1.2rem;
+  display: grid;
   overflow-y: hidden;
   overflow-x: auto;
   white-space: nowrap;

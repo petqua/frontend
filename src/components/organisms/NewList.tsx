@@ -5,8 +5,53 @@ import {
   RowScrollContainer,
 } from '../molecules';
 
-const RecommendList = () => {
+const NewList = () => {
   const RCM_LIST = [
+    {
+      imgUrl: '',
+      title: '구피 50마리',
+      price: '30,000',
+      discountRate: '30',
+      discountedPrice: '21,000',
+      like: 23,
+      review: 1,
+    },
+    {
+      imgUrl: '',
+      title: '구피 50마리',
+      price: '30,000',
+      discountRate: '30',
+      discountedPrice: '21,000',
+      like: 23,
+      review: 1,
+    },
+    {
+      imgUrl: '',
+      title: '구피 50마리',
+      price: '30,000',
+      discountRate: '30',
+      discountedPrice: '21,000',
+      like: 23,
+      review: 1,
+    },
+    {
+      imgUrl: '',
+      title: '구피 50마리',
+      price: '30,000',
+      discountRate: '30',
+      discountedPrice: '21,000',
+      like: 23,
+      review: 1,
+    },
+    {
+      imgUrl: '',
+      title: '구피 50마리',
+      price: '30,000',
+      discountRate: '30',
+      discountedPrice: '21,000',
+      like: 23,
+      review: 1,
+    },
     {
       imgUrl: '',
       title: '구피 50마리',
@@ -74,15 +119,22 @@ const RecommendList = () => {
 
   return (
     <FlexBox col gap="2.4rem" style={{ padding: '2.4rem 0' }}>
-      <PreviewListTitle title="펫쿠아 강력 추천!" path="/recommend" />
-      <ProductListItem isMain data={RCM_LIST[0]} />
-      <RowScrollContainer gap="1.2rem" row={1} col={6}>
-        {RCM_LIST.filter((item, idx) => idx > 0).map((item, idx) => (
-          <ProductListItem key={idx} isSmall data={item} />
+      <PreviewListTitle
+        title="수입입고 소식"
+        subTitle="업체별 입고 현황"
+        path="/new"
+      />
+      <RowScrollContainer
+        row={2}
+        col={6}
+        style={{ gridRowGap: '2.4rem', gridColumnGap: '1.2rem' }}
+      >
+        {RCM_LIST.map((el, idx) => (
+          <ProductListItem key={idx} isSmall data={el} />
         ))}
       </RowScrollContainer>
     </FlexBox>
   );
 };
 
-export default RecommendList;
+export default NewList;
