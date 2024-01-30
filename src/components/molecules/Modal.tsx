@@ -17,6 +17,7 @@ interface Modal {
   title: string;
 }
 
+// 모달은 꼭 page 단위에서 사용해야함!!
 const Modal = ({ setIsOpenModal, setValue, value, options, title }: Modal) => {
   const [visible, setVisible] = useState(true);
 
