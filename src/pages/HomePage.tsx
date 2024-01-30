@@ -1,5 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import { Carousel, FullScreen, Notification } from '../components/molecules';
+import {
+  BottomNavBar,
+  Carousel,
+  FullScreen,
+  Notification,
+} from '../components/molecules';
 import { CategoryList, RecommendList, NewList } from '../components/organisms';
 import { getAnnouncementsAPI, getBannersAPI } from '../apis';
 
@@ -49,6 +54,7 @@ const HomePage = () => {
       )}
       <Notification announcementList={announcementList} />
       <CategoryList />
+      <BottomNavBar activeButton="home" />
     </FullScreen>
   );
 };

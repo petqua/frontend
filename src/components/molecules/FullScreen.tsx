@@ -8,8 +8,8 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100%;
   background-color: aliceblue;
 `;
 
@@ -19,9 +19,9 @@ const WebViewBox = styled.div`
   width: 100%;
   max-width: 500px;
   min-width: 200px;
-  height: 100%;
-  min-height: 300px;
+  min-height: 100vh;
   background-color: #ffffff;
+  padding-bottom: 9rem;
 `;
 
 const FullScreen: React.FunctionComponent<FullScreenProps> = ({ children }) => {

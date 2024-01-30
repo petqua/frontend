@@ -6,7 +6,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 3.6rem;
+  min-height: 3.6rem;
   background-color: #f7f7f7;
   cursor: pointer;
 `;
