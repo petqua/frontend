@@ -209,6 +209,7 @@ const color = {
   tint: {
     red: '#FF0000',
     yellow: '#FF8B04',
+    white: '#FFFFFF',
   },
 };
 

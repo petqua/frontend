@@ -45,6 +45,7 @@ interface Color {
   tint: {
     red: string;
     yellow: string;
+    white: string;
   };
 }
 
