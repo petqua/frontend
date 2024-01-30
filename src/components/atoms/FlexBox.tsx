@@ -7,6 +7,7 @@ interface FlexBox {
   style?: any;
   onClick?: () => void;
 }
+
 const FlexBox = ({
   children,
   col,
