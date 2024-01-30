@@ -3,17 +3,25 @@ import { CategoryItem } from '../molecules';
 
 const GridContainer = styled.div`
   display: grid;
+  width: 100%;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);
   padding: 4.8rem 2.4rem;
   row-gap: 2.4rem;
   column-gap: 1.6rem;
+  @media ${({ theme }) => theme.device.mobile} {
+    grid-template-columns: repeat(4, minmax(5rem, 11rem));
+    grid-template-rows: repeat(2, 1fr);
+    padding: 2.4rem 1.2rem;
+    row-gap: 1.8rem;
+    column-gap: 1.2rem;
+  }
 `;
 
 // 어디로 nav할 지도 정해서 추가해야함.
 const CATEGORY_ARRAY = [
   {
-    name: '난태생,송사리과',
+    name: '송사리과',
     src: '/icons/category/1.svg',
     path: '/1',
   },

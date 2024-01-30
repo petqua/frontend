@@ -48,9 +48,16 @@ interface Color {
   };
 }
 
+interface Device {
+  mobile: string;
+  tablet: string;
+  desktop: string;
+}
+
 declare module 'styled-components' {
   export interface DefaultTheme {
     color: Color;
     font: Font;
+    device: Device;
   }
 }

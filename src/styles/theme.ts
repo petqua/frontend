@@ -145,6 +145,18 @@ const light12 = css`
   font-weight: 400;
 `;
 
+const size = {
+  mobile: '767px',
+  tablet: '1023px',
+  desktop: '1024px',
+};
+
+const device = {
+  mobile: `screen and (max-width: ${size.mobile})`,
+  tablet: `screen and (max-width: ${size.tablet})`,
+  desktop: `screen and (min-width: ${size.desktop})`,
+};
+
 const font = {
   bold28,
   bold24,
@@ -203,4 +215,5 @@ const color = {
 export const theme = {
   font,
   color,
+  device,
 };
