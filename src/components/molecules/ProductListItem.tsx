@@ -7,23 +7,7 @@ import {
   ProductImg,
   FlexBox,
 } from '../atoms';
-
-interface ProductListItemData {
-  imgUrl: string;
-  store?: string;
-  title: string;
-  price: string;
-  discountRate: string;
-  discountedPrice: string;
-  like?: number;
-  review?: number;
-}
-
-interface ProductListItem {
-  isMain?: boolean;
-  isSmall?: boolean;
-  data: ProductListItemData;
-}
+import { ProductListItem } from '../../interfaces/product';
 
 const ProductListItem = ({ isMain, isSmall, data }: ProductListItem) => {
   return (
