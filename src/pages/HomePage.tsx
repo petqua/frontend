@@ -48,6 +48,7 @@ const HomePage = () => {
         <Carousel carouselList={CAROUSEL_MOCK_DATA} />
       )}
       <Notification announcementList={announcementList} />
+      <CategoryList />
     </FullScreen>
   );
 };

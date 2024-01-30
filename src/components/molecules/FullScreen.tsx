@@ -18,8 +18,9 @@ const WebViewBox = styled.div`
   flex-direction: column;
   width: 100%;
   max-width: 500px;
-  min-width: 250px;
+  min-width: 200px;
   height: 100%;
+  min-height: 300px;
   background-color: #ffffff;
 `;
 

@@ -6,6 +6,9 @@ const Container = styled.div`
   position: relative;
   width: 100%;
   height: 38rem;
+  @media ${({ theme }) => theme.device.mobile} {
+    height: 26rem;
+  }
   overflow: hidden;
 `;
 
@@ -16,6 +19,7 @@ const CarouselBox = styled.div`
 `;
 
 const Img = styled.img`
+  min-width: 100%;
   width: 100%;
   height: 100%;
 `;
