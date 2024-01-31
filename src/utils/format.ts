@@ -10,3 +10,14 @@ export const formatFilter = (name: string) => {
       return name;
   }
 };
+
+// 가격에 콤마 넣어주는 함수
+export const formatPrice = (price: number) => {
+  const reversedNumberString = String(price).split('').reverse();
+
+  const numberWithCommas = reversedNumberString.reduce((acc, digit, index) => {
+    return digit + (index > 0 && index % 3 === 0 ? ',' : '') + acc;
+  }, '');
+
+  return numberWithCommas.split('').join('');
+};
