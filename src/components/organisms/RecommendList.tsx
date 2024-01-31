@@ -30,7 +30,7 @@ const RecommendList = () => {
             ))}
         </RowScrollContainer>
       ) : (
-        <div>Data Error</div>
+        <></>
       )}
     </FlexBox>
   );
