@@ -43,15 +43,15 @@ const TopNav = ({
         style={{ width: '6rem' }}
       >
         {backBtn && (
-          <button onClick={() => navigate(-1)}>
-            <GoChevronLeft size={24} color={theme.color.gray.main} />
-          </button>
+          <GoChevronLeft
+            size={24}
+            color={theme.color.gray.main}
+            onClick={() => navigate(-1)}
+          />
         )}
 
         {alarm && (
-          <button onClick={() => navigate('/alarm')}>
-            <img src="/icons/alarm.svg" />
-          </button>
+          <img src="/icons/alarm.svg" onClick={() => navigate('/alarm')} />
         )}
       </FlexBox>
       {logo ? (
@@ -70,23 +70,16 @@ const TopNav = ({
         gap="1.6rem"
         style={{ width: '6rem' }}
       >
-        {search && (
-          <button onClick={() => navigate('/search')}>
-            <CiSearch size={24} />
-          </button>
-        )}
+        {search && <CiSearch size={24} onClick={() => navigate('/search')} />}
         {basket && (
-          <button onClick={() => navigate('/basket')}>
-            <img
-              src="/icons/basket.svg"
-              style={{ width: '2.4rem', height: '2.4rem' }}
-            />
-          </button>
+          <img
+            src="/icons/basket.svg"
+            style={{ width: '2.4rem', height: '2.4rem' }}
+            onClick={() => navigate('/basket')}
+          />
         )}
         {like && (
-          <button onClick={() => navigate('/like')}>
-            <img src="/icons/bubble-like.svg" />
-          </button>
+          <img src="/icons/bubble-like.svg" onClick={() => navigate('/like')} />
         )}
       </FlexBox>
     </FlexBox>
