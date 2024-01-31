@@ -12,12 +12,29 @@ export interface ProductList {
 
 // 데이터
 export interface ProductListItemData {
-  imgUrl: string;
-  store?: string;
-  title: string;
-  price: string;
-  discountRate: string;
-  discountedPrice: string;
-  like?: number;
-  review?: number;
+  id: number;
+  name: string;
+  category: string;
+  price: 1;
+  storeName: string;
+  discountRate: number;
+  discountPrice: number;
+  wishCount: number;
+  reviewCount: number;
+  reviewAverageScore: number;
+  thumbnailUrl: string;
+}
+
+// API
+export interface GetProductsAPI {
+  products: ProductListItemData[];
+  hasNextPage: boolean;
+  totalProductsCount: number;
+}
+
+export interface GetProductsAPIParams {
+  lastViewedId?: number;
+  limit: number;
+  sourceType: string;
+  sorter?: string;
 }

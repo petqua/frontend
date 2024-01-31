@@ -8,7 +8,7 @@ interface ProductImg {
 const ProductImg = ({ size, src }: ProductImg) => {
   return (
     <ImgContainer style={{ width: size, height: size }}>
-      <Image src={src || '/public/images/product-item-ex.svg'} />
+      <Image src={src} alt="product-img" />
     </ImgContainer>
   );
 };

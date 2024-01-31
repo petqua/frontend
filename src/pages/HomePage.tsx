@@ -56,6 +56,8 @@ const HomePage = () => {
       )}
       <Notification announcementList={announcementList} />
       <CategoryList />
+      <RecommendList />
+      {/* <NewList /> */}
       <BottomNavBar activeButton="home" />
     </FullScreen>
   );

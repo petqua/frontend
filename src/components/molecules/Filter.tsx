@@ -13,10 +13,10 @@ interface Filter {
 const Filter = ({ value, setIsOpenModal }: Filter) => {
   return (
     <Container onClick={() => setIsOpenModal((prev) => !prev)}>
-      <MediumText size={16} color={theme.color.gray[70]}>
+      <MediumText size={14} color={theme.color.gray[70]}>
         {formatFilter(value)}
       </MediumText>
-      <FaAngleDown color={theme.color.gray[50]} size={16} />
+      <FaAngleDown color={theme.color.gray[50]} size={12} />
     </Container>
   );
 };
