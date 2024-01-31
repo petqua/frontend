@@ -11,12 +11,12 @@ const Footer = styled.footer`
   position: fixed;
   bottom: 0;
   width: 100%;
-  max-width: 500px;
+  max-width: 50rem;
   height: 7.2rem;
   background: ${({ theme }) => theme.color.tint.white};
   color: ${({ theme }) => theme.color.gray.main};
   display: flex;
-  box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0.4rem 2.5rem 0 rgba(0, 0, 0, 0.08);
   padding: 1rem 3rem;
   @media ${({ theme }) => theme.device.mobile} {
     padding: 0.5rem 1rem;
