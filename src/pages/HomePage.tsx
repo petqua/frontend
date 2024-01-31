@@ -56,12 +56,9 @@ const HomePage = () => {
       )}
       <Notification announcementList={announcementList} />
       <CategoryList />
-<<<<<<< Updated upstream
-      <BottomNavBar activeButton="home" />
-=======
       <RecommendList />
       {/* <NewList /> */}
->>>>>>> Stashed changes
+      <BottomNavBar activeButton="home" />
     </FullScreen>
   );
 };
