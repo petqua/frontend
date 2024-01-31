@@ -39,6 +39,7 @@ const GlobalStyle = createGlobalStyle`
     max-width:100%;
   }
   button {
+    padding: 0;
     background:none;
     border:0;
     cursor:pointer;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FlexBox } from '../components/atoms';
-import { Modal, Filter } from '../components/molecules';
+import { Modal, Filter, TopNav, FullScreen } from '../components/molecules';
 import { ProductList } from '../components/organisms';
 
 const ProductListPage = () => {
@@ -79,23 +79,26 @@ const ProductListPage = () => {
   ];
 
   return (
-    <FlexBox col gap="2.4rem" style={{ padding: '1.4rem' }}>
-      <FlexBox gap="1.2rem" align="center">
-        <Filter value={sortValue} setIsOpenModal={setIsOpenSortModal} />
-      </FlexBox>
-      <ProductList listData={list} length={list.length} />
+    <FullScreen>
+      <TopNav backBtn search basket isBlue title="주간 인기 반려어" />
+      <FlexBox col gap="2.4rem" style={{ padding: '1.4rem' }}>
+        <FlexBox gap="1.2rem" align="center">
+          <Filter value={sortValue} setIsOpenModal={setIsOpenSortModal} />
+        </FlexBox>
+        <ProductList listData={list} length={list.length} />
 
-      {/* =================== 모달 =================== */}
-      {isOpenSortModal && (
-        <Modal
-          options={sortOptions}
-          title="필터"
-          value={sortValue}
-          setIsOpenModal={setIsOpenSortModal}
-          setValue={setSortValue}
-        />
-      )}
-    </FlexBox>
+        {/* =================== 모달 =================== */}
+        {isOpenSortModal && (
+          <Modal
+            options={sortOptions}
+            title="필터"
+            value={sortValue}
+            setIsOpenModal={setIsOpenSortModal}
+            setValue={setSortValue}
+          />
+        )}
+      </FlexBox>
+    </FullScreen>
   );
 };
 

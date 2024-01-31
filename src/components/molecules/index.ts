@@ -7,6 +7,7 @@ import PreviewListTitle from './PreviewListTitle';
 import RowScrollContainer from './RowScrollContainer';
 import Filter from './Filter';
 import Modal from './Modal';
+import TopNav from './TopNav';
 import BottomNavBar from './BottomNavBar';
 
 export {
@@ -19,5 +20,6 @@ export {
   RowScrollContainer,
   Modal,
   Filter,
+  TopNav,
   BottomNavBar,
 };

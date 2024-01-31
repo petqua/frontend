@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import {
-  BottomNavBar,
   Carousel,
   FullScreen,
   Notification,
+  TopNav,
+  BottomNavBar,
 } from '../components/molecules';
 import { CategoryList, RecommendList, NewList } from '../components/organisms';
 import { getAnnouncementsAPI, getBannersAPI } from '../apis';
@@ -47,6 +48,7 @@ const HomePage = () => {
 
   return (
     <FullScreen>
+      <TopNav alarm search basket logo />
       {bannersList && bannersList.length !== 0 ? (
         <Carousel carouselList={[bannersList[0]]} />
       ) : (
