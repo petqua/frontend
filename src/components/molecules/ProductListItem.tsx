@@ -8,7 +8,6 @@ import {
   FlexBox,
 } from '../atoms';
 import { ProductListItem } from '../../interfaces/product';
-import { formatPrice } from '../../utils/format';
 
 const ProductListItem = ({ isMain, isSmall, data }: ProductListItem) => {
   return (
@@ -54,7 +53,7 @@ const ProductListItem = ({ isMain, isSmall, data }: ProductListItem) => {
           color={theme.color.gray[60]}
           style={{ textDecoration: 'line-through' }}
         >
-          {formatPrice(data?.price)}원
+          {data?.price.toLocaleString()}원
         </RegularText>
 
         <FlexBox align="center" gap="0.8rem">
@@ -62,7 +61,7 @@ const ProductListItem = ({ isMain, isSmall, data }: ProductListItem) => {
             {data?.discountRate}%
           </RegularText>
           <BoldText size={16} color={theme.color.gray.main}>
-            {formatPrice(data?.discountPrice)}원
+            {data?.discountPrice.toLocaleString()}원
           </BoldText>
         </FlexBox>
 
