@@ -1,121 +1,21 @@
+import { useQuery } from '@tanstack/react-query';
 import { FlexBox } from '../atoms';
 import {
   ProductListItem,
   PreviewListTitle,
   RowScrollContainer,
 } from '../molecules';
+import { getProductsAPI } from '../../apis';
 
 const NewList = () => {
-  const RCM_LIST = [
-    {
-      imgUrl: '',
-      title: '구피 50마리',
-      price: '30,000',
-      discountRate: '30',
-      discountedPrice: '21,000',
-      like: 23,
-      review: 1,
-    },
-    {
-      imgUrl: '',
-      title: '구피 50마리',
-      price: '30,000',
-      discountRate: '30',
-      discountedPrice: '21,000',
-      like: 23,
-      review: 1,
-    },
-    {
-      imgUrl: '',
-      title: '구피 50마리',
-      price: '30,000',
-      discountRate: '30',
-      discountedPrice: '21,000',
-      like: 23,
-      review: 1,
-    },
-    {
-      imgUrl: '',
-      title: '구피 50마리',
-      price: '30,000',
-      discountRate: '30',
-      discountedPrice: '21,000',
-      like: 23,
-      review: 1,
-    },
-    {
-      imgUrl: '',
-      title: '구피 50마리',
-      price: '30,000',
-      discountRate: '30',
-      discountedPrice: '21,000',
-      like: 23,
-      review: 1,
-    },
-    {
-      imgUrl: '',
-      title: '구피 50마리',
-      price: '30,000',
-      discountRate: '30',
-      discountedPrice: '21,000',
-      like: 23,
-      review: 1,
-    },
-    {
-      imgUrl: '',
-      title: '구피 50마리',
-      price: '30,000',
-      discountRate: '30',
-      discountedPrice: '21,000',
-      like: 23,
-      review: 1,
-    },
-    {
-      imgUrl: '',
-      title: '구피 50마리',
-      price: '30,000',
-      discountRate: '30',
-      discountedPrice: '21,000',
-      like: 23,
-      review: 1,
-    },
-    {
-      imgUrl: '',
-      title: '구피 50마리',
-      price: '30,000',
-      discountRate: '30',
-      discountedPrice: '21,000',
-      like: 23,
-      review: 1,
-    },
-    {
-      imgUrl: '',
-      title: '구피 50마리',
-      price: '30,000',
-      discountRate: '30',
-      discountedPrice: '21,000',
-      like: 23,
-      review: 1,
-    },
-    {
-      imgUrl: '',
-      title: '구피 50마리',
-      price: '30,000',
-      discountRate: '30',
-      discountedPrice: '21,000',
-      like: 23,
-      review: 1,
-    },
-    {
-      imgUrl: '',
-      title: '구피 50마리',
-      price: '30,000',
-      discountRate: '30',
-      discountedPrice: '21,000',
-      like: 23,
-      review: 1,
-    },
-  ];
+  const { data: productListData } = useQuery({
+    queryKey: ['products', { limit: 12, sourceType: 'HOME_NEW_ENROLLMENT' }],
+    queryFn: getProductsAPI,
+    staleTime: 60 * 1000,
+  });
+
+  // 타입 예외처리
+  const products = productListData?.products || [];
 
   return (
     <FlexBox col gap="2.4rem" style={{ padding: '2.4rem 0' }}>
@@ -129,7 +29,7 @@ const NewList = () => {
         col={6}
         style={{ gridRowGap: '2.4rem', gridColumnGap: '1.2rem' }}
       >
-        {RCM_LIST.map((el, idx) => (
+        {products.map((el, idx) => (
           <ProductListItem key={idx} isSmall data={el} />
         ))}
       </RowScrollContainer>
