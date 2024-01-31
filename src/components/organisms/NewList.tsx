@@ -29,8 +29,8 @@ const NewList = () => {
         col={6}
         style={{ gridRowGap: '2.4rem', gridColumnGap: '1.2rem' }}
       >
-        {products.map((el, idx) => (
-          <ProductListItem key={idx} isSmall data={el} />
+        {products.map((item, idx) => (
+          <ProductListItem key={idx} isSmall data={item} />
         ))}
       </RowScrollContainer>
     </FlexBox>
