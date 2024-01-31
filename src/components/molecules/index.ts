@@ -8,6 +8,7 @@ import RowScrollContainer from './RowScrollContainer';
 import Filter from './Filter';
 import Modal from './Modal';
 import TopNav from './TopNav';
+import BottomNavBar from './BottomNavBar';
 
 export {
   ProductListItem,
@@ -20,4 +21,5 @@ export {
   Modal,
   Filter,
   TopNav,
+  BottomNavBar,
 };

@@ -20,10 +20,19 @@ const GlobalStyle = createGlobalStyle`
     overflow-wrap:break-word;
     word-break:break-word;
     tab-size:4;
+    width: 100%;
+    height: 100%;
   }
   html {
     height:100%;
     font-size: 62.5%;
+  }
+  body {
+    height: 100%;
+  }
+  #root {
+    width: 100%;
+    height: 100%;
   }
   img, picture, video, canvas, svg {
     display: block;

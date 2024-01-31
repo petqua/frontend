@@ -4,6 +4,7 @@ import {
   FullScreen,
   Notification,
   TopNav,
+  BottomNavBar,
 } from '../components/molecules';
 import { CategoryList, RecommendList, NewList } from '../components/organisms';
 import { getAnnouncementsAPI, getBannersAPI } from '../apis';
@@ -55,6 +56,7 @@ const HomePage = () => {
       )}
       <Notification announcementList={announcementList} />
       <CategoryList />
+      <BottomNavBar activeButton="home" />
     </FullScreen>
   );
 };
