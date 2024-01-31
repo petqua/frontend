@@ -9,7 +9,7 @@ const Container = styled.div`
   @media ${({ theme }) => theme.device.mobile} {
     height: 26rem;
   }
-  overflow: hidden;
+  overflow-x: clip;
 `;
 
 const CarouselBox = styled.div`
