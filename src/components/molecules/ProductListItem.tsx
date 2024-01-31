@@ -8,6 +8,7 @@ import {
   FlexBox,
 } from '../atoms';
 import { ProductListItem } from '../../interfaces/product';
+import { formatPrice } from '../../utils/format';
 
 const ProductListItem = ({ isMain, isSmall, data }: ProductListItem) => {
   return (
@@ -22,13 +23,13 @@ const ProductListItem = ({ isMain, isSmall, data }: ProductListItem) => {
     >
       <ProductImg
         size={isMain ? '16.8rem' : isSmall ? '12rem' : '16rem'}
-        src={data.imgUrl}
+        src={data?.thumbnailUrl}
       />
 
       <FlexBox col gap="0.8rem" style={{ width: isMain ? '14rem' : '' }}>
         {!isSmall && (
           <MediumText size={isMain ? 16 : 12} color={theme.color.gray[50]}>
-            {data.store || 'S아쿠아'}
+            {data?.storeName}
           </MediumText>
         )}
 
@@ -45,7 +46,7 @@ const ProductListItem = ({ isMain, isSmall, data }: ProductListItem) => {
             marginBottom: isMain ? '1.2rem' : '',
           }}
         >
-          {data.title || '[대용량] 100% 국내산 호랑이 독 닭가슴살 소장'}
+          {data?.name}
         </MediumText>
 
         <RegularText
@@ -53,15 +54,15 @@ const ProductListItem = ({ isMain, isSmall, data }: ProductListItem) => {
           color={theme.color.gray[60]}
           style={{ textDecoration: 'line-through' }}
         >
-          {data.price || '30,000'}원
+          {formatPrice(data?.price)}원
         </RegularText>
 
         <FlexBox align="center" gap="0.8rem">
           <RegularText size={16} color={theme.color.tint.red}>
-            {data.discountRate || 30}%
+            {data?.discountRate}%
           </RegularText>
           <BoldText size={16} color={theme.color.gray.main}>
-            {data.discountedPrice || '21,000'}원
+            {formatPrice(data?.discountPrice)}원
           </BoldText>
         </FlexBox>
 
@@ -73,7 +74,7 @@ const ProductListItem = ({ isMain, isSmall, data }: ProductListItem) => {
                 style={{ width: '0.8rem', height: '0.8rem' }}
               />
               <LightText size={12} color={theme.color.blue[70]}>
-                {data.like || 23}
+                {data?.wishCount}
               </LightText>
             </FlexBox>
             <FlexBox align="center" gap="0.4rem">
@@ -82,7 +83,7 @@ const ProductListItem = ({ isMain, isSmall, data }: ProductListItem) => {
                 style={{ width: '0.8rem', height: '0.8rem' }}
               />
               <LightText size={12} color={theme.color.blue.main}>
-                {data.review || 23}
+                {data?.reviewCount}
               </LightText>
             </FlexBox>
           </FlexBox>

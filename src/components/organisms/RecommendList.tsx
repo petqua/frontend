@@ -5,7 +5,7 @@ import {
   PreviewListTitle,
   RowScrollContainer,
 } from '../molecules';
-import { getProductsAPI } from '../../apis/productAPI';
+import { getProductsAPI } from '../../apis';
 
 const RecommendList = () => {
   const { data: productListData } = useQuery({
