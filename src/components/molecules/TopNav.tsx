@@ -3,6 +3,7 @@ import { theme } from '../../styles/theme';
 import { CiSearch } from 'react-icons/ci';
 import { GoChevronLeft } from 'react-icons/go';
 import { useNavigate } from 'react-router-dom';
+import { styled } from 'styled-components';
 
 interface TopNav {
   backBtn?: boolean;
@@ -28,14 +29,7 @@ const TopNav = ({
   const navigate = useNavigate();
 
   return (
-    <FlexBox
-      justify="space-between"
-      align="center"
-      style={{
-        padding: '1.6rem 1.4rem',
-        width: '100%',
-      }}
-    >
+    <Container>
       <FlexBox
         justify="flex-start"
         align="center"
@@ -51,11 +45,15 @@ const TopNav = ({
         )}
 
         {alarm && (
-          <img src="/icons/alarm.svg" onClick={() => navigate('/alarm')} />
+          <img
+            src="/icons/alarm.svg"
+            alt="alarm"
+            onClick={() => navigate('/alarm')}
+          />
         )}
       </FlexBox>
       {logo ? (
-        <img src="/icons/logo-typo.svg" />
+        <img src="/icons/logo-typo.svg" alt="logo" />
       ) : (
         <MediumText
           size={16}
@@ -74,16 +72,29 @@ const TopNav = ({
         {basket && (
           <img
             src="/icons/basket.svg"
+            alt="basket"
             style={{ width: '2.4rem', height: '2.4rem' }}
             onClick={() => navigate('/basket')}
           />
         )}
         {like && (
-          <img src="/icons/bubble-like.svg" onClick={() => navigate('/like')} />
+          <img
+            src="/icons/bubble-like.svg"
+            alt="like"
+            onClick={() => navigate('/like')}
+          />
         )}
       </FlexBox>
-    </FlexBox>
+    </Container>
   );
 };
 
 export default TopNav;
+
+const Container = styled.nav`
+  width: 100%;
+  padding: 1.6rem 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
