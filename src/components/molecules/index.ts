@@ -10,6 +10,7 @@ import Modal from './Modal';
 import TopNav from './TopNav';
 import BottomNavBar from './BottomNavBar';
 import SearchBar from './SearchBar';
+import RecentSearchList from './RecentSearchList';
 
 export {
   ProductListItem,
@@ -24,4 +25,5 @@ export {
   TopNav,
   BottomNavBar,
   SearchBar,
+  RecentSearchList,
 };
