@@ -11,6 +11,7 @@ import TopNav from './TopNav';
 import BottomNavBar from './BottomNavBar';
 import SearchBar from './SearchBar';
 import RecentSearchList from './RecentSearchList';
+import TrendingKeywordList from './TrendingKeywordList';
 
 export {
   ProductListItem,
@@ -26,4 +27,5 @@ export {
   BottomNavBar,
   SearchBar,
   RecentSearchList,
+  TrendingKeywordList,
 };
