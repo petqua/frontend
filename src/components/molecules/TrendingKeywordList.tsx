@@ -48,7 +48,7 @@ const TrendingKeywordList = ({ data, debouncedQuery }: TrendingKeywordList) => {
   };
 
   const handleClick = (keyword: string) => {
-    navigate('/product?keyword=' + keyword);
+    navigate(`/product?keyword=${keyword}`);
     setSearchInput(keyword);
     handleAddRecentInput(keyword);
   };
