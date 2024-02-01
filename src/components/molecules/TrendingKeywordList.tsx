@@ -27,6 +27,9 @@ const RecommendLi = styled.li`
   padding: 1.2rem 0;
   gap: 2rem;
   cursor: pointer;
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 
 const TrendingKeywordList = ({ data, debouncedQuery }: TrendingKeywordList) => {
