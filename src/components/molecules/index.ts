@@ -9,6 +9,9 @@ import Filter from './Filter';
 import Modal from './Modal';
 import TopNav from './TopNav';
 import BottomNavBar from './BottomNavBar';
+import SearchBar from './SearchBar';
+import RecentSearchList from './RecentSearchList';
+import TrendingKeywordList from './TrendingKeywordList';
 
 export {
   ProductListItem,
@@ -22,4 +25,7 @@ export {
   Filter,
   TopNav,
   BottomNavBar,
+  SearchBar,
+  RecentSearchList,
+  TrendingKeywordList,
 };
