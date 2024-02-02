@@ -50,7 +50,7 @@ const HomePage = () => {
     <FullScreen>
       <TopNav alarm search basket logo />
       {bannersList && bannersList.length !== 0 ? (
-        <Carousel carouselList={[bannersList[0]]} />
+        <Carousel carouselList={bannersList} />
       ) : (
         <Carousel carouselList={CAROUSEL_MOCK_DATA} />
       )}
