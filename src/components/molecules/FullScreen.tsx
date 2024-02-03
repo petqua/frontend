@@ -27,7 +27,7 @@ const FullScreen = () => {
   const currentPath = location.pathname;
 
   const MoveToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'auto' });
+    window.scrollTo({ top: 0 });
   };
 
   useEffect(() => {

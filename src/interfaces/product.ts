@@ -46,7 +46,7 @@ export interface GetProductsAPI {
 }
 
 export interface GetProductsAPIParams {
-  lastViewedId?: number | null;
+  lastViewedId?: number;
   limit: number;
   sourceType: string;
   sorter?: string;
