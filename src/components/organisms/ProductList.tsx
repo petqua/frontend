@@ -22,11 +22,16 @@ const ProductList = ({
           hasMore={data[0]?.hasNextPage}
           loadMore={() => fetchNextPage()}
         >
-          {data.map((items) => {
-            return items?.products.map((item) => (
-              <ProductListItem key={item.id} data={item} />
-            ));
-          })}
+          <FlexBox
+            justify="space-between"
+            style={{ flexWrap: 'wrap', rowGap: '3.2rem' }}
+          >
+            {data.map((items) => {
+              return items?.products.map((item) => (
+                <ProductListItem key={item.id} data={item} />
+              ));
+            })}
+          </FlexBox>
         </InfiniteScroll>
       ) : (
         <FlexBox
