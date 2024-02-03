@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FlexBox } from '../components/atoms';
 import { Modal, Filter, TopNav } from '../components/molecules';
 import { ProductList } from '../components/organisms';
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
 import { getProductsAPI } from '../apis';
 
@@ -27,7 +27,7 @@ const ProductListPage = () => {
   const [sortValue, setSortValue] = useState('필터');
   const [isOpenSortModal, setIsOpenSortModal] = useState(false);
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const type = searchParams.get('type') || 'exception';
   // const lastView = searchParams.get('lastView') || '1';
 
