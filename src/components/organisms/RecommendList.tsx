@@ -9,8 +9,8 @@ import { getProductsAPI } from '../../apis';
 
 const RecommendList = () => {
   const { data: productListData } = useQuery({
-    queryKey: ['products', { limit: 7, sourceType: 'HOME_RECOMMENDED' }],
-    queryFn: getProductsAPI,
+    queryKey: ['products', 'HOME_RECOMMENDED'],
+    queryFn: () => getProductsAPI({ limit: 7, sourceType: 'HOME_RECOMMENDED' }),
     staleTime: 60 * 1000,
   });
 

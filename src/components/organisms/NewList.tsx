@@ -9,8 +9,9 @@ import { getProductsAPI } from '../../apis';
 
 const NewList = () => {
   const { data: productListData } = useQuery({
-    queryKey: ['products', { limit: 12, sourceType: 'HOME_NEW_ENROLLMENT' }],
-    queryFn: getProductsAPI,
+    queryKey: ['products', 'HOME_NEW_ENROLLMENT'],
+    queryFn: () =>
+      getProductsAPI({ limit: 12, sourceType: 'HOME_NEW_ENROLLMENT' }),
     staleTime: 60 * 1000,
   });
 
