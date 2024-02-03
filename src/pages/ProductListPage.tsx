@@ -63,7 +63,7 @@ const ProductListPage = () => {
         sourceType: types[type].sourceType,
         lastViewedId,
       }),
-    initialPageParam: 100,
+    initialPageParam: -1,
     getNextPageParam: (lastPage) => {
       const length = lastPage.products.length - 1;
       return lastPage.products[length].id;
