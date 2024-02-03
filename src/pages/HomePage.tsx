@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import {
   Carousel,
-  FullScreen,
   Notification,
   TopNav,
   BottomNavBar,
@@ -47,7 +46,7 @@ const HomePage = () => {
   });
 
   return (
-    <FullScreen>
+    <>
       <TopNav alarm search basket logo />
       {bannersList && bannersList.length !== 0 ? (
         <Carousel carouselList={bannersList} />
@@ -59,7 +58,7 @@ const HomePage = () => {
       <RecommendList />
       <NewList />
       <BottomNavBar activeButton="home" />
-    </FullScreen>
+    </>
   );
 };
 

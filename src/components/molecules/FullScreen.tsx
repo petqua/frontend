@@ -1,8 +1,6 @@
+import { useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-
-interface FullScreenProps {
-  children: React.ReactNode;
-}
 
 const Container = styled.div`
   display: flex;
@@ -24,10 +22,23 @@ const WebViewBox = styled.div`
   padding-bottom: 9rem;
 `;
 
-const FullScreen: React.FunctionComponent<FullScreenProps> = ({ children }) => {
+const FullScreen = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  const MoveToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  };
+
+  useEffect(() => {
+    MoveToTop();
+  }, [currentPath]);
+
   return (
     <Container>
-      <WebViewBox>{children}</WebViewBox>
+      <WebViewBox>
+        <Outlet />
+      </WebViewBox>
     </Container>
   );
 };
