@@ -36,6 +36,7 @@ export interface ProductListItemData {
   reviewCount: number;
   reviewAverageScore: number;
   thumbnailUrl: string;
+  isWish?: boolean;
 }
 
 // API
