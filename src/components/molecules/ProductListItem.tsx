@@ -69,7 +69,8 @@ const ProductListItem = ({ isMain, isSmall, data }: ProductListItem) => {
           <FlexBox align="center" gap="0.8rem">
             <FlexBox align="center" gap="0.4rem">
               <img
-                src="/public/icons/bubble-like-filled.svg"
+                src="/icons/bubble-like-filled.svg"
+                alt="bubble-like-filled"
                 style={{ width: '0.8rem', height: '0.8rem' }}
               />
               <LightText size={12} color={theme.color.blue[70]}>
@@ -78,7 +79,8 @@ const ProductListItem = ({ isMain, isSmall, data }: ProductListItem) => {
             </FlexBox>
             <FlexBox align="center" gap="0.4rem">
               <img
-                src="/public/icons/bubble-like-filled.svg"
+                src="/icons/bubble-like-filled.svg"
+                alt="bubble-like-filled"
                 style={{ width: '0.8rem', height: '0.8rem' }}
               />
               <LightText size={12} color={theme.color.blue.main}>
