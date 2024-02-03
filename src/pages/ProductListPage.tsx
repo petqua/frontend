@@ -1,7 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FlexBox } from '../components/atoms';
-import { Modal, Filter, TopNav, FullScreen } from '../components/molecules';
+import { Modal, Filter, TopNav } from '../components/molecules';
 import { ProductList } from '../components/organisms';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useSearchParams } from 'react-router-dom';
+import { getProductsAPI } from '../apis';
+
+interface ProductType {
+  title: string;
+  sourceType: string;
+  isBlue: boolean;
+  isFilter: boolean;
+  isInfinite: boolean;
+}
+
+interface Types {
+  [key: string]: ProductType;
+}
 
 const ProductListPage = () => {
   const sortOptions = [
@@ -12,36 +27,34 @@ const ProductListPage = () => {
   const [sortValue, setSortValue] = useState('필터');
   const [isOpenSortModal, setIsOpenSortModal] = useState(false);
 
-  const list = [
-    {
-      imgUrl: '',
-      title: '구피 50마리',
-      price: '30,000',
-      discountRate: '30',
-      discountedPrice: '21,000',
-      like: 23,
-      review: 1,
+  const [searchParams, setSearchParams] = useSearchParams();
+  const type = searchParams.get('type') || 'exception';
+  // const lastView = searchParams.get('lastView') || '1';
+
+  const types: Types = {
+    recommend: {
+      title: '펫쿠아가 적극 추천해요',
+      sourceType: 'HOME_RECOMMENDED',
+      isBlue: true,
+      isFilter: false,
+      isInfinite: true,
     },
-    {
-      imgUrl: '',
-      title: '구피 50마리',
-      price: '30,000',
-      discountRate: '30',
-      discountedPrice: '21,000',
-      like: 23,
-      review: 1,
+    new: {
+      title: '새로운 반려어',
+      sourceType: 'HOME_NEW_ENROLLMENT',
+      isBlue: true,
+      isFilter: false,
+      isInfinite: false,
     },
-    {
-      imgUrl: '',
-      title: '구피 50마리',
-      price: '30,000',
-      discountRate: '30',
-      discountedPrice: '21,000',
-      like: 23,
-      review: 1,
+    exception: {
+      title: 'Error',
+      sourceType: '',
+      isBlue: false,
+      isFilter: false,
+      isInfinite: false,
     },
-    {
-      imgUrl: '',
+  };
+
   const { data, fetchNextPage } = useInfiniteQuery({
     queryKey: ['products', types[type]],
     queryFn: ({ pageParam: lastViewedId }) =>
@@ -54,39 +67,33 @@ const ProductListPage = () => {
     getNextPageParam: (lastPage) => {
       const length = lastPage.products.length - 1;
       return lastPage.products[length].id;
-      discountedPrice: '21,000',
-      like: 23,
-      review: 1,
-    },
-    {
-      imgUrl: '',
-      title: '구피 50마리',
-      price: '30,000',
-      discountRate: '30',
-      discountedPrice: '21,000',
-      like: 23,
-      review: 1,
-    },
-    {
-      imgUrl: '',
-      title: '구피 50마리',
-      price: '30,000',
-      discountRate: '30',
-      discountedPrice: '21,000',
-      like: 23,
-      review: 1,
     },
     staleTime: 60 * 1000,
   });
 
   return (
-    <FullScreen>
-      <TopNav backBtn search basket isBlue title="주간 인기 반려어" />
+    <>
+      <TopNav
+        backBtn
+        search
+        basket
+        isBlue={types[type].isBlue}
+        title={types[type].title}
+      />
       <FlexBox col gap="2.4rem" style={{ padding: '1.4rem' }}>
-        <FlexBox gap="1.2rem" align="center">
-          <Filter value={sortValue} setIsOpenModal={setIsOpenSortModal} />
-        </FlexBox>
-        <ProductList listData={list} length={list.length} />
+        {types[type].isFilter && (
+          <FlexBox gap="1.2rem" align="center">
+            <Filter value={sortValue} setIsOpenModal={setIsOpenSortModal} />
+          </FlexBox>
+        )}
+        <ProductList
+          data={data?.pages || []}
+          length={
+            type !== 'new' ? data?.pages[0].totalProductsCount : undefined
+          }
+          fetchNextPage={fetchNextPage}
+          isInfinite={types[type].isInfinite}
+        />
 
         {/* =================== 모달 =================== */}
         {isOpenSortModal && (
@@ -99,7 +106,7 @@ const ProductListPage = () => {
           />
         )}
       </FlexBox>
-    </FullScreen>
+    </>
   );
 };
 

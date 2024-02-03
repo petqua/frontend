@@ -22,7 +22,7 @@ const NewList = () => {
       <PreviewListTitle
         title="수입입고 소식"
         subTitle="업체별 입고 현황"
-        path="/new"
+        path="/product?type=new"
       />
       <RowScrollContainer
         row={2}
