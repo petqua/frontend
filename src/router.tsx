@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { FullScreen } from './components/molecules';
-import { HomePage, WishListPage, ProductListPage, SearchPage } from './pages';
+import { HomePage, ProductListPage, SearchPage } from './pages';
 
 export const router = createBrowserRouter([
   {
