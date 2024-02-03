@@ -1,6 +1,5 @@
 import {
   BottomNavBar,
-  FullScreen,
   RecentSearchList,
   SearchBar,
   TrendingKeywordList,
@@ -23,7 +22,7 @@ const SearchPage = () => {
   });
 
   return (
-    <FullScreen>
+    <>
       <SearchBar />
       {searchInput ? (
         <TrendingKeywordList
@@ -34,7 +33,7 @@ const SearchPage = () => {
         <RecentSearchList />
       )}
       <BottomNavBar activeButton="search" />
-    </FullScreen>
+    </>
   );
 };
 

@@ -9,8 +9,9 @@ import { getProductsAPI } from '../../apis';
 
 const NewList = () => {
   const { data: productListData } = useQuery({
-    queryKey: ['products', { limit: 12, sourceType: 'HOME_NEW_ENROLLMENT' }],
-    queryFn: getProductsAPI,
+    queryKey: ['products', 'HOME_NEW_ENROLLMENT'],
+    queryFn: () =>
+      getProductsAPI({ limit: 12, sourceType: 'HOME_NEW_ENROLLMENT' }),
     staleTime: 60 * 1000,
   });
 
@@ -22,7 +23,7 @@ const NewList = () => {
       <PreviewListTitle
         title="수입입고 소식"
         subTitle="업체별 입고 현황"
-        path="/new"
+        path="/product?type=new"
       />
       <RowScrollContainer
         row={2}

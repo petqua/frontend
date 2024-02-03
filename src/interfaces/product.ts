@@ -1,3 +1,9 @@
+import {
+  FetchNextPageOptions,
+  InfiniteData,
+  InfiniteQueryObserverResult,
+} from '@tanstack/query-core';
+
 // 컴포넌트
 export interface ProductListItem {
   isMain?: boolean;
@@ -7,7 +13,14 @@ export interface ProductListItem {
 
 export interface ProductList {
   length?: number;
-  listData: ProductListItemData[];
+  data: GetProductsAPI[];
+  isInfinite: boolean;
+  fetchNextPage: (
+    options?: FetchNextPageOptions | undefined,
+  ) => Promise<
+    InfiniteQueryObserverResult<InfiniteData<GetProductsAPI, unknown>, Error>
+  >;
+  style?: any;
 }
 
 // 데이터
@@ -15,7 +28,7 @@ export interface ProductListItemData {
   id: number;
   name: string;
   category: string;
-  price: 1;
+  price: number;
   storeName: string;
   discountRate: number;
   discountPrice: number;

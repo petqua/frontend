@@ -39,6 +39,7 @@ const Container = styled.div`
   overflow-x: auto;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 
   ::-webkit-scrollbar {
     display: none;

@@ -2,12 +2,20 @@ import { GetProductsAPI, GetProductsAPIParams } from '../interfaces/product';
 import { client } from './axiosInstance';
 
 export const getProductsAPI = async ({
-  queryKey,
-}: {
-  queryKey: [string, GetProductsAPIParams];
-}): Promise<GetProductsAPI> => {
+  lastViewedId,
+  limit,
+  sourceType,
+  sorter,
+}: GetProductsAPIParams): Promise<GetProductsAPI> => {
   try {
-    const res = await client.get('/products', { params: queryKey[1] });
+    const res = await client.get('/products', {
+      params: {
+        lastViewedId,
+        limit,
+        sourceType,
+        sorter,
+      },
+    });
     return res.data;
   } catch (error: any) {
     if (error.response) {

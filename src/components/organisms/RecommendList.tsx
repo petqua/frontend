@@ -9,8 +9,8 @@ import { getProductsAPI } from '../../apis';
 
 const RecommendList = () => {
   const { data: productListData } = useQuery({
-    queryKey: ['products', { limit: 7, sourceType: 'HOME_RECOMMENDED' }],
-    queryFn: getProductsAPI,
+    queryKey: ['products', 'HOME_RECOMMENDED'],
+    queryFn: () => getProductsAPI({ limit: 7, sourceType: 'HOME_RECOMMENDED' }),
     staleTime: 60 * 1000,
   });
 
@@ -19,12 +19,15 @@ const RecommendList = () => {
 
   return (
     <FlexBox col gap="2.4rem" style={{ padding: '2.4rem 0' }}>
-      <PreviewListTitle title="펫쿠아 강력 추천!" path="/recommend" />
+      <PreviewListTitle
+        title="펫쿠아 강력 추천!"
+        path="/product?type=recommend"
+      />
       <ProductListItem isMain data={products[0]} />
       {products.length > 1 ? (
         <RowScrollContainer gap="1.2rem" row={1} col={6}>
           {products
-            ?.filter((item, idx) => idx > 0)
+            ?.filter((_, idx) => idx > 0)
             ?.map((item, idx) => (
               <ProductListItem key={idx} isSmall data={item} />
             ))}
