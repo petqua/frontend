@@ -42,9 +42,18 @@ const ProductListPage = () => {
     },
     {
       imgUrl: '',
-      title: '구피 50마리',
-      price: '30,000',
-      discountRate: '30',
+  const { data, fetchNextPage } = useInfiniteQuery({
+    queryKey: ['products', types[type]],
+    queryFn: ({ pageParam: lastViewedId }) =>
+      getProductsAPI({
+        limit: 20,
+        sourceType: types[type].sourceType,
+        lastViewedId,
+      }),
+    initialPageParam: 100,
+    getNextPageParam: (lastPage) => {
+      const length = lastPage.products.length - 1;
+      return lastPage.products[length].id;
       discountedPrice: '21,000',
       like: 23,
       review: 1,
@@ -67,16 +76,8 @@ const ProductListPage = () => {
       like: 23,
       review: 1,
     },
-    {
-      imgUrl: '',
-      title: '구피 50마리',
-      price: '30,000',
-      discountRate: '30',
-      discountedPrice: '21,000',
-      like: 23,
-      review: 1,
-    },
-  ];
+    staleTime: 60 * 1000,
+  });
 
   return (
     <FullScreen>
