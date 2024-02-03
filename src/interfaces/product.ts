@@ -28,7 +28,7 @@ export interface ProductListItemData {
   id: number;
   name: string;
   category: string;
-  price: 1;
+  price: number;
   storeName: string;
   discountRate: number;
   discountPrice: number;
