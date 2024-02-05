@@ -51,10 +51,11 @@ const TrendingKeywordList = ({ data, debouncedQuery }: TrendingKeywordList) => {
   };
 
   const handleClick = (keyword: string) => {
-    navigate(`/product?keyword=${keyword}`);
+    navigate(`/results?search_query=${keyword}`);
     setSearchInput(keyword);
     handleAddRecentInput(keyword);
   };
+
   return (
     <RecommendUl>
       {Array.isArray(data) &&

@@ -58,7 +58,7 @@ const SearchBar = () => {
     if (searchInput && e.keyCode === 13) {
       setSearchInput('');
       handleAddRecentInput(searchInput);
-      navigate('/product?keyword=' + searchInput);
+      navigate(`/results?search_query=${searchInput}`);
     }
   };
 
