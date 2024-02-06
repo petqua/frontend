@@ -19,7 +19,7 @@ const ProductList = ({
       </MediumText>
       {isInfinite ? (
         <InfiniteScroll
-          hasMore={data[0]?.hasNextPage}
+          hasMore={data[data.length - 1]?.hasNextPage}
           loadMore={() => fetchNextPage()}
         >
           <FlexBox

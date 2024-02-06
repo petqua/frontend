@@ -123,6 +123,7 @@ const ModalOverlay = styled.div<{ $visible: boolean }>`
   z-index: 100;
 
   display: flex;
+  justify-content: center;
   align-items: flex-end;
   background-color: rgba(0, 0, 0, 0.6);
 
@@ -131,6 +132,8 @@ const ModalOverlay = styled.div<{ $visible: boolean }>`
 
 const Container = styled.div<{ $visible: boolean }>`
   width: 100%;
+  min-width: 20rem;
+  max-width: 50rem;
   height: fit-content;
   padding-top: 1.6rem;
   padding-bottom: 3.2rem;

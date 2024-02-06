@@ -8,11 +8,17 @@ import { formatFilter } from '../../utils/format';
 interface Filter {
   value: string;
   setIsOpenModal: React.Dispatch<SetStateAction<boolean>>;
+  handleFilterClick?: () => void;
 }
 
-const Filter = ({ value, setIsOpenModal }: Filter) => {
+const Filter = ({ value, setIsOpenModal, handleFilterClick }: Filter) => {
   return (
-    <Container onClick={() => setIsOpenModal((prev) => !prev)}>
+    <Container
+      onClick={() => {
+        handleFilterClick?.();
+        setIsOpenModal((prev) => !prev);
+      }}
+    >
       <MediumText size={14} color={theme.color.gray[70]}>
         {formatFilter(value)}
       </MediumText>

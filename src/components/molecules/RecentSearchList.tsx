@@ -3,6 +3,7 @@ import { useSearchStore } from '../../states';
 import { BoldText, FlexBox, MediumText, RegularText } from '../atoms';
 import { theme } from '../../styles/theme';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   width: 100%;
@@ -31,7 +32,22 @@ const KeywordBox = styled.div`
 `;
 
 const RecentSearchList = () => {
-  const { recentInputs, setRecentInputs } = useSearchStore();
+  const { setSearchInput, recentInputs, setRecentInputs } = useSearchStore();
+  const navigate = useNavigate();
+
+  // 새로운 검색어 추가
+  const handleAddRecentInput = (text: string) => {
+    // 중복 검색어 확인
+    const isDuplicate = recentInputs.includes(text);
+
+    if (isDuplicate) return;
+
+    // 최근 검색어의 개수가 최대 10개까지 저장할 수 있도록 개수가 10이면 pop.
+    if (recentInputs?.length === 10) {
+      recentInputs.pop();
+    }
+    setRecentInputs([text, ...recentInputs]);
+  };
 
   const handleRemoveAllRecentInput = () => {
     setRecentInputs([]);
@@ -42,6 +58,12 @@ const RecentSearchList = () => {
       return idx !== id;
     });
     setRecentInputs(newRecentInput);
+  };
+
+  const handleClick = (keyword: string) => {
+    navigate(`/results?search_query=${keyword}`);
+    setSearchInput(keyword);
+    handleAddRecentInput(keyword);
   };
 
   return (
@@ -68,7 +90,9 @@ const RecentSearchList = () => {
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
                   width: '100%',
+                  cursor: 'pointer',
                 }}
+                onClick={() => handleClick(text)}
               >
                 {text}
               </MediumText>
