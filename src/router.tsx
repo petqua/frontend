@@ -1,6 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { FullScreen } from './components/molecules';
-import { HomePage, ProductListPage, SearchPage } from './pages';
+import {
+  HomePage,
+  ProductListPage,
+  SearchPage,
+  SearchResultPage,
+} from './pages';
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +24,11 @@ export const router = createBrowserRouter([
       {
         path: '/search',
         element: <SearchPage />,
+        errorElement: <div>Unknown Error</div>,
+      },
+      {
+        path: '/results',
+        element: <SearchResultPage />,
         errorElement: <div>Unknown Error</div>,
       },
     ],
