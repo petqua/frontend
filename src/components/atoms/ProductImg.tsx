@@ -9,7 +9,7 @@ interface ProductImg {
 
 const ProductImg = ({ size, src, showWish, isWish }: ProductImg) => {
   return (
-    <ImgContainer style={{ width: size, height: size }}>
+    <ImgContainer style={{ width: size, aspectRatio: 1 }}>
       <Image src={src} alt="product-img" />
       {showWish && (
         <WishBtn

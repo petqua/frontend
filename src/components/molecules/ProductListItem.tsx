@@ -14,20 +14,20 @@ const ProductListItem = ({ isMain, isSmall, data }: ProductListItem) => {
     <FlexBox
       col={!isMain}
       align={isMain ? 'center' : ''}
-      gap={isMain ? '2.4rem' : '0.8rem'}
+      gap={isMain ? '1.6rem' : '0.8rem'}
       style={{
-        width: isMain ? '100%' : isSmall ? '12rem' : '16rem',
+        width: isMain ? '100%' : isSmall ? '12rem' : 'calc(50% - 1rem)',
         padding: isMain ? '0 1.2rem' : '0',
       }}
     >
       <ProductImg
-        size={isMain ? '16.8rem' : isSmall ? '12rem' : '16rem'}
+        size={isMain ? '16.8rem' : isSmall ? '12rem' : '100%'}
         src={data?.thumbnailUrl}
         showWish={!isSmall && !isMain}
         isWish={data?.isWish}
       />
 
-      <FlexBox col gap="0.8rem" style={{ width: isMain ? '14rem' : '' }}>
+      <FlexBox col gap="0.8rem" style={{ flex: isMain ? 1 : 0 }}>
         {!isSmall && (
           <MediumText size={isMain ? 16 : 12} color={theme.color.gray[50]}>
             {data?.storeName}

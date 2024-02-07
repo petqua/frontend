@@ -4,4 +4,4 @@ import WishListPage from './WishListPage';
 import SearchPage from './SearchPage';
 import SearchResultPage from './SearchResultPage';
 
-export { HomePage, ProductListPage, SearchPage, SearchResultPage   WishListPage };
+export { HomePage, ProductListPage, SearchPage, SearchResultPage, WishListPage };
