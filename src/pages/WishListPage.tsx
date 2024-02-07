@@ -32,15 +32,13 @@ const WishListPage = () => {
           </RegularText>
         </FlexBox>
       ) : (
-        <>
-          <ProductList
-            length={data?.pages[0].totalProductsCount}
-            data={data?.pages || []}
-            isInfinite
-            style={{ padding: '1.4rem' }}
-            fetchNextPage={fetchNextPage}
-          />
-        </>
+        <ProductList
+          length={data?.pages[0].totalProductsCount}
+          data={data?.pages || []}
+          isInfinite
+          style={{ padding: '1.4rem' }}
+          fetchNextPage={fetchNextPage}
+        />
       )}
     </>
   );
