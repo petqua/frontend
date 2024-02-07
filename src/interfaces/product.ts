@@ -51,3 +51,14 @@ export interface GetProductsAPIParams {
   sourceType: string;
   sorter?: string;
 }
+
+export interface GetWishesAPI {
+  products: ProductListItemData[];
+  hasNextPage: boolean;
+  totalProductsCount: number;
+}
+
+export interface GetWishesAPIParams {
+  lastViewedId?: number;
+  limit: number;
+}
