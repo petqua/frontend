@@ -10,6 +10,7 @@ const ProductList = ({
   data,
   isInfinite,
   fetchNextPage,
+  hasNextPage,
 }: ProductList) => {
   return (
     <FlexBox col gap="2rem" style={{ padding: '1.4rem' }}>
@@ -18,11 +19,11 @@ const ProductList = ({
         {length ? `${length}마리 반려어` : '새로운 반려어가 왔어요!'}
       </MediumText>
       {isInfinite ? (
-        <InfiniteScroll
-          hasMore={data[data.length - 1]?.hasNextPage}
-          loadMore={() => fetchNextPage()}
-        >
-          <ListContainer>
+        <InfiniteScroll hasMore={hasNextPage} loadMore={() => fetchNextPage()}>
+          <FlexBox
+            justify="space-between"
+            style={{ flexWrap: 'wrap', rowGap: '3.2rem' }}
+          >
             {data.map((items) => {
               return items?.products.map((item) => (
                 <ProductListItem key={item.id} data={item} />

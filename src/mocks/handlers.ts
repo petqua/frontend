@@ -1,10 +1,14 @@
 import { mockGetAnnouncementsAPI, mockGetBannersAPI } from './homeController';
-import { mockGetTrendingKeywordsAPI } from './searchController';
+import {
+  mockGetSearchProductsAPI,
+  mockGetTrendingKeywordsAPI,
+} from './searchController';
 
 const handlers = [
   mockGetAnnouncementsAPI,
   mockGetBannersAPI,
   mockGetTrendingKeywordsAPI,
+  mockGetSearchProductsAPI,
 ];
 
 export default handlers;

@@ -20,6 +20,7 @@ export interface ProductList {
   ) => Promise<
     InfiniteQueryObserverResult<InfiniteData<GetProductsAPI, unknown>, Error>
   >;
+  hasNextPage: boolean;
   style?: any;
 }
 
@@ -36,6 +37,7 @@ export interface ProductListItemData {
   reviewCount: number;
   reviewAverageScore: number;
   thumbnailUrl: string;
+  isWish?: boolean;
 }
 
 // API

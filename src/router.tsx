@@ -5,6 +5,7 @@ import {
   WishListPage,
   ProductListPage,
   SearchPage,
+  SearchResultPage,
 } from './pages';
 
 export const router = createBrowserRouter([
@@ -29,6 +30,11 @@ export const router = createBrowserRouter([
       {
         path: '/wish',
         element: <WishListPage />,
+        errorElement: <div>Unknown Error</div>,
+      },
+      {
+        path: '/results',
+        element: <SearchResultPage />,
         errorElement: <div>Unknown Error</div>,
       },
     ],
