@@ -5,6 +5,7 @@ interface TextProps {
   size: number; // 글자 사이즈
   color: string; // 글자 색상
   style?: any; // 이외 스타일
+  onClick?: () => void; // 클릭 이벤트
 }
 
 interface FontProps {
@@ -30,10 +31,20 @@ export const RegularText = ({ children, size, color, style }: TextProps) => {
   );
 };
 
-export const MediumText = ({ children, size, color, style }: TextProps) => {
+export const MediumText = ({
+  children,
+  size,
+  color,
+  style,
+  onClick,
+}: TextProps) => {
   const fontTheme = `medium${size}`;
   return (
-    <Text $fontTheme={fontTheme} style={{ ...style, color: color }}>
+    <Text
+      $fontTheme={fontTheme}
+      style={{ ...style, color: color }}
+      onClick={onClick}
+    >
       {children}
     </Text>
   );

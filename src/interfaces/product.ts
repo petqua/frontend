@@ -20,6 +20,7 @@ export interface ProductList {
   ) => Promise<
     InfiniteQueryObserverResult<InfiniteData<GetProductsAPI, unknown>, Error>
   >;
+  hasNextPage: boolean;
   style?: any;
 }
 
