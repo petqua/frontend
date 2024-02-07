@@ -23,6 +23,8 @@ const ProductListItem = ({ isMain, isSmall, data }: ProductListItem) => {
       <ProductImg
         size={isMain ? '16.8rem' : isSmall ? '12rem' : '16rem'}
         src={data?.thumbnailUrl}
+        showWish={!isSmall && !isMain}
+        isWish={data?.isWish}
       />
 
       <FlexBox col gap="0.8rem" style={{ width: isMain ? '14rem' : '' }}>
