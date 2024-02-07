@@ -80,9 +80,9 @@ const ProductListPage = () => {
         isBlue={types[type].isBlue}
         title={types[type].title}
       />
-      <FlexBox col gap="2.4rem" style={{ padding: '1.4rem' }}>
+      <FlexBox col>
         {types[type].isFilter && (
-          <FlexBox gap="1.2rem" align="center">
+          <FlexBox gap="1.2rem" align="center" style={{ padding: '1.4rem' }}>
             <Filter value={sortValue} setIsOpenModal={setIsOpenSortModal} />
           </FlexBox>
         )}
