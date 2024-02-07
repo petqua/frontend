@@ -38,9 +38,9 @@ export const getSearchProductsAPI = async ({
   try {
     const res = await client.get('/products/search', {
       params: {
-        word: word,
-        lastViewedId: lastViewedId,
-        limit: limit,
+        word,
+        lastViewedId,
+        limit,
       },
     });
     return res.data;
