@@ -20,10 +20,7 @@ const ProductList = ({
       </MediumText>
       {isInfinite ? (
         <InfiniteScroll hasMore={hasNextPage} loadMore={() => fetchNextPage()}>
-          <FlexBox
-            justify="space-between"
-            style={{ flexWrap: 'wrap', rowGap: '3.2rem' }}
-          >
+          <ListContainer>
             {data.map((items) => {
               return items?.products.map((item) => (
                 <ProductListItem key={item.id} data={item} />

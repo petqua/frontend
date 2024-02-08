@@ -20,6 +20,7 @@ const WebViewBox = styled.div`
   min-height: 100vh;
   background-color: #ffffff;
   padding-bottom: 9rem;
+  position: relative;
 `;
 
 const FullScreen = () => {
