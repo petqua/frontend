@@ -13,19 +13,39 @@ interface FontProps {
   $fontTheme: string;
 }
 
-export const LightText = ({ children, size, color, style }: TextProps) => {
+export const LightText = ({
+  children,
+  size,
+  color,
+  style,
+  onClick,
+}: TextProps) => {
   const fontTheme = `light${size}`;
   return (
-    <Text $fontTheme={fontTheme} style={{ ...style, color: color }}>
+    <Text
+      $fontTheme={fontTheme}
+      style={{ ...style, color: color }}
+      onClick={onClick}
+    >
       {children}
     </Text>
   );
 };
 
-export const RegularText = ({ children, size, color, style }: TextProps) => {
+export const RegularText = ({
+  children,
+  size,
+  color,
+  style,
+  onClick,
+}: TextProps) => {
   const fontTheme = `regular${size}`;
   return (
-    <Text $fontTheme={fontTheme} style={{ ...style, color: color }}>
+    <Text
+      $fontTheme={fontTheme}
+      style={{ ...style, color: color }}
+      onClick={onClick}
+    >
       {children}
     </Text>
   );
@@ -50,10 +70,20 @@ export const MediumText = ({
   );
 };
 
-export const BoldText = ({ children, size, color, style }: TextProps) => {
+export const BoldText = ({
+  children,
+  size,
+  color,
+  style,
+  onClick,
+}: TextProps) => {
   const fontTheme = `bold${size}`;
   return (
-    <Text $fontTheme={fontTheme} style={{ ...style, color: color }}>
+    <Text
+      $fontTheme={fontTheme}
+      style={{ ...style, color: color }}
+      onClick={onClick}
+    >
       {children}
     </Text>
   );

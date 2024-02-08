@@ -4,6 +4,7 @@ interface FlexBox {
   gap?: string;
   justify?: string;
   align?: string;
+  padding?: string;
   style?: any;
   onClick?: () => void;
 }
@@ -14,6 +15,7 @@ const FlexBox = ({
   gap,
   justify,
   align,
+  padding,
   style,
   onClick,
 }: FlexBox) => {
@@ -23,9 +25,9 @@ const FlexBox = ({
         display: 'flex',
         flexDirection: col ? 'column' : 'row',
         gap: gap || '0',
-        // 설정안했을 시의 기본값으로 flex-start가 나을지 center가 나을지 의논
         justifyContent: justify || 'flex-start',
         alignItems: align || 'flex-start',
+        padding: padding || '0',
         ...style,
       }}
       onClick={onClick}

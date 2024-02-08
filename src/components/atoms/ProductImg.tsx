@@ -3,14 +3,19 @@ import styled from 'styled-components';
 interface ProductImg {
   size: string;
   src: string;
+  isRound?: boolean;
   showWish?: boolean;
   isWish?: boolean;
 }
 
-const ProductImg = ({ size, src, showWish, isWish }: ProductImg) => {
+const ProductImg = ({ size, src, showWish, isWish, isRound }: ProductImg) => {
   return (
-    <ImgContainer style={{ width: size, aspectRatio: 1 }}>
-      <Image src={src} alt="product-img" />
+    <ImgContainer style={{ width: size }}>
+      <Image
+        src={src || '/public/images/product-item-ex.svg'}
+        alt="product-img"
+        style={{ borderRadius: isRound ? '1.2rem' : '' }}
+      />
       {showWish && (
         <WishBtn
           src={
@@ -26,7 +31,7 @@ export default ProductImg;
 
 const ImgContainer = styled.div`
   background-color: ${({ theme }) => theme.color.gray[30]};
-  border-radius: 1.2rem;
+  aspect-ratio: 1;
   overflow: hidden;
   position: relative;
 `;
