@@ -10,11 +10,11 @@ interface ProductImg {
 
 const ProductImg = ({ size, src, showWish, isWish, isRound }: ProductImg) => {
   return (
-    <ImgContainer style={{ width: size, aspectRatio: 1 }}>
+    <ImgContainer style={{ width: size }}>
       <Image
         src={src || '/public/images/product-item-ex.svg'}
         alt="product-img"
-        style={{ width: size, borderRadius: isRound ? '1.2rem' : '' }}
+        style={{ borderRadius: isRound ? '1.2rem' : '' }}
       />
       {showWish && (
         <WishBtn
