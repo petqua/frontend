@@ -7,6 +7,7 @@ import {
   SearchPage,
   SearchResultPage,
   ProductDetailPage,
+  LoginPage,
 } from './pages';
 
 export const router = createBrowserRouter([
@@ -41,6 +42,11 @@ export const router = createBrowserRouter([
       {
         path: '/results',
         element: <SearchResultPage />,
+        errorElement: <div>Unknown Error</div>,
+      },
+      {
+        path: '/login',
+        element: <LoginPage />,
         errorElement: <div>Unknown Error</div>,
       },
     ],
