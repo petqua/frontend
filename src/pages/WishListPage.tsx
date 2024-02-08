@@ -6,7 +6,7 @@ import { theme } from '../styles/theme';
 import { getWishesAPI } from '../apis/wishAPI';
 
 const WishListPage = () => {
-  const { data, fetchNextPage } = useInfiniteQuery({
+  const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
     queryKey: ['wishes'],
     queryFn: ({ pageParam: lastViewedId }) =>
       getWishesAPI({
@@ -37,6 +37,7 @@ const WishListPage = () => {
           data={data?.pages || []}
           isInfinite
           style={{ padding: '1.4rem' }}
+          hasNextPage={hasNextPage}
           fetchNextPage={fetchNextPage}
         />
       )}
