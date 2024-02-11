@@ -3,7 +3,7 @@ import { theme } from '../../styles/theme';
 import { FlexBox, RegularText } from '../atoms';
 import { BlueButton } from '../molecules';
 
-const BottomPayBar = () => {
+const BottomPayBar = ({ wishCount }: { wishCount: number }) => {
   return (
     <Container>
       <FlexBox col gap="0.4rem" align="center">
@@ -12,7 +12,7 @@ const BottomPayBar = () => {
           style={{ width: '2.8rem', height: '2.8rem' }}
         />
         <RegularText size={10} color={theme.color.gray[70]}>
-          100
+          {wishCount}
         </RegularText>
       </FlexBox>
       <BlueButton text="입양하기" onClick={() => {}} style={{ width: '85%' }} />
