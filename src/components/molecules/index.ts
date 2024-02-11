@@ -14,6 +14,7 @@ import RecentSearchList from './RecentSearchList';
 import TrendingKeywordList from './TrendingKeywordList';
 import BlueButton from './BlueButton';
 import WhiteButton from './WhiteButton';
+import StarRating from './StarRating';
 
 export {
   ProductListItem,
@@ -32,4 +33,5 @@ export {
   TrendingKeywordList,
   BlueButton,
   WhiteButton,
+  StarRating,
 };

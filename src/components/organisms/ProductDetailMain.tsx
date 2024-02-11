@@ -1,9 +1,9 @@
 import { theme } from '../../styles/theme';
 import { FlexBox, BoldText, RegularText } from '../atoms';
 import { IoShareSocialOutline } from 'react-icons/io5';
-import { FaStar } from 'react-icons/fa';
 import { styled } from 'styled-components';
 import { ProductDetailMain } from '../../interfaces/product';
+import { StarRating } from '../molecules';
 
 const ProductDetailMain = ({ data }: ProductDetailMain) => {
   return (
@@ -21,15 +21,9 @@ const ProductDetailMain = ({ data }: ProductDetailMain) => {
         {data?.category}
       </RegularText>
       <FlexBox align="center" gap="1rem" padding="0.4rem 0 2.8rem 0">
-        <FlexBox align="center" gap="0.2rem">
-          <FaStar size={14} color={theme.color.blue.main} />
-          <FaStar size={14} color={theme.color.blue.main} />
-          <FaStar size={14} color={theme.color.blue.main} />
-          <FaStar size={14} color={theme.color.blue.main} />
-          <FaStar size={14} color={theme.color.blue.main} />
-        </FlexBox>
+        <StarRating score={data?.reviewAverageScore || 0} size={14} gap={0.2} />
         <RegularText size={12} color={theme.color.gray[50]}>
-          {data?.reviewAverageScore}
+          {data?.reviewAverageScore.toFixed(1)}
         </RegularText>
         <RegularText size={12} color={theme.color.gray[50]}>
           {data?.reviewCount}개 후기
