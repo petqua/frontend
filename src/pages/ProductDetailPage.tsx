@@ -4,13 +4,23 @@ import { styled } from 'styled-components';
 import { ProductListItem, RowScrollContainer } from '../components/molecules';
 import { FaChevronRight } from 'react-icons/fa6';
 import {
-  ProductDetailData,
+  ProductDetailMain,
   ProductDetailInfo,
   ProductDetailContents,
   BottomPayBar,
 } from '../components/organisms';
+import { getProductDetailAPI } from '../apis';
+import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { ProductDetailMainData } from '../interfaces/product';
 
 const ProductDetailPage = () => {
+  const { id } = useParams();
+  const [mainData, setMainData] = useState<ProductDetailMainData>();
+  const [infoData, setInfoData] = useState();
+  const [contentsData, setContentsData] = useState();
+
   const exData = {
     id: 1,
     name: 'test',
@@ -25,11 +35,51 @@ const ProductDetailPage = () => {
     thumbnailUrl: '',
   };
 
+  const { data, isSuccess } = useQuery({
+    queryKey: ['product-detail', id],
+    queryFn: () => getProductDetailAPI(parseInt(id || '-1')),
+    staleTime: 60 * 1000,
+  });
+
+  useEffect(() => {
+    if (isSuccess) {
+      const {
+        id,
+        name,
+        category,
+        price,
+        storeName,
+        discountRate,
+        discountPrice,
+        reviewCount,
+        reviewAverageScore,
+        description,
+      } = data;
+
+      setMainData({
+        id,
+        name,
+        category,
+        price,
+        storeName,
+        discountRate,
+        discountPrice,
+        reviewCount,
+        reviewAverageScore,
+        description,
+      });
+    }
+  }, [data]);
+
   return (
     <>
-      <ProductImg size="100%" src="/public/images/product-item-ex.svg" />
-      <ProductDetailData />
-      <Notice src="/images/product-item-ex.svg" alt="product-detail-notice" />
+      <ProductImg size="100%" src={data?.thumbnailUrl || ''} />
+      <ProductDetailMain data={mainData} />
+      <Notice
+        src="/images/product-item-ex.svg"
+        alt="product-detail-notice"
+        onClick={() => console.log(data, mainData)}
+      />
       <ProductDetailInfo />
       <ProductDetailContents />
       <RowScrollContainer
@@ -61,7 +111,7 @@ const ProductDetailPage = () => {
         </RegularText>
         <FaChevronRight size={12} color={theme.color.gray[70]} />
       </FlexBox>
-      <BottomPayBar />
+      <BottomPayBar wishCount={data?.wishCount || 0} />
     </>
   );
 };

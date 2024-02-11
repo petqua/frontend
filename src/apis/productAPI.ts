@@ -1,4 +1,8 @@
-import { GetProductsAPI, GetProductsAPIParams } from '../interfaces/product';
+import {
+  GetProductsAPI,
+  GetProductsAPIParams,
+  GetProductDetailAPI,
+} from '../interfaces/product';
 import { client } from './axiosInstance';
 
 export const getProductsAPI = async ({
@@ -16,6 +20,22 @@ export const getProductsAPI = async ({
         sorter,
       },
     });
+    return res.data;
+  } catch (error: any) {
+    if (error.response) {
+      console.error('Server Error:', error.response.data);
+    } else {
+      console.error('Error creating question:', error.message);
+    }
+    throw error;
+  }
+};
+
+export const getProductDetailAPI = async (
+  id: number,
+): Promise<GetProductDetailAPI> => {
+  try {
+    const res = await client.get(`/products/${id}`);
     return res.data;
   } catch (error: any) {
     if (error.response) {
