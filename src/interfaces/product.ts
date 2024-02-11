@@ -11,6 +11,10 @@ export interface ProductListItem {
   data: ProductListItemData;
 }
 
+export interface ProductDetailMain {
+  data: ProductDetailMainData | undefined;
+}
+
 export interface ProductList {
   length?: number;
   data: GetProductsAPI[];
@@ -40,6 +44,19 @@ export interface ProductListItemData {
   isWish?: boolean;
 }
 
+export interface ProductDetailMainData {
+  id: number;
+  name: string;
+  category: string;
+  price: number;
+  storeName: string;
+  discountRate: number;
+  discountPrice: number;
+  reviewCount: number;
+  reviewAverageScore: number;
+  description: string;
+}
+
 // API
 export interface GetProductsAPI {
   products: ProductListItemData[];
@@ -63,4 +80,9 @@ export interface GetWishesAPI {
 export interface GetWishesAPIParams {
   lastViewedId?: number;
   limit: number;
+}
+
+export interface GetProductDetailAPI extends ProductDetailMainData {
+  thumbnailUrl: string;
+  wishCount: number;
 }
