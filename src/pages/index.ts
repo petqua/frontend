@@ -4,6 +4,7 @@ import WishListPage from './WishListPage';
 import SearchPage from './SearchPage';
 import SearchResultPage from './SearchResultPage';
 import LoginPage from './LoginPage';
+import KakaoLoginPage from './KakaoLoginPage';
 
 export {
   HomePage,
@@ -12,4 +13,5 @@ export {
   SearchResultPage,
   WishListPage,
   LoginPage,
+  KakaoLoginPage,
 };
