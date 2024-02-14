@@ -6,6 +6,7 @@ import {
   ProductListPage,
   SearchPage,
   SearchResultPage,
+  ProductDetailPage,
   LoginPage,
   KakaoLoginPage,
 } from './pages';
@@ -28,6 +29,11 @@ export const router = createBrowserRouter([
       {
         path: '/product',
         element: <ProductListPage />,
+        errorElement: <div>Unknown Error</div>,
+      },
+      {
+        path: '/product/:id',
+        element: <ProductDetailPage />,
         errorElement: <div>Unknown Error</div>,
       },
       {

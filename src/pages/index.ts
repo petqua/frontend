@@ -5,10 +5,12 @@ import SearchPage from './SearchPage';
 import SearchResultPage from './SearchResultPage';
 import LoginPage from './LoginPage';
 import KakaoLoginPage from './KakaoLoginPage';
+import ProductDetailPage from './ProductDetailPage';
 
 export {
   HomePage,
   ProductListPage,
+  ProductDetailPage,
   SearchPage,
   SearchResultPage,
   WishListPage,
