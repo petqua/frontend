@@ -1,3 +1,4 @@
+import useAuthStore from './AuthStore';
 import useSearchStore from './SearchStore';
 
-export { useSearchStore };
+export { useSearchStore, useAuthStore };
