@@ -28,7 +28,7 @@ const ProductListItem = ({ isMain, isSmall, data }: ProductListItem) => {
         size={isMain ? '16.8rem' : isSmall ? '12rem' : '100%'}
         src={data?.thumbnailUrl}
         showWish={!isSmall && !isMain}
-        isWish={data?.isWish}
+        isWish={data?.isWished}
         isRound
       />
 

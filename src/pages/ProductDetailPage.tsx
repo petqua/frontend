@@ -102,8 +102,6 @@ const ProductDetailPage = () => {
       <ProductDetailInfo data={infoData} />
       <ProductDetailContents data={contentsData} />
 
-
-
       {/* 리뷰 */}
       <RowScrollContainer
         row={2}
