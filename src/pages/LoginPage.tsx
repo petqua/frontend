@@ -8,6 +8,7 @@ import {
 } from '../components/atoms';
 import { theme } from '../styles/theme';
 import { useNavigate } from 'react-router-dom';
+import { getOAuthRedirectAPI } from '../apis';
 
 const Background = styled.div`
   width: 37rem;
@@ -28,8 +29,14 @@ const KakaoLoginButton = styled.button`
   z-index: 1;
 `;
 
+const kakaoLoginHandler = async () => {
+  const { uri: kakaoRedirectURI } = await getOAuthRedirectAPI('kakao');
+  window.location.href = kakaoRedirectURI;
+};
+
 const LoginPage = () => {
   const navigate = useNavigate();
+
   return (
     <>
       <LogoIcon style={{ alignSelf: 'center', marginTop: '18rem' }} />
@@ -46,7 +53,7 @@ const LoginPage = () => {
           초대합니다!
         </RegularText>
       </FlexBox>
-      <KakaoLoginButton>
+      <KakaoLoginButton onClick={kakaoLoginHandler}>
         <img src="/images/kakao_login_medium_wide.png" />
       </KakaoLoginButton>
       <BoldText

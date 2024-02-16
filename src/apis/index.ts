@@ -1,3 +1,8 @@
+import {
+  getAccessTokenAPI,
+  getOAuthLoginAPI,
+  getOAuthRedirectAPI,
+} from './AuthAPI';
 import { getAnnouncementsAPI, getBannersAPI } from './homeAPI';
 import { getProductsAPI, getProductDetailAPI } from './productAPI';
 import { getSearchProductsAPI, getTrendingKeywordsAPI } from './searchAPI';
@@ -7,5 +12,8 @@ export {
   getProductsAPI,
   getTrendingKeywordsAPI,
   getSearchProductsAPI,
+  getOAuthRedirectAPI,
+  getOAuthLoginAPI,
+  getAccessTokenAPI,
   getProductDetailAPI,
 };

@@ -10,6 +10,10 @@ export const getTrendingKeywordsAPI = async (
   keyword: string,
   limit: number,
 ) => {
+  // 공백이면 요청 안보냄.
+  if (!keyword.trim()) {
+    return;
+  }
   try {
     const res = await client.get('/products/keywords', {
       params: {
