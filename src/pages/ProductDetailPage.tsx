@@ -16,7 +16,6 @@ import { getCategoryProductsAPI } from '../apis/productAPI';
 
 const ProductDetailPage = () => {
   const { productId } = useParams();
-  const navigate = useNavigate();
 
   const { data: { mainData, infoData, etcData } = {}, isSuccess } = useQuery({
     queryKey: ['product-detail', productId],
