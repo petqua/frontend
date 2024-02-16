@@ -75,7 +75,7 @@ const ProductDetailPage = () => {
     <>
       <ProductImg size="100%" src={data?.thumbnailUrl || ''} />
       <ProductDetailMain data={mainData} />
-      <Notice
+      <Notice src="/images/notice-ex.svg" alt="product-detail-notice" />
         src="/images/product-item-ex.svg"
         alt="product-detail-notice"
         onClick={() => console.log(data, mainData)}
