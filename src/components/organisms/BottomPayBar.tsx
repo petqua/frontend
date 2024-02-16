@@ -3,12 +3,21 @@ import { theme } from '../../styles/theme';
 import { FlexBox, RegularText } from '../atoms';
 import { BlueButton } from '../molecules';
 
-const BottomPayBar = ({ wishCount }: { wishCount: number }) => {
+interface BottomPayBar {
+  wishCount: number;
+  isWished: boolean;
+}
+
+const BottomPayBar = ({ wishCount, isWished }: BottomPayBar) => {
   return (
     <Container>
       <FlexBox col gap="0.4rem" align="center">
         <img
-          src="/icons/bubble-like-gray.svg"
+          src={
+            isWished
+              ? '/icons/bubble-like-filled.svg'
+              : '/icons/bubble-like-gray.svg'
+          }
           style={{ width: '2.8rem', height: '2.8rem' }}
         />
         <RegularText size={10} color={theme.color.gray[70]}>

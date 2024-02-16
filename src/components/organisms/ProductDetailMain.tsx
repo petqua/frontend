@@ -18,8 +18,9 @@ const ProductDetailMain = ({ data }: ProductDetailMain) => {
         {data?.name}
       </BoldText>
       <RegularText size={12} color={theme.color.gray[70]}>
-        {data?.category}
+        {data?.family}/{data?.species}
       </RegularText>
+
       <FlexBox align="center" gap="1rem" padding="0.4rem 0 2.8rem 0">
         <StarRating score={data?.reviewAverageScore || 0} size={14} gap={0.2} />
         <RegularText size={12} color={theme.color.gray[50]}>

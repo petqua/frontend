@@ -15,6 +15,10 @@ export interface ProductDetailMain {
   data: ProductDetailMainData | undefined;
 }
 
+export interface ProductDetailInfo {
+  data: ProductDetailInfoData | undefined;
+}
+
 export interface ProductList {
   length?: number;
   data: GetProductsAPI[];
@@ -41,13 +45,14 @@ export interface ProductListItemData {
   reviewCount: number;
   reviewAverageScore: number;
   thumbnailUrl: string;
-  isWish?: boolean;
+  isWished?: boolean;
 }
 
 export interface ProductDetailMainData {
   id: number;
   name: string;
-  category: string;
+  family: string;
+  species: string;
   price: number;
   storeName: string;
   discountRate: number;
@@ -55,6 +60,16 @@ export interface ProductDetailMainData {
   reviewCount: number;
   reviewAverageScore: number;
   description: string;
+}
+
+export interface ProductDetailInfoData {
+  family: string;
+  species: string;
+  optimalTemperatureMin: number;
+  optimalTemperatureMax: number;
+  difficultyLevel: string;
+  optimalTankSize: string;
+  temperament: string;
 }
 
 // API
@@ -82,7 +97,15 @@ export interface GetWishesAPIParams {
   limit: number;
 }
 
-export interface GetProductDetailAPI extends ProductDetailMainData {
+export interface GetProductDetailAPI
+  extends ProductDetailMainData,
+    ProductDetailInfoData {
+  descriptionImageUrls: string[];
   thumbnailUrl: string;
   wishCount: number;
+  canDeliverSafely: boolean;
+  canDeliverCommonly: boolean;
+  canPickUp: boolean;
+  hasDistinctSex: boolean;
+  isWished?: boolean;
 }

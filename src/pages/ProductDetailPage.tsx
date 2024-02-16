@@ -13,13 +13,16 @@ import { getProductDetailAPI } from '../apis';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { ProductDetailMainData } from '../interfaces/product';
+import {
+  ProductDetailInfoData,
+  ProductDetailMainData,
+} from '../interfaces/product';
 
 const ProductDetailPage = () => {
-  const { id } = useParams();
+  const { productId } = useParams();
   const [mainData, setMainData] = useState<ProductDetailMainData>();
-  const [infoData, setInfoData] = useState();
-  const [contentsData, setContentsData] = useState();
+  const [infoData, setInfoData] = useState<ProductDetailInfoData>();
+  const [contentsData, setContentsData] = useState<string[]>();
 
   const exData = {
     id: 1,
@@ -35,9 +38,9 @@ const ProductDetailPage = () => {
     thumbnailUrl: '',
   };
 
-  const { data, isSuccess } = useQuery({
-    queryKey: ['product-detail', id],
-    queryFn: () => getProductDetailAPI(parseInt(id || '-1')),
+  const { data: detailData, isSuccess } = useQuery({
+    queryKey: ['product-detail', productId],
+    queryFn: () => getProductDetailAPI(parseInt(productId || '-1')),
     staleTime: 60 * 1000,
   });
 
@@ -46,7 +49,8 @@ const ProductDetailPage = () => {
       const {
         id,
         name,
-        category,
+        family,
+        species,
         price,
         storeName,
         discountRate,
@@ -54,12 +58,19 @@ const ProductDetailPage = () => {
         reviewCount,
         reviewAverageScore,
         description,
-      } = data;
+        optimalTemperatureMin,
+        optimalTemperatureMax,
+        difficultyLevel,
+        optimalTankSize,
+        temperament,
+        descriptionImageUrls,
+      } = detailData;
 
       setMainData({
         id,
         name,
-        category,
+        family,
+        species,
         price,
         storeName,
         discountRate,
@@ -68,20 +79,32 @@ const ProductDetailPage = () => {
         reviewAverageScore,
         description,
       });
+
+      setInfoData({
+        family,
+        species,
+        optimalTemperatureMin,
+        optimalTemperatureMax,
+        difficultyLevel,
+        optimalTankSize,
+        temperament,
+      });
+
+      setContentsData(descriptionImageUrls);
     }
-  }, [data]);
+  }, [detailData]);
 
   return (
     <>
-      <ProductImg size="100%" src={data?.thumbnailUrl || ''} />
+      <ProductImg size="100%" src={detailData?.thumbnailUrl || ''} />
       <ProductDetailMain data={mainData} />
       <Notice src="/images/notice-ex.svg" alt="product-detail-notice" />
-        src="/images/product-item-ex.svg"
-        alt="product-detail-notice"
-        onClick={() => console.log(data, mainData)}
-      />
-      <ProductDetailInfo />
-      <ProductDetailContents />
+      <ProductDetailInfo data={infoData} />
+      <ProductDetailContents data={contentsData} />
+
+
+
+      {/* 리뷰 */}
       <RowScrollContainer
         row={2}
         col={5}
@@ -111,7 +134,10 @@ const ProductDetailPage = () => {
         </RegularText>
         <FaChevronRight size={12} color={theme.color.gray[70]} />
       </FlexBox>
-      <BottomPayBar wishCount={data?.wishCount || 0} />
+      <BottomPayBar
+        wishCount={detailData?.wishCount || 0}
+        isWished={detailData?.isWished || false}
+      />
     </>
   );
 };
