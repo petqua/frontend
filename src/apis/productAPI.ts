@@ -32,10 +32,83 @@ export const getProductsAPI = async ({
 };
 
 export const getProductDetailAPI = async (
-  id: number,
+  productId: number,
 ): Promise<GetProductDetailAPI> => {
   try {
-    const res = await client.get(`/products/${id}`);
+    const { data } = await client.get(`/products/${productId}`);
+
+    const {
+      id,
+      name,
+      family,
+      species,
+      price,
+      storeName,
+      discountRate,
+      discountPrice,
+      reviewCount,
+      reviewAverageScore,
+      description,
+      optimalTemperatureMin,
+      optimalTemperatureMax,
+      difficultyLevel,
+      optimalTankSize,
+      temperament,
+      descriptionImageUrls,
+      thumbnailUrl,
+      wishCount,
+      canDeliverSafely,
+      canDeliverCommonly,
+      canPickUp,
+      hasDistinctSex,
+      isWished,
+    } = data;
+
+    const mainData = {
+      id,
+      name,
+      family,
+      species,
+      price,
+      storeName,
+      discountRate,
+      discountPrice,
+      reviewCount,
+      reviewAverageScore,
+      description,
+    };
+
+    const infoData = {
+      family,
+      species,
+      optimalTemperatureMin,
+      optimalTemperatureMax,
+      difficultyLevel,
+      optimalTankSize,
+      temperament,
+    };
+
+    const etcData = {
+      descriptionImageUrls,
+      thumbnailUrl,
+      wishCount,
+      canDeliverSafely,
+      canDeliverCommonly,
+      canPickUp,
+      hasDistinctSex,
+      isWished,
+    };
+
+    return { mainData, infoData, etcData };
+  } catch (error: any) {
+    if (error.response) {
+      console.error('Server Error:', error.response.data);
+    } else {
+      console.error('Error creating question:', error.message);
+    }
+    throw error;
+  }
+};
     return res.data;
   } catch (error: any) {
     if (error.response) {

@@ -12,17 +12,12 @@ import {
 import { getProductDetailAPI } from '../apis';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import {
-  ProductDetailInfoData,
-  ProductDetailMainData,
-} from '../interfaces/product';
+import { getCategoryProductsAPI } from '../apis/productAPI';
 
 const ProductDetailPage = () => {
   const { productId } = useParams();
-  const [mainData, setMainData] = useState<ProductDetailMainData>();
-  const [infoData, setInfoData] = useState<ProductDetailInfoData>();
-  const [contentsData, setContentsData] = useState<string[]>();
+
+  const { data: { mainData, infoData, etcData } = {}, isSuccess } = useQuery({
 
   const exData = {
     id: 1,
@@ -38,69 +33,20 @@ const ProductDetailPage = () => {
     thumbnailUrl: '',
   };
 
-  const { data: detailData, isSuccess } = useQuery({
     queryKey: ['product-detail', productId],
     queryFn: () => getProductDetailAPI(parseInt(productId || '-1')),
     staleTime: 60 * 1000,
   });
 
-  useEffect(() => {
-    if (isSuccess) {
-      const {
-        id,
-        name,
-        family,
-        species,
-        price,
-        storeName,
-        discountRate,
-        discountPrice,
-        reviewCount,
-        reviewAverageScore,
-        description,
-        optimalTemperatureMin,
-        optimalTemperatureMax,
-        difficultyLevel,
-        optimalTankSize,
-        temperament,
-        descriptionImageUrls,
-      } = detailData;
 
-      setMainData({
-        id,
-        name,
-        family,
-        species,
-        price,
-        storeName,
-        discountRate,
-        discountPrice,
-        reviewCount,
-        reviewAverageScore,
-        description,
-      });
-
-      setInfoData({
-        family,
-        species,
-        optimalTemperatureMin,
-        optimalTemperatureMax,
-        difficultyLevel,
-        optimalTankSize,
-        temperament,
-      });
-
-      setContentsData(descriptionImageUrls);
-    }
-  }, [detailData]);
 
   return (
     <>
-      <ProductImg size="100%" src={detailData?.thumbnailUrl || ''} />
+      <ProductImg size="100%" src={etcData?.thumbnailUrl || ''} />
       <ProductDetailMain data={mainData} />
       <Notice src="/images/notice-ex.svg" alt="product-detail-notice" />
       <ProductDetailInfo data={infoData} />
-      <ProductDetailContents data={contentsData} />
+      <ProductDetailContents data={etcData?.descriptionImageUrls} />
 
       {/* 리뷰 */}
       <RowScrollContainer
@@ -133,8 +79,8 @@ const ProductDetailPage = () => {
         <FaChevronRight size={12} color={theme.color.gray[70]} />
       </FlexBox>
       <BottomPayBar
-        wishCount={detailData?.wishCount || 0}
-        isWished={detailData?.isWished || false}
+        wishCount={etcData?.wishCount || 0}
+        isWished={etcData?.isWished || false}
       />
     </>
   );

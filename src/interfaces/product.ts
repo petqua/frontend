@@ -97,15 +97,17 @@ export interface GetWishesAPIParams {
   limit: number;
 }
 
-export interface GetProductDetailAPI
-  extends ProductDetailMainData,
-    ProductDetailInfoData {
-  descriptionImageUrls: string[];
-  thumbnailUrl: string;
-  wishCount: number;
-  canDeliverSafely: boolean;
-  canDeliverCommonly: boolean;
-  canPickUp: boolean;
-  hasDistinctSex: boolean;
-  isWished?: boolean;
+export interface GetProductDetailAPI {
+  mainData: ProductDetailMainData;
+  infoData: ProductDetailInfoData;
+  etcData: {
+    descriptionImageUrls: string[];
+    thumbnailUrl: string;
+    wishCount: number;
+    canDeliverSafely: boolean;
+    canDeliverCommonly: boolean;
+    canPickUp: boolean;
+    hasDistinctSex: boolean;
+    isWished?: boolean;
+  };
 }
