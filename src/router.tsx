@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
         errorElement: <div>Unknown Error</div>,
       },
       {
-        path: '/product/:id',
+        path: '/product/:productId',
         element: <ProductDetailPage />,
         errorElement: <div>Unknown Error</div>,
       },
