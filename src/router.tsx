@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, redirect } from 'react-router-dom';
 import { FullScreen } from './components/molecules';
 import {
   HomePage,
@@ -8,7 +8,14 @@ import {
   SearchResultPage,
   ProductDetailPage,
   LoginPage,
+  KakaoLoginPage,
 } from './pages';
+
+// 인증이 필요한 페이지에 대한 로더 함수
+const authorizedLoader = () => {
+  const isLogin = !!localStorage.getItem('accessToken');
+  return !isLogin ? redirect('/login') : null;
+};
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +40,7 @@ export const router = createBrowserRouter([
         path: '/search',
         element: <SearchPage />,
         errorElement: <div>Unknown Error</div>,
+        loader: authorizedLoader,
       },
       {
         path: '/wish',
@@ -47,6 +55,11 @@ export const router = createBrowserRouter([
       {
         path: '/login',
         element: <LoginPage />,
+        errorElement: <div>Unknown Error</div>,
+      },
+      {
+        path: '/auth/login/kakao',
+        element: <KakaoLoginPage />,
         errorElement: <div>Unknown Error</div>,
       },
     ],

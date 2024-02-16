@@ -6,6 +6,7 @@ import ChatIcon from '../../assets/chat.svg?react';
 import DoubleFish from '../../assets/double-fish.svg?react';
 import { RegularText } from '../atoms';
 import { theme } from '../../styles/theme';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = styled.footer`
   position: fixed;
@@ -37,6 +38,7 @@ interface BottomNavBar {
 }
 
 const BottomNavBar = ({ activeButton }: BottomNavBar) => {
+  const navigate = useNavigate();
   return (
     <Footer>
       <NavButton>
@@ -105,7 +107,7 @@ const BottomNavBar = ({ activeButton }: BottomNavBar) => {
           물생활
         </RegularText>
       </NavButton>
-      <NavButton>
+      <NavButton onClick={() => navigate('/login')}>
         <BsPerson
           size={26}
           fill={activeButton === 'profile' ? theme.color.blue[70] : undefined}
