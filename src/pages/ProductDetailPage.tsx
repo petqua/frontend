@@ -12,12 +12,9 @@ import {
 import { getProductDetailAPI } from '../apis';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import { getCategoryProductsAPI } from '../apis/productAPI';
 
 const ProductDetailPage = () => {
   const { productId } = useParams();
-
-  const { data: { mainData, infoData, etcData } = {}, isSuccess } = useQuery({
 
   const exData = {
     id: 1,
@@ -33,12 +30,11 @@ const ProductDetailPage = () => {
     thumbnailUrl: '',
   };
 
+  const { data: { mainData, infoData, etcData } = {} } = useQuery({
     queryKey: ['product-detail', productId],
     queryFn: () => getProductDetailAPI(parseInt(productId || '-1')),
     staleTime: 60 * 1000,
   });
-
-
 
   return (
     <>

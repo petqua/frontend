@@ -109,13 +109,3 @@ export const getProductDetailAPI = async (
     throw error;
   }
 };
-    return res.data;
-  } catch (error: any) {
-    if (error.response) {
-      console.error('Server Error:', error.response.data);
-    } else {
-      console.error('Error creating question:', error.message);
-    }
-    throw error;
-  }
-};
