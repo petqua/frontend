@@ -16,6 +16,7 @@ import BlueButton from './BlueButton';
 import WhiteButton from './WhiteButton';
 import AddressForm from './AddressForm';
 import DeliveryRequestDropdown from './DeliveryRequestDropdown';
+import StarRating from './StarRating';
 
 export {
   ProductListItem,
@@ -36,4 +37,5 @@ export {
   WhiteButton,
   AddressForm,
   DeliveryRequestDropdown,
+  StarRating,
 };

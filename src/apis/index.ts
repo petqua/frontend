@@ -4,7 +4,7 @@ import {
   getOAuthRedirectAPI,
 } from './AuthAPI';
 import { getAnnouncementsAPI, getBannersAPI } from './homeAPI';
-import { getProductsAPI } from './productAPI';
+import { getProductsAPI, getProductDetailAPI } from './productAPI';
 import { getSearchProductsAPI, getTrendingKeywordsAPI } from './searchAPI';
 export {
   getBannersAPI,
@@ -15,4 +15,5 @@ export {
   getOAuthRedirectAPI,
   getOAuthLoginAPI,
   getAccessTokenAPI,
+  getProductDetailAPI,
 };

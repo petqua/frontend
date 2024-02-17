@@ -4,13 +4,18 @@ import { styled } from 'styled-components';
 import { ProductListItem, RowScrollContainer } from '../components/molecules';
 import { FaChevronRight } from 'react-icons/fa6';
 import {
-  ProductDetailData,
+  ProductDetailMain,
   ProductDetailInfo,
   ProductDetailContents,
   BottomPayBar,
 } from '../components/organisms';
+import { getProductDetailAPI } from '../apis';
+import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 
 const ProductDetailPage = () => {
+  const { productId } = useParams();
+
   const exData = {
     id: 1,
     name: 'test',
@@ -25,13 +30,21 @@ const ProductDetailPage = () => {
     thumbnailUrl: '',
   };
 
+  const { data: { mainData, infoData, etcData } = {} } = useQuery({
+    queryKey: ['product-detail', productId],
+    queryFn: () => getProductDetailAPI(parseInt(productId || '-1')),
+    staleTime: 60 * 1000,
+  });
+
   return (
     <>
-      <ProductImg size="100%" src="/public/images/product-item-ex.svg" />
-      <ProductDetailData />
-      <Notice src="/images/product-item-ex.svg" alt="product-detail-notice" />
-      <ProductDetailInfo />
-      <ProductDetailContents />
+      <ProductImg size="100%" src={etcData?.thumbnailUrl || ''} />
+      <ProductDetailMain data={mainData} />
+      <Notice src="/images/notice-ex.svg" alt="product-detail-notice" />
+      <ProductDetailInfo data={infoData} />
+      <ProductDetailContents data={etcData?.descriptionImageUrls} />
+
+      {/* 리뷰 */}
       <RowScrollContainer
         row={2}
         col={5}
@@ -61,7 +74,10 @@ const ProductDetailPage = () => {
         </RegularText>
         <FaChevronRight size={12} color={theme.color.gray[70]} />
       </FlexBox>
-      <BottomPayBar />
+      <BottomPayBar
+        wishCount={etcData?.wishCount || 0}
+        isWished={etcData?.isWished || false}
+      />
     </>
   );
 };

@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import { useEffect, useRef, useState } from 'react';
 import { WhiteButton } from '../molecules';
 
-const ProductDetailContents = () => {
+const ProductDetailContents = ({ data }: { data: string[] | undefined }) => {
   const contentsRef = useRef<HTMLDivElement>(null);
   const [isExceed, setIsExceed] = useState(false);
   const CONTENTS_MAX_HEIGHT = 400;
@@ -24,14 +24,9 @@ const ProductDetailContents = () => {
           maxHeight: isExceed ? CONTENTS_MAX_HEIGHT : 'none',
         }}
       >
-        {/* 서버에서 받아오는 이미지 넣을 자리 */}
-        <div
-          style={{
-            width: '100%',
-            height: '80rem',
-            backgroundColor: 'aliceblue',
-          }}
-        />
+        {data?.map((src, idx) => (
+          <img key={idx} src={src} style={{ width: '100%' }} />
+        ))}
       </div>
       {isExceed && (
         <div style={{ position: 'relative' }}>

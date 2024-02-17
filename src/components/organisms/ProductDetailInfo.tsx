@@ -1,8 +1,9 @@
 import { styled } from 'styled-components';
 import { BoldText, FlexBox } from '../atoms';
 import { theme } from '../../styles/theme';
+import { ProductDetailInfo } from '../../interfaces/product';
 
-const ProductDetailInfo = () => {
+const ProductDetailInfo = ({ data }: ProductDetailInfo) => {
   return (
     <FlexBox col style={{ padding: '1.4rem' }}>
       <BoldText size={18} color={theme.color.gray[70]}>
@@ -12,27 +13,29 @@ const ProductDetailInfo = () => {
         <Tbody>
           <Tr>
             <TableCategory>어종명</TableCategory>
-            <TableValue>베타</TableValue>
+            <TableValue>{data?.species}</TableValue>
           </Tr>
           <Tr>
             <TableCategory>과 분류</TableCategory>
-            <TableValue>난태생</TableValue>
+            <TableValue>{data?.family}</TableValue>
           </Tr>
           <Tr>
             <TableCategory>사육온도</TableCategory>
-            <TableValue>26 ~ 28</TableValue>
+            <TableValue>
+              {data?.optimalTemperatureMin}~{data?.optimalTemperatureMax}°C
+            </TableValue>
           </Tr>
           <Tr>
             <TableCategory>사육난이도</TableCategory>
-            <TableValue>하</TableValue>
+            <TableValue>{data?.difficultyLevel}</TableValue>
           </Tr>
           <Tr>
             <TableCategory>적정수조크기</TableCategory>
-            <TableValue>소형 ~ 1자</TableValue>
+            <TableValue>{data?.optimalTankSize}</TableValue>
           </Tr>
           <Tr>
             <TableCategory>성격</TableCategory>
-            <TableValue>사나움</TableValue>
+            <TableValue>{data?.temperament}</TableValue>
           </Tr>
         </Tbody>
       </table>
