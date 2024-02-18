@@ -111,3 +111,12 @@ export interface GetProductDetailAPI {
     isWished?: boolean;
   };
 }
+
+export interface GetCategoryProductsAPIParams {
+  family: string;
+  species?: string[];
+  deliveryMethod?: string;
+  lastViewedId?: number;
+  limit: number;
+  sorter?: string;
+}

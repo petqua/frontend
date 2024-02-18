@@ -30,14 +30,17 @@ const ProductDetailMain = ({ data }: ProductDetailMain) => {
           {data?.reviewCount}개 후기
         </RegularText>
       </FlexBox>
+
       <FlexBox col gap="0.6rem" style={{ width: '100%' }}>
-        <RegularText
-          size={16}
-          color={theme.color.gray[50]}
-          style={{ textDecoration: 'line-through' }}
-        >
-          {data?.price.toLocaleString()}원
-        </RegularText>
+        {data?.discountRate !== 0 && (
+          <RegularText
+            size={16}
+            color={theme.color.gray[50]}
+            style={{ textDecoration: 'line-through' }}
+          >
+            {data?.price.toLocaleString()}원
+          </RegularText>
+        )}
         <FlexBox
           justify="space-between"
           align="center"
@@ -46,9 +49,11 @@ const ProductDetailMain = ({ data }: ProductDetailMain) => {
           <BoldText size={24} color={theme.color.gray.main}>
             {data?.discountPrice.toLocaleString()}원
           </BoldText>
-          <BoldText size={20} color={theme.color.tint.red}>
-            {data?.discountRate}%
-          </BoldText>
+          {data?.discountRate !== 0 && (
+            <BoldText size={20} color={theme.color.tint.red}>
+              {data?.discountRate}%
+            </BoldText>
+          )}
         </FlexBox>
       </FlexBox>
       <Line style={{ margin: '1.2rem 0' }} />

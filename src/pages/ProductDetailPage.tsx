@@ -12,28 +12,26 @@ import {
 import { getProductDetailAPI } from '../apis';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
+import { getCategoryProductsAPI } from '../apis/productAPI';
 
 const ProductDetailPage = () => {
   const { productId } = useParams();
 
-  const exData = {
-    id: 1,
-    name: 'test',
-    category: '구피',
-    price: 10000,
-    storeName: '펫쿠아',
-    discountRate: 10,
-    discountPrice: 9000,
-    wishCount: 2,
-    reviewCount: 1,
-    reviewAverageScore: 4.0,
-    thumbnailUrl: '',
-  };
-
-  const { data: { mainData, infoData, etcData } = {} } = useQuery({
+  const { data: { mainData, infoData, etcData } = {}, isSuccess } = useQuery({
     queryKey: ['product-detail', productId],
     queryFn: () => getProductDetailAPI(parseInt(productId || '-1')),
     staleTime: 60 * 1000,
+  });
+  const { data: relatedData } = useQuery({
+    queryKey: ['related-products', productId],
+    queryFn: () =>
+      getCategoryProductsAPI({
+        family: infoData?.family || '',
+        sorter: 'REVIEW_COUNT_DESC',
+        limit: 12,
+      }),
+    staleTime: 60 * 1000,
+    enabled: isSuccess,
   });
 
   return (
@@ -45,21 +43,19 @@ const ProductDetailPage = () => {
       <ProductDetailContents data={etcData?.descriptionImageUrls} />
 
       {/* 리뷰 */}
+      {/* 추천 상품 */}
       <RowScrollContainer
         row={2}
-        col={5}
+        col={6}
         style={{
           gridRowGap: '2.4rem',
           gridColumnGap: '1.2rem',
           margin: '4rem 0',
         }}
       >
-        <ProductListItem isSmall data={exData} />
-        <ProductListItem isSmall data={exData} />
-        <ProductListItem isSmall data={exData} />
-        <ProductListItem isSmall data={exData} />
-        <ProductListItem isSmall data={exData} />
-        <ProductListItem isSmall data={exData} />
+        {relatedData?.products.map((item) => (
+          <ProductListItem key={item.id} isSmall data={item} />
+        ))}
       </RowScrollContainer>
 
       {/* 교환/환불 */}

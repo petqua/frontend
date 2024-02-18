@@ -55,18 +55,22 @@ const ProductListItem = ({ isMain, isSmall, data }: ProductListItem) => {
           {data?.name}
         </MediumText>
 
-        <RegularText
-          size={isMain ? 14 : 12}
-          color={theme.color.gray[60]}
-          style={{ textDecoration: 'line-through' }}
-        >
-          {data?.price.toLocaleString()}원
-        </RegularText>
+        {data?.discountRate !== 0 && (
+          <RegularText
+            size={isMain ? 14 : 12}
+            color={theme.color.gray[60]}
+            style={{ textDecoration: 'line-through' }}
+          >
+            {data?.price.toLocaleString()}원
+          </RegularText>
+        )}
 
         <FlexBox align="center" gap="0.8rem">
-          <RegularText size={16} color={theme.color.tint.red}>
-            {data?.discountRate}%
-          </RegularText>
+          {data?.discountRate !== 0 && (
+            <RegularText size={16} color={theme.color.tint.red}>
+              {data?.discountRate}%
+            </RegularText>
+          )}
           <BoldText size={16} color={theme.color.gray.main}>
             {data?.discountPrice.toLocaleString()}원
           </BoldText>

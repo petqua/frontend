@@ -2,6 +2,7 @@ import {
   GetProductsAPI,
   GetProductsAPIParams,
   GetProductDetailAPI,
+  GetCategoryProductsAPIParams,
 } from '../interfaces/product';
 import { client } from './axiosInstance';
 
@@ -100,6 +101,36 @@ export const getProductDetailAPI = async (
     };
 
     return { mainData, infoData, etcData };
+  } catch (error: any) {
+    if (error.response) {
+      console.error('Server Error:', error.response.data);
+    } else {
+      console.error('Error creating question:', error.message);
+    }
+    throw error;
+  }
+};
+
+export const getCategoryProductsAPI = async ({
+  family,
+  species,
+  deliveryMethod,
+  lastViewedId,
+  limit,
+  sorter,
+}: GetCategoryProductsAPIParams): Promise<GetProductsAPI> => {
+  try {
+    const res = await client.get('/categories/products', {
+      params: {
+        family,
+        species,
+        deliveryMethod,
+        lastViewedId,
+        limit,
+        sorter,
+      },
+    });
+    return res.data;
   } catch (error: any) {
     if (error.response) {
       console.error('Server Error:', error.response.data);
