@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { BoldText, FlexBox, MediumText, RegularText } from '../atoms';
 import { theme } from '../../styles/theme';
-//import { usePaymentStore } from '../../states';
+import { usePaymentStore } from '../../states';
 import { DeliveryRequestDropdown } from '.';
 
 const Container = styled.section`
@@ -29,10 +29,11 @@ const YesAddressBox = styled.div`
   flex-direction: column;
 `;
 
-const withAddressComponent = (Component: any) => {
-  return function WithAddressComponent(props: any) {
-    // const { address } = usePaymentStore();
-    const address = null;
+const withAddressComponent = <T extends AddressFormProps>(
+  Component: React.ComponentType<T>,
+) => {
+  return function WithAddressComponent(props: T) {
+    const { address } = usePaymentStore();
     // 주소 있는 경우
     if (address) {
       return <YesAddressComponent data={address} />;
@@ -60,18 +61,20 @@ const YesAddressComponent = ({ data }: any) => {
   );
 };
 
-const AddressComponent = withAddressComponent(({ setIsModalOpen }: any) => {
-  return (
-    <NoAddressBox onClick={() => setIsModalOpen(true)}>
-      <MediumText size={18} color={theme.color.gray.main}>
-        배송지가 없습니다.
-      </MediumText>
-      <MediumText size={14} color={theme.color.gray[50]}>
-        배송지 입력하기
-      </MediumText>
-    </NoAddressBox>
-  );
-});
+const AddressComponent = withAddressComponent(
+  ({ setIsModalOpen }: AddressFormProps) => {
+    return (
+      <NoAddressBox onClick={() => setIsModalOpen(true)}>
+        <MediumText size={18} color={theme.color.gray.main}>
+          배송지가 없습니다.
+        </MediumText>
+        <MediumText size={14} color={theme.color.gray[50]}>
+          배송지 입력하기
+        </MediumText>
+      </NoAddressBox>
+    );
+  },
+);
 
 interface AddressFormProps {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
