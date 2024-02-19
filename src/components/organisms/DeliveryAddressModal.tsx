@@ -3,6 +3,11 @@ import styled, { keyframes } from 'styled-components';
 import { BoldText, FlexBox, MediumText } from '../atoms';
 import { theme } from '../../styles/theme';
 import { IoIosArrowBack } from 'react-icons/io';
+import { postNewAddressAPI } from '../../apis';
+import { Address } from '../../interfaces/payment';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { usePaymentStore } from '../../states';
+import { useDaumPostcodePopup } from 'react-daum-postcode';
 
 interface Modal {
   setIsOpenModal: React.Dispatch<SetStateAction<boolean>>;
@@ -142,10 +147,11 @@ const ApplyButton = styled.button`
 interface InputFormProps {
   title: string;
   name: string;
-  onChangeHandler: (e: any) => void;
+  value: string | number;
+  onChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const InputForm = ({ title, name, onChangeHandler }: InputFormProps) => {
+const InputForm = ({ title, name, value, onChangeHandler }: InputFormProps) => {
   return (
     <FlexBox
       padding="0 1.4rem"
@@ -160,12 +166,47 @@ const InputForm = ({ title, name, onChangeHandler }: InputFormProps) => {
       >
         {title}
       </MediumText>
-      <Input name={name} onChange={onChangeHandler} />
+      <Input name={name} value={value} onChange={onChangeHandler} />
     </FlexBox>
   );
 };
 
-const InputAddressForm = ({ onChangeHandler }: any) => {
+interface InputAddressFormProps {
+  onChangeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  addressInfo: Address;
+  setAddressInfo: React.Dispatch<SetStateAction<Address>>;
+}
+
+const InputAddressForm = ({
+  onChangeHandler,
+  addressInfo,
+  setAddressInfo,
+}: InputAddressFormProps) => {
+  const scriptUrl =
+    'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
+  const open = useDaumPostcodePopup(scriptUrl);
+
+  const handleComplete = (data: any) => {
+    const zipCode = data.zonecode;
+    let fullAddress = data.address;
+    let extraAddress = '';
+
+    if (data.addressType === 'R') {
+      if (data.bname !== '') {
+        extraAddress += data.bname;
+      }
+      if (data.buildingName !== '') {
+        extraAddress +=
+          extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
+      }
+      fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
+      setAddressInfo((prev) => ({ ...prev, zipCode, address: fullAddress }));
+    }
+  };
+  const handleClick = () => {
+    open({ onComplete: handleComplete });
+  };
+
   return (
     <FlexBox padding="0 1.4rem" gap="1.9rem" style={{ width: '100%' }}>
       <MediumText
@@ -177,15 +218,30 @@ const InputAddressForm = ({ onChangeHandler }: any) => {
       </MediumText>
       <FlexBox col gap="1.6rem" style={{ width: '100%' }}>
         <FlexBox gap="1.8rem" style={{ width: '100%' }}>
-          <FindAddressButton>주소 찾기</FindAddressButton>
-          <Input name="zipCode" onChange={onChangeHandler} />
+          <FindAddressButton onClick={handleClick}>주소 찾기</FindAddressButton>
+          <Input
+            name="zipCode"
+            value={addressInfo.zipCode}
+            onChange={onChangeHandler}
+            readOnly
+          />
         </FlexBox>
-        <Input name="address" onChange={onChangeHandler} />
-        <Input name="detailAddress" onChange={onChangeHandler} />
+        <Input
+          name="address"
+          value={addressInfo.address}
+          onChange={onChangeHandler}
+          readOnly
+        />
+        <Input
+          name="detailAddress"
+          value={addressInfo.detailAddress}
+          onChange={onChangeHandler}
+        />
         <CheckBoxContainer>
           <input
             type="checkbox"
             name="isDefaultAddress"
+            checked={addressInfo.isDefaultAddress}
             onChange={onChangeHandler}
           />
           <label>기본 운송지로 저장</label>
@@ -197,17 +253,19 @@ const InputAddressForm = ({ onChangeHandler }: any) => {
 
 // 모달은 꼭 page 단위에서 사용해야함!!
 const DeliveryAddressModal = ({ setIsOpenModal, title }: Modal) => {
-  const [addressInfo, setAddressInfo] = useState({
+  const queryClient = useQueryClient();
+  const { setAddress } = usePaymentStore();
+  const [addressInfo, setAddressInfo] = useState<Address>({
     name: '',
     receiver: '',
     phoneNumber: '',
-    zipCode: '',
+    zipCode: undefined,
     address: '',
     detailAddress: '',
     isDefaultAddress: false,
   });
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setAddressInfo({
       ...addressInfo,
@@ -223,6 +281,22 @@ const DeliveryAddressModal = ({ setIsOpenModal, title }: Modal) => {
     setTimeout(() => {
       setIsOpenModal(false);
     }, 250);
+  };
+
+  const { mutate } = useMutation({
+    mutationFn: () => postNewAddressAPI(addressInfo),
+    onSuccess: (data) => {
+      setAddress({ ...addressInfo, id: data.id });
+      queryClient.invalidateQueries({ queryKey: ['defaultAddress'] });
+    },
+    onError: () => {
+      console.error('배송지 추가 error');
+    },
+  });
+
+  const handleAddAddressClick = async () => {
+    mutate();
+    handleCloseModal();
   };
 
   useEffect(() => {
@@ -252,20 +326,27 @@ const DeliveryAddressModal = ({ setIsOpenModal, title }: Modal) => {
         <InputForm
           title="배송지명"
           name="name"
+          value={addressInfo.name}
           onChangeHandler={handleChange}
         />
         <InputForm
           title="받는사람"
           name="receiver"
+          value={addressInfo.receiver}
           onChangeHandler={handleChange}
         />
         <InputForm
           title="전화번호"
           name="phoneNumber"
+          value={addressInfo.phoneNumber}
           onChangeHandler={handleChange}
         />
-        <InputAddressForm onChangeHandler={handleChange} />
-        <ApplyButton>적용하기</ApplyButton>
+        <InputAddressForm
+          onChangeHandler={handleChange}
+          setAddressInfo={setAddressInfo}
+          addressInfo={addressInfo}
+        />
+        <ApplyButton onClick={handleAddAddressClick}>적용하기</ApplyButton>
       </Container>
     </ModalOverlay>
   );
