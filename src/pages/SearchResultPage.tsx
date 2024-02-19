@@ -1,13 +1,9 @@
 import { useLocation } from 'react-router-dom';
-import {
-  BottomNavBar,
-  Filter,
-  Modal,
-  SearchBar,
-} from '../components/molecules';
+import { BottomNavBar, Filter, SearchBar } from '../components/molecules';
 import { useState } from 'react';
 import { FlexBox } from '../components/atoms';
-import { ProductList } from '../components/organisms';
+
+import { ProductList, ListModal } from '../components/organisms';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getSearchProductsAPI } from '../apis';
 
@@ -75,7 +71,7 @@ const SearchResultPage = () => {
       />
 
       {isOpenModal && (
-        <Modal
+        <ListModal
           options={currentFilter === 'sort' ? sortOptions : transitOptions}
           title="필터"
           value={currentFilter === 'sort' ? sort : transit}
