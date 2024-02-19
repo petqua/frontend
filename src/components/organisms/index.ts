@@ -6,7 +6,9 @@ import ProductDetailMain from './ProductDetailMain';
 import ProductDetailInfo from './ProductDetailInfo';
 import ProductDetailContents from './ProductDetailContents';
 import BottomPayBar from './BottomPayBar';
-import DeliveryAddressModal from './DeliveryAddressModal';
+import DeliveryAddressModal from './modals/DeliveryAddressModal';
+import ListModal from './modals/ListModal';
+import ReviewModal from './modals/ReviewModal';
 
 export {
   CategoryList,
@@ -17,5 +19,7 @@ export {
   ProductDetailInfo,
   ProductDetailContents,
   BottomPayBar,
+  ListModal,
+  ReviewModal,
   DeliveryAddressModal,
 };

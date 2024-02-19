@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FlexBox } from '../components/atoms';
-import { Modal, Filter, TopNav } from '../components/molecules';
-import { ProductList } from '../components/organisms';
+import { Filter, TopNav } from '../components/molecules';
+import { ProductList, ListModal } from '../components/organisms';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
 import { getProductsAPI } from '../apis';
@@ -98,7 +98,7 @@ const ProductListPage = () => {
 
         {/* =================== 모달 =================== */}
         {isOpenSortModal && (
-          <Modal
+          <ListModal
             options={sortOptions}
             title="필터"
             value={sortValue}

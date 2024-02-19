@@ -6,7 +6,8 @@ import Carousel from './Carousel';
 import PreviewListTitle from './PreviewListTitle';
 import RowScrollContainer from './RowScrollContainer';
 import Filter from './Filter';
-import Modal from './Modal';
+import ListModal from '../organisms/modals/ListModal';
+import ReviewModal from '../organisms/modals/ReviewModal';
 import TopNav from './TopNav';
 import BottomNavBar from './BottomNavBar';
 import SearchBar from './SearchBar';
@@ -26,7 +27,8 @@ export {
   Carousel,
   PreviewListTitle,
   RowScrollContainer,
-  Modal,
+  ListModal,
+  ReviewModal,
   Filter,
   TopNav,
   BottomNavBar,
