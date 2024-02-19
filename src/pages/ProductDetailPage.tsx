@@ -8,6 +8,7 @@ import {
   ProductDetailInfo,
   ProductDetailContents,
   BottomPayBar,
+  ReviewOverview,
 } from '../components/organisms';
 import { getProductDetailAPI } from '../apis';
 import { useQuery } from '@tanstack/react-query';
@@ -43,6 +44,7 @@ const ProductDetailPage = () => {
       <ProductDetailContents data={etcData?.descriptionImageUrls} />
 
       {/* 리뷰 */}
+      <ReviewOverview />
       {/* 추천 상품 */}
       <RowScrollContainer
         row={2}
