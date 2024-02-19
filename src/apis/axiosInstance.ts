@@ -30,7 +30,7 @@ client.interceptors.response.use(
     return response;
   },
   async (error) => {
-    const { setAccessToken, logout } = useAuthStore();
+    const { setAccessToken, logout } = useAuthStore.getState();
     const customStatusCode = error.response.data.code;
     switch (customStatusCode) {
       case 'A01': {
@@ -53,6 +53,26 @@ client.interceptors.response.use(
         break;
       case 'P10':
         console.error('유효하지 않은 검색어', customStatusCode);
+        break;
+      case 'SA02':
+        alert('잘못된 휴대전화 번호입니다.');
+        console.error('잘못된 휴대전화 번호입니다.', customStatusCode);
+        break;
+      case 'SA03':
+        alert('주소가 입력되지 않았습니다.');
+        console.error('주소가 입력되지 않았습니다.', customStatusCode);
+        break;
+      case 'SA04':
+        alert('상세 주소가 입력되지 않았습니다.');
+        console.error('상세 주소가 입력되지 않았습니다.', customStatusCode);
+        break;
+      case 'SA05':
+        alert('배송지 이름이 입력되지 않았습니다.');
+        console.error('배송지 이름이 입력되지 않았습니다.', customStatusCode);
+        break;
+      case 'SA06':
+        alert('받는 사람이 입력되지 않았습니다.');
+        console.error('받는 사람이 입력되지 않았습니다.', customStatusCode);
         break;
       default:
         console.error('알 수 없는 상태 코드: ', customStatusCode);
