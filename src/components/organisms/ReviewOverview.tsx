@@ -13,7 +13,7 @@ const ReviewOverview = () => {
     const barWidths = barsRef.current.map((bar) => bar.offsetWidth);
     const minBarWidth = Math.min(...barWidths);
     barsRef.current.forEach((bar) => {
-      bar.style.setProperty('width', `${minBarWidth - 1}px`);
+      bar.style.setProperty('width', `${(minBarWidth - 1) / 10}rem`);
       bar.style.setProperty('flex', 'none');
     });
   }, []);
