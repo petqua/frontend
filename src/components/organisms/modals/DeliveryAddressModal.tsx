@@ -2,7 +2,6 @@ import { SetStateAction, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { FlexBox, MediumText } from '../../atoms';
 import { theme } from '../../../styles/theme';
-import { IoIosArrowBack } from 'react-icons/io';
 import Modal from '../../molecules/Modal';
 
 interface DeliveryAddressModal {

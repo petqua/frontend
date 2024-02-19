@@ -66,7 +66,6 @@ const ReviewModal = ({
             setValue(selectedValue);
             handleCloseModal();
           }}
-          isMargin
           style={{ margin: '2.8rem 0 1.4rem 0' }}
         />
       </>
