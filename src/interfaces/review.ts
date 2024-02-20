@@ -4,3 +4,9 @@ export interface GetReviewStatisticsAPI {
   totalReviewCount: number;
   averageScore: number;
 }
+
+export interface ReviewItem {
+  data: ReviewItemData;
+  isRecommend?: boolean;
+  isLastItem?: boolean;
+}
