@@ -2,10 +2,14 @@ import { styled } from 'styled-components';
 import { theme } from '../../styles/theme';
 import { FlexBox, BoldText, MediumText, RegularText } from '../atoms';
 import { StarRating } from '../molecules';
-// import { GetReviewStatisticsAPI } from '../../interfaces/review';
+import { GetReviewStatisticsAPI } from '../../interfaces/review';
 import { useRef, useEffect } from 'react';
 
-const ReviewOverview = () => {
+const ReviewOverview = ({
+  data,
+}: {
+  data: GetReviewStatisticsAPI | undefined;
+}) => {
   // bar의 길이를 최소 길이에 맞추는 작업
   const barsRef = useRef<HTMLDivElement[]>([]);
 
@@ -21,7 +25,7 @@ const ReviewOverview = () => {
   return (
     <FlexBox col gap="0.8rem" padding="2.4rem 1.4rem">
       <BoldText size={20} color={theme.color.gray[70]}>
-        후기 100
+        후기 {data?.totalReviewCount}
       </BoldText>
       <FlexBox
         align="center"
@@ -35,11 +39,11 @@ const ReviewOverview = () => {
             color={theme.color.gray.main}
             style={{ marginBottom: '0.8rem' }}
           >
-            3.0
+            {data?.averageScore.toFixed(1)}
           </BoldText>
           <StarRating size={22} gap={0.1} score={5} />
           <RegularText size={14} color={theme.color.gray[50]}>
-            만족도 40%
+            만족도 {data?.productSatisfaction}%
           </RegularText>
         </FlexBox>
         <div
@@ -50,7 +54,7 @@ const ReviewOverview = () => {
           }}
         />
         <FlexBox col gap="0.8rem" style={{ width: '50%' }}>
-          {[10, 200, 500, 4000, 12000].map((item, idx) => (
+          {data?.scoreCounts.map((item, idx) => (
             <FlexBox
               key={idx}
               align="center"
@@ -65,7 +69,9 @@ const ReviewOverview = () => {
                 {5 - idx}점
               </MediumText>
               <Bar ref={(el) => el && (barsRef.current[idx] = el)}>
-                <div />
+                <div
+                  style={{ width: `${(item / data?.totalReviewCount) * 100}%` }}
+                />
               </Bar>
               <MediumText size={10} color={theme.color.gray[50]}>
                 {item.toLocaleString()}
@@ -89,7 +95,6 @@ const Bar = styled.div`
 
   div {
     position: absolute;
-    width: 80%;
     height: 0.6rem;
     border-radius: 0.3rem;
     background-color: ${({ theme }) => theme.color.blue.main};

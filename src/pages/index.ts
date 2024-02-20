@@ -6,6 +6,7 @@ import SearchResultPage from './SearchResultPage';
 import LoginPage from './LoginPage';
 import KakaoLoginPage from './KakaoLoginPage';
 import ProductDetailPage from './ProductDetailPage';
+import ReviewPage from './ReviewPage';
 import PaymentPage from './PaymentPage';
 
 export {
@@ -16,6 +17,7 @@ export {
   SearchResultPage,
   WishListPage,
   LoginPage,
+  ReviewPage,
   KakaoLoginPage,
   PaymentPage,
 };

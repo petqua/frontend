@@ -29,7 +29,6 @@ const ProductListPage = () => {
 
   const [searchParams] = useSearchParams();
   const type = searchParams.get('type') || 'exception';
-  // const lastView = searchParams.get('lastView') || '1';
 
   const types: Types = {
     recommend: {
@@ -66,6 +65,7 @@ const ProductListPage = () => {
     initialPageParam: -1,
     getNextPageParam: (lastPage) => {
       const length = lastPage.products.length - 1;
+      if (!lastPage.hasNextPage) return undefined;
       return lastPage.products[length].id;
     },
     staleTime: 60 * 1000,

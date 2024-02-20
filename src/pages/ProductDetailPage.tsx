@@ -10,7 +10,10 @@ import {
   BottomPayBar,
   ReviewOverview,
 } from '../components/organisms';
-import { getProductDetailAPI } from '../apis';
+import {
+  getProductDetailAPI,
+  getReviewStatisticsAPI,
+} from '../apis';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import { getCategoryProductsAPI } from '../apis/productAPI';
@@ -22,6 +25,12 @@ const ProductDetailPage = () => {
     queryKey: ['product-detail', productId],
     queryFn: () => getProductDetailAPI(parseInt(productId || '-1')),
     staleTime: 60 * 1000,
+  });
+
+  const { data: reviewOverviewData } = useQuery({
+    queryKey: ['review-statistics', productId],
+    queryFn: () => getReviewStatisticsAPI(parseInt(productId || '-1')),
+    staleTime: 30 * 1000,
   });
   const { data: relatedData } = useQuery({
     queryKey: ['related-products', productId],
@@ -44,7 +53,7 @@ const ProductDetailPage = () => {
       <ProductDetailContents data={etcData?.descriptionImageUrls} />
 
       {/* 리뷰 */}
-      <ReviewOverview />
+      <ReviewOverview data={reviewOverviewData} />
       {/* 추천 상품 */}
       <RowScrollContainer
         row={2}
