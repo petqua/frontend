@@ -13,11 +13,15 @@ interface WhiteButton {
 const WhiteButton = ({ text, onClick, style, isDown }: WhiteButton) => {
   return (
     <Button onClick={onClick} style={{ ...style }}>
-      <MediumText size={16} color={theme.color.blue.main}>
+      <MediumText
+        size={16}
+        color={theme.color.blue[70]}
+        style={{ whiteSpace: 'pre-wrap' }}
+      >
         {text}
       </MediumText>
       {/* 사용되는 다른 상황에 따라 유연하게 수정 */}
-      {isDown && <FaChevronDown size={12} color={theme.color.blue.main} />}
+      {isDown && <FaChevronDown size={12} color={theme.color.blue[70]} />}
     </Button>
   );
 };
@@ -32,5 +36,5 @@ const Button = styled.button`
   width: 100%;
   background-color: ${({ theme }) => theme.color.tint.white};
   padding: 1.4rem;
-  border: 1px solid ${({ theme }) => theme.color.blue.main};
+  border: 1px solid ${({ theme }) => theme.color.blue[70]};
 `;
