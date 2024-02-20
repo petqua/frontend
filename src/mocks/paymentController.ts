@@ -32,3 +32,24 @@ export const mockPostNewAddressAPI = http.post(
     return HttpResponse.json(data);
   },
 );
+
+export const mockGetCartsAPI = http.get('/api/carts', () => {
+  const data = [
+    {
+      id: 1,
+      storeName: 'S아쿠아',
+      productId: 1,
+      productName: '알비노 풀레드 아시안 고정구피',
+      productThumbnailUrl:
+        'https://docs.petqua.co.kr/products/thumbnails/thumbnail1.jpeg',
+      productPrice: 30000,
+      productDiscountRate: 30,
+      productDiscountPrice: 21000,
+      quantity: 1,
+      isMale: true,
+      deliveryMethod: 'SAFETY',
+      isOnSale: true,
+    },
+  ];
+  return HttpResponse.json(data);
+});
