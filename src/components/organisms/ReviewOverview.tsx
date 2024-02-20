@@ -65,7 +65,9 @@ const ReviewOverview = () => {
                 {5 - idx}점
               </MediumText>
               <Bar ref={(el) => el && (barsRef.current[idx] = el)}>
-                <div />
+                <div
+                  style={{ width: `${(item / data?.totalReviewCount) * 100}%` }}
+                />
               </Bar>
               <MediumText size={10} color={theme.color.gray[50]}>
                 {item.toLocaleString()}
