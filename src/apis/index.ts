@@ -3,7 +3,11 @@ import {
   getOAuthLoginAPI,
   getOAuthRedirectAPI,
 } from './AuthAPI';
-import { getDefaultAddressAPI, postNewAddressAPI } from './PaymentAPI';
+import {
+  getCartsAPI,
+  getDefaultAddressAPI,
+  postNewAddressAPI,
+} from './PaymentAPI';
 import { getAnnouncementsAPI, getBannersAPI } from './homeAPI';
 import { getProductsAPI, getProductDetailAPI } from './productAPI';
 import { getSearchProductsAPI, getTrendingKeywordsAPI } from './searchAPI';
@@ -22,4 +26,5 @@ export {
   getReviewStatisticsAPI,
   getDefaultAddressAPI,
   postNewAddressAPI,
+  getCartsAPI,
 };
