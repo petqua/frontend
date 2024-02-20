@@ -7,6 +7,7 @@ import { getDefaultAddressAPI, postNewAddressAPI } from './PaymentAPI';
 import { getAnnouncementsAPI, getBannersAPI } from './homeAPI';
 import { getProductsAPI, getProductDetailAPI } from './productAPI';
 import { getSearchProductsAPI, getTrendingKeywordsAPI } from './searchAPI';
+import { getReviewStatisticsAPI } from './reviewAPI';
 
 export {
   getBannersAPI,
@@ -18,6 +19,7 @@ export {
   getOAuthLoginAPI,
   getAccessTokenAPI,
   getProductDetailAPI,
+  getReviewStatisticsAPI,
   getDefaultAddressAPI,
   postNewAddressAPI,
 };
