@@ -41,7 +41,6 @@ export const router = createBrowserRouter([
         path: '/search',
         element: <SearchPage />,
         errorElement: <div>Unknown Error</div>,
-        loader: authorizedLoader,
       },
       {
         path: '/wish',
