@@ -10,6 +10,7 @@ import ReviewOverview from './ReviewOverview';
 import DeliveryAddressModal from './modals/DeliveryAddressModal';
 import ListModal from './modals/ListModal';
 import ReviewModal from './modals/ReviewModal';
+import CartFishList from './CartFishList';
 
 export {
   CategoryList,
@@ -24,4 +25,5 @@ export {
   ListModal,
   ReviewModal,
   DeliveryAddressModal,
+  CartFishList,
 };
