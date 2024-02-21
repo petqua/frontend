@@ -12,6 +12,7 @@ import {
 } from './productAPI';
 import { getSearchProductsAPI, getTrendingKeywordsAPI } from './searchAPI';
 import { getReviewStatisticsAPI, getReviewsAPI } from './reviewAPI';
+import { getWishesAPI, postWishAPI } from './wishAPI';
 
 export {
   getBannersAPI,
@@ -28,4 +29,6 @@ export {
   getDefaultAddressAPI,
   postNewAddressAPI,
   getCategoryProductsAPI,
+  getWishesAPI,
+  postWishAPI,
 };

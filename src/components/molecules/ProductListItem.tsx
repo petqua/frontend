@@ -8,10 +8,33 @@ import {
   FlexBox,
 } from '../atoms';
 import { ProductListItem } from '../../interfaces/product';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { postWishAPI } from '../../apis';
 
 const ProductListItem = ({ isMain, isSmall, data }: ProductListItem) => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const [searchParams] = useSearchParams();
+  const type = searchParams.get('type') || 'exception';
+
+  const [showIsWished, setShowIsWished] = useState(data?.isWished);
+
+  const { mutate } = useMutation({
+    mutationFn: () => postWishAPI(data?.id),
+    onSuccess: () => {
+      setShowIsWished((prev) => !prev);
+      type && queryClient.refetchQueries({ queryKey: ['products', type] });
+    },
+    onError: (err) => {
+      console.error(err);
+    },
+  });
+
+  useEffect(() => {
+    setShowIsWished(data?.isWished);
+  }, [data?.isWished]);
 
   return (
     <FlexBox
@@ -28,7 +51,8 @@ const ProductListItem = ({ isMain, isSmall, data }: ProductListItem) => {
         size={isMain ? '16.8rem' : isSmall ? '12rem' : '100%'}
         src={data?.thumbnailUrl}
         showWish={!isSmall && !isMain}
-        isWish={data?.isWished}
+        isWish={showIsWished}
+        onClickWish={mutate}
         isRound
       />
 
