@@ -1,3 +1,4 @@
+import { UseMutateFunction } from '@tanstack/react-query';
 import styled from 'styled-components';
 
 interface ProductImg {
@@ -6,9 +7,17 @@ interface ProductImg {
   isRound?: boolean;
   showWish?: boolean;
   isWish?: boolean;
+  onClickWish?: UseMutateFunction<any, Error, void, unknown>;
 }
 
-const ProductImg = ({ size, src, showWish, isWish, isRound }: ProductImg) => {
+const ProductImg = ({
+  size,
+  src,
+  showWish,
+  isWish,
+  isRound,
+  onClickWish,
+}: ProductImg) => {
   return (
     <ImgContainer style={{ width: size }}>
       <Image
@@ -21,6 +30,10 @@ const ProductImg = ({ size, src, showWish, isWish, isRound }: ProductImg) => {
           src={
             isWish ? '/icons/bubble-like-filled.svg' : '/icons/bubble-like.svg'
           }
+          onClick={(e) => {
+            onClickWish?.();
+            e.stopPropagation();
+          }}
         />
       )}
     </ImgContainer>

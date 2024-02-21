@@ -54,6 +54,9 @@ const BottomPayBar = ({ wishCount, isWished }: BottomPayBar) => {
         </RegularText>
       </FlexBox>
       <BlueButton text="입양하기" onClick={() => {}} style={{ width: '85%' }} />
+
+      {/* ========== 팝업 창 ========== */}
+      {isOpenPopUp && <PopUp />}
     </Container>
   );
 };
