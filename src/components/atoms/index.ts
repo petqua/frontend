@@ -1,3 +1,4 @@
+import CustomHr from './CustomHr';
 import FlexBox from './FlexBox';
 import KeywordText from './KeywordText';
 import ProductImg from './ProductImg';
@@ -12,5 +13,6 @@ export {
   MediumText,
   BoldText,
   KeywordText,
+  CustomHr,
   ProfileImg,
 };

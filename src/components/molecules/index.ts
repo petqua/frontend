@@ -18,6 +18,7 @@ import WhiteButton from './WhiteButton';
 import AddressForm from './AddressForm';
 import DeliveryRequestDropdown from './DeliveryRequestDropdown';
 import StarRating from './StarRating';
+import CartFish from './CartFish';
 import ReviewItem from './ReviewItem';
 
 export {
@@ -41,5 +42,6 @@ export {
   AddressForm,
   DeliveryRequestDropdown,
   StarRating,
+  CartFish,
   ReviewItem,
 };
