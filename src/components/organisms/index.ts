@@ -7,6 +7,7 @@ import ProductDetailInfo from './ProductDetailInfo';
 import ProductDetailContents from './ProductDetailContents';
 import BottomPayBar from './BottomPayBar';
 import ReviewOverview from './ReviewOverview';
+import ReviewList from './ReviewList';
 import DeliveryAddressModal from './modals/DeliveryAddressModal';
 import ListModal from './modals/ListModal';
 import ReviewModal from './modals/ReviewModal';
@@ -22,6 +23,7 @@ export {
   ProductDetailContents,
   BottomPayBar,
   ReviewOverview,
+  ReviewList,
   ListModal,
   ReviewModal,
   DeliveryAddressModal,

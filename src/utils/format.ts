@@ -16,3 +16,12 @@ export const formatFilter = (name: string) => {
       return name;
   }
 };
+
+export const formatDate = (date: string) => {
+  const formatDate = new Date(date);
+  const year = formatDate.getFullYear();
+  const month = String(formatDate.getMonth() + 1).padStart(2, '0');
+  const day = String(formatDate.getDate()).padStart(2, '0');
+
+  return `${year}.${month}.${day}`;
+};

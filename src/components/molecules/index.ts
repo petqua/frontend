@@ -19,6 +19,7 @@ import AddressForm from './AddressForm';
 import DeliveryRequestDropdown from './DeliveryRequestDropdown';
 import StarRating from './StarRating';
 import CartFish from './CartFish';
+import ReviewItem from './ReviewItem';
 
 export {
   ProductListItem,
@@ -42,4 +43,5 @@ export {
   DeliveryRequestDropdown,
   StarRating,
   CartFish,
+  ReviewItem,
 };

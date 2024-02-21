@@ -4,14 +4,21 @@ import { theme } from '../../styles/theme';
 import styled from 'styled-components';
 import { MediumText } from '../atoms';
 import { formatFilter } from '../../utils/format';
+import { IoOptionsOutline } from 'react-icons/io5';
 
 interface Filter {
   value: string;
   setIsOpenModal: React.Dispatch<SetStateAction<boolean>>;
   handleFilterClick?: () => void;
+  hasIcon?: boolean;
 }
 
-const Filter = ({ value, setIsOpenModal, handleFilterClick }: Filter) => {
+const Filter = ({
+  value,
+  setIsOpenModal,
+  handleFilterClick,
+  hasIcon,
+}: Filter) => {
   return (
     <Container
       onClick={() => {
@@ -19,10 +26,11 @@ const Filter = ({ value, setIsOpenModal, handleFilterClick }: Filter) => {
         setIsOpenModal((prev) => !prev);
       }}
     >
-      <MediumText size={14} color={theme.color.gray[70]}>
+      {hasIcon && <IoOptionsOutline size={18} color={theme.color.gray[50]} />}
+      <MediumText size={14} color={theme.color.gray[50]}>
         {formatFilter(value)}
       </MediumText>
-      <FaAngleDown color={theme.color.gray[50]} size={12} />
+      {!hasIcon && <FaAngleDown color={theme.color.gray[50]} size={12} />}
     </Container>
   );
 };

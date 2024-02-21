@@ -1,10 +1,17 @@
-import { ReviewOverview } from '../components/organisms';
+import { useState } from 'react';
+import {
+  ReviewList,
+  ReviewOverview,
+  ReviewModal,
+} from '../components/organisms';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import { getReviewStatisticsAPI } from '../apis/reviewAPI';
 
 const ReviewPage = () => {
   const { productId } = useParams();
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [score, setScore] = useState<number | undefined>(undefined);
 
   const { data } = useQuery({
     queryKey: ['review-statistics', productId],
@@ -15,6 +22,15 @@ const ReviewPage = () => {
   return (
     <>
       <ReviewOverview data={data} />
+      <ReviewList score={score} setIsOpenModal={setIsOpenModal} />
+      {isOpenModal && (
+        <ReviewModal
+          setIsOpenModal={setIsOpenModal}
+          value={score}
+          setValue={setScore}
+          options={data?.scoreCounts || []}
+        />
+      )}
     </>
   );
 };

@@ -1,6 +1,7 @@
 import 'styled-components';
 
 interface Font {
+  bold30: RuleSet<object>;
   bold28: RuleSet<object>;
   bold24: RuleSet<object>;
   bold22: RuleSet<object>;
