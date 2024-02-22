@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useAuthStore } from '../states';
+import { useAuthStore, usePopUpStore } from '../states';
 import { getAccessTokenAPI } from '.';
 //const DEV = import.meta.env;
 
@@ -31,6 +31,7 @@ client.interceptors.response.use(
   },
   async (error) => {
     const { setAccessToken, logout } = useAuthStore.getState();
+    const { setState, setIsOpenPopUp } = usePopUpStore.getState();
     const customStatusCode = error.response.data.code;
     switch (customStatusCode) {
       case 'A01': {
@@ -43,13 +44,16 @@ client.interceptors.response.use(
       case 'A02':
       case 'A10':
       case 'A11':
-      case 'A12':
       case 'A13':
       case 'A20':
       case 'A30':
         logout();
         window.location.href = '/login';
         console.error('소셜 로그인 유도', customStatusCode);
+        break;
+      case 'A12':
+        setState('needLogin');
+        setIsOpenPopUp(true);
         break;
       case 'P10':
         console.error('유효하지 않은 검색어', customStatusCode);

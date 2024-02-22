@@ -55,7 +55,7 @@ const ProductListPage = () => {
   };
 
   const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
-    queryKey: ['products', types[type]],
+    queryKey: ['products', type],
     queryFn: ({ pageParam: lastViewedId }) =>
       getProductsAPI({
         limit: 20,

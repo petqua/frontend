@@ -1,6 +1,6 @@
 import { Address } from '../interfaces/payment';
 import { client } from './axiosInstance';
-// 기본 배송지 조회 API
+
 export const getDefaultAddressAPI = async () => {
   try {
     const res = await client.get('/shipping-address/default');
@@ -16,7 +16,7 @@ export const getDefaultAddressAPI = async () => {
     throw error;
   }
 };
-// 배송지 생성 API
+
 export const postNewAddressAPI = async ({
   name,
   receiver,

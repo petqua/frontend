@@ -20,6 +20,7 @@ import DeliveryRequestDropdown from './DeliveryRequestDropdown';
 import StarRating from './StarRating';
 import CartFish from './CartFish';
 import ReviewItem from './ReviewItem';
+import PopUp from './PopUp';
 
 export {
   ProductListItem,
@@ -44,4 +45,5 @@ export {
   StarRating,
   CartFish,
   ReviewItem,
+  PopUp,
 };

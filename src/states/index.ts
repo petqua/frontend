@@ -1,4 +1,6 @@
 import useAuthStore from './AuthStore';
 import useSearchStore from './SearchStore';
 import usePaymentStore from './PaymentStore';
-export { useSearchStore, useAuthStore, usePaymentStore };
+import usePopUpStore from './PopUpStore';
+
+export { useSearchStore, useAuthStore, usePaymentStore, usePopUpStore };
