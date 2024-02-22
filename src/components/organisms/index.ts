@@ -13,6 +13,7 @@ import ListModal from './modals/ListModal';
 import ReviewModal from './modals/ReviewModal';
 import OptionModal from './modals/OptionModal';
 import CartFishList from './CartFishList';
+import CartList from './CartList';
 
 export {
   CategoryList,
@@ -30,4 +31,5 @@ export {
   DeliveryAddressModal,
   CartFishList,
   OptionModal,
+  CartList,
 };
