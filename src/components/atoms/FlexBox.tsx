@@ -5,6 +5,7 @@ interface FlexBox {
   justify?: string;
   align?: string;
   padding?: string;
+  fullWidth?: boolean;
   style?: any;
   onClick?: () => void;
 }
@@ -16,6 +17,7 @@ const FlexBox = ({
   justify,
   align,
   padding,
+  fullWidth,
   style,
   onClick,
 }: FlexBox) => {
@@ -28,6 +30,7 @@ const FlexBox = ({
         justifyContent: justify || 'flex-start',
         alignItems: align || 'flex-start',
         padding: padding || '0',
+        width: fullWidth ? '100%' : 'auto',
         ...style,
       }}
       onClick={onClick}
