@@ -11,6 +11,7 @@ import ReviewList from './ReviewList';
 import DeliveryAddressModal from './modals/DeliveryAddressModal';
 import ListModal from './modals/ListModal';
 import ReviewModal from './modals/ReviewModal';
+import OptionModal from './modals/OptionModal';
 import CartFishList from './CartFishList';
 
 export {
@@ -28,4 +29,5 @@ export {
   ReviewModal,
   DeliveryAddressModal,
   CartFishList,
+  OptionModal,
 };
