@@ -1,5 +1,6 @@
 import { mockGetAnnouncementsAPI, mockGetBannersAPI } from './homeController';
 import {
+  mockGetCartsAPI,
   mockGetDefaultAddressAPI,
   mockPostNewAddressAPI,
 } from './paymentController';
@@ -15,6 +16,7 @@ const handlers = [
   mockGetSearchProductsAPI,
   mockGetDefaultAddressAPI,
   mockPostNewAddressAPI,
+  mockGetCartsAPI,
 ];
 
 export default handlers;
