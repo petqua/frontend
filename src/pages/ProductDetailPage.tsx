@@ -10,10 +10,7 @@ import {
   BottomPayBar,
   ReviewOverview,
 } from '../components/organisms';
-import {
-  getProductDetailAPI,
-  getReviewStatisticsAPI,
-} from '../apis';
+import { getProductDetailAPI, getReviewStatisticsAPI } from '../apis';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import { getCategoryProductsAPI } from '../apis/productAPI';
