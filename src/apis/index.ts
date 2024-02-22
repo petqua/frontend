@@ -1,7 +1,11 @@
 import { getAnnouncementsAPI, getBannersAPI } from './homeAPI';
-import { getProductsAPI, getProductDetailAPI } from './productAPI';
+import {
+  getProductsAPI,
+  getProductDetailAPI,
+  getCategoryProductsAPI,
+} from './productAPI';
 import { getSearchProductsAPI, getTrendingKeywordsAPI } from './searchAPI';
-import { getReviewStatisticsAPI } from './reviewAPI';
+import { getReviewStatisticsAPI, getReviewsAPI } from './reviewAPI';
 import {
   getAccessTokenAPI,
   getOAuthLoginAPI,
@@ -20,8 +24,10 @@ export {
   getOAuthLoginAPI,
   getAccessTokenAPI,
   getProductDetailAPI,
+  getReviewsAPI,
   getReviewStatisticsAPI,
   getDefaultAddressAPI,
   postNewAddressAPI,
   getCartsAPI,
+  getCategoryProductsAPI,
 };

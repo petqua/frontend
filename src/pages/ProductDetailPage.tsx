@@ -1,7 +1,12 @@
 import { FlexBox, ProductImg, RegularText } from '../components/atoms';
 import { theme } from '../styles/theme';
 import { styled } from 'styled-components';
-import { ProductListItem, RowScrollContainer } from '../components/molecules';
+import {
+  ProductListItem,
+  ReviewItem,
+  RowScrollContainer,
+  WhiteButton,
+} from '../components/molecules';
 import { FaChevronRight } from 'react-icons/fa6';
 import {
   ProductDetailMain,
@@ -10,13 +15,18 @@ import {
   BottomPayBar,
   ReviewOverview,
 } from '../components/organisms';
-import { getProductDetailAPI, getReviewStatisticsAPI } from '../apis';
+import {
+  getProductDetailAPI,
+  getReviewsAPI,
+  getReviewStatisticsAPI,
+  getCategoryProductsAPI,
+} from '../apis';
 import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
-import { getCategoryProductsAPI } from '../apis/productAPI';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const ProductDetailPage = () => {
   const { productId } = useParams();
+  const navigate = useNavigate();
 
   const { data: { mainData, infoData, etcData } = {}, isSuccess } = useQuery({
     queryKey: ['product-detail', productId],
@@ -29,6 +39,18 @@ const ProductDetailPage = () => {
     queryFn: () => getReviewStatisticsAPI(parseInt(productId || '-1')),
     staleTime: 30 * 1000,
   });
+
+  const { data: reviewData } = useQuery({
+    queryKey: ['review-preview', productId],
+    queryFn: () =>
+      getReviewsAPI({
+        productId: parseInt(productId || '-1'),
+        lastViewedId: -1,
+        limit: 2,
+      }),
+    staleTime: 30 * 1000,
+  });
+
   const { data: relatedData } = useQuery({
     queryKey: ['related-products', productId],
     queryFn: () =>
@@ -51,6 +73,23 @@ const ProductDetailPage = () => {
 
       {/* 리뷰 */}
       <ReviewOverview data={reviewOverviewData} />
+      <FlexBox col>
+        {reviewData?.productReviews.map((item, idx) => (
+          <ReviewItem
+            key={item.id}
+            data={item}
+            isLastItem={reviewData?.productReviews.length === idx + 1}
+          />
+        ))}
+      </FlexBox>
+      {reviewData?.hasNextPage && (
+        <WhiteButton
+          text={`${reviewOverviewData?.totalReviewCount}  |  리뷰더보기`}
+          onClick={() => navigate(`/product/${productId}/review`)}
+          style={{ margin: '0 1.4rem', width: 'calc(100% - 2.8rem)' }}
+        />
+      )}
+
       {/* 추천 상품 */}
       <RowScrollContainer
         row={2}

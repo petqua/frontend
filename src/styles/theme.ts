@@ -1,5 +1,10 @@
 import { css } from 'styled-components';
 
+const bold30 = css`
+  font-size: 3rem;
+  font-weight: 700;
+`;
+
 const bold28 = css`
   font-size: 2.8rem;
   font-weight: 700;
@@ -158,6 +163,7 @@ const device = {
 };
 
 const font = {
+  bold30,
   bold28,
   bold24,
   bold22,
