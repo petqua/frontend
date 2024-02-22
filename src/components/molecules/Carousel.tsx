@@ -79,6 +79,39 @@ const Carousel = ({ carouselList }: Carousel) => {
     }
   };
 
+  let touchStartX: number;
+  let touchEndX: number;
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchStartX = e.nativeEvent.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    const curTouchX = e.nativeEvent.changedTouches[0].clientX;
+    if (carouselRef.current !== null) {
+      carouselRef.current.style.transition = '';
+      carouselRef.current.style.transform = `translateX(calc(-${curIdx + 1}00% - ${
+        touchStartX - curTouchX
+      }px))`;
+    }
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchEndX = e.nativeEvent.changedTouches[0].clientX;
+    const moveToNext = touchStartX - touchEndX > 50;
+    const moveToPrev = touchEndX - touchStartX > 50;
+    if (moveToNext) {
+      handleClick(1);
+    } else if (moveToPrev) {
+      handleClick(-1);
+    } else {
+      if (carouselRef.current !== null) {
+        carouselRef.current.style.transition = 'all 0.5s ease-in-out';
+        carouselRef.current.style.transform = `translateX(-${curIdx + 1}00%)`;
+      }
+    }
+  };
+
   useEffect(() => {
     if (carouselRef.current !== null) {
       carouselRef.current.style.transform = `translateX(-${curIdx + 1}00%)`;
@@ -90,7 +123,12 @@ const Carousel = ({ carouselList }: Carousel) => {
       <Button onClick={() => handleClick(-1)} $isLeft={true}>
         <IoIosArrowBack size={36} />
       </Button>
-      <CarouselBox ref={carouselRef}>
+      <CarouselBox
+        ref={carouselRef}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         {carouselArray.map(
           (val, idx) => val && <Img key={idx} src={val.imageUrl} />,
         )}

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { CartItemDetails } from '../../interfaces/payment';
-import React from 'react';
+import { memo } from 'react';
 import { FlexBox, MediumText, RegularText } from '../atoms';
 import { theme } from '../../styles/theme';
 
@@ -23,7 +23,7 @@ const ImageBox = styled.div`
   }
 `;
 
-const CartFish = React.memo((props: CartItemDetails) => {
+const CartFish = memo((props: CartItemDetails) => {
   const {
     productThumbnailUrl,
     storeName,
