@@ -98,6 +98,6 @@ const Container = styled.div<{ $visible: boolean }>`
 
 const LoginButton = styled.button`
   padding: 0.8rem 1rem;
-  border-radius: 6px;
+  border-radius: 0.6rem;
   background-color: ${({ theme }) => theme.color.blue[80]};
 `;
