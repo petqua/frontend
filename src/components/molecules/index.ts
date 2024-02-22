@@ -20,6 +20,8 @@ import DeliveryRequestDropdown from './DeliveryRequestDropdown';
 import StarRating from './StarRating';
 import CartFish from './CartFish';
 import ReviewItem from './ReviewItem';
+import PopUp from './PopUp';
+import Confirm from './Confirm';
 import CartItem from './CartItem';
 
 export {
@@ -45,5 +47,7 @@ export {
   StarRating,
   CartFish,
   ReviewItem,
+  PopUp,
+  Confirm,
   CartItem,
 };
