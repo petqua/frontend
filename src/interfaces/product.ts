@@ -35,8 +35,9 @@ export interface ProductList {
 // 데이터
 export interface ProductListItemData {
   id: number;
+  wishProductId?: number;
+  categoryId: number;
   name: string;
-  category: string;
   price: number;
   storeName: string;
   discountRate: number;
@@ -46,6 +47,7 @@ export interface ProductListItemData {
   reviewAverageScore: number;
   thumbnailUrl: string;
   isWished?: boolean;
+  isDeletedProduct?: boolean;
 }
 
 export interface ProductDetailMainData {

@@ -6,6 +6,7 @@ import {
 } from './productAPI';
 import { getSearchProductsAPI, getTrendingKeywordsAPI } from './searchAPI';
 import { getReviewStatisticsAPI, getReviewsAPI } from './reviewAPI';
+import { getWishesAPI, postWishAPI } from './wishAPI';
 import {
   getAccessTokenAPI,
   getOAuthLoginAPI,
@@ -30,4 +31,6 @@ export {
   postNewAddressAPI,
   getCartsAPI,
   getCategoryProductsAPI,
+  getWishesAPI,
+  postWishAPI,
 };

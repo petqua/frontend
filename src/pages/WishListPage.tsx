@@ -16,10 +16,24 @@ const WishListPage = () => {
     initialPageParam: -1,
     getNextPageParam: (lastPage) => {
       const length = lastPage.products?.length - 1;
-      if (length < 0) return undefined;
-      return lastPage.products[length].id;
+      if (!lastPage.hasNextPage) return undefined;
+      return lastPage.products[length].wishProductId;
     },
-    staleTime: 60 * 1000,
+    select: ({ pages, pageParams }) => {
+      const formatedPages = pages.map((page) => ({
+        ...page,
+        products: page.products.map((product) => ({
+          ...product,
+          isWished: true,
+        })),
+      }));
+      return {
+        pages: formatedPages,
+        pageParams: [...pageParams],
+      };
+    },
+    staleTime: 20 * 1000,
+    gcTime: 0,
   });
 
   return (

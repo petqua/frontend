@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { BoldText, FlexBox } from '../atoms';
 import { theme } from '../../styles/theme';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { IoChevronBackOutline, IoClose } from 'react-icons/io5';
+import { fadeIn, fadeOut, slideUp, slideDown } from '../../styles/keyframes';
 
 interface Modal {
   children: React.ReactNode;
@@ -81,46 +82,6 @@ const Modal = ({
 };
 
 export default Modal;
-
-const fadeIn = keyframes`
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  `;
-
-const fadeOut = keyframes`
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  `;
-
-const slideUp = keyframes`
-  from {
-      transform: translateY(100%);
-      opacity: 0;
-  }
-  to {
-      transform: translateY(0);
-      opacity: 1;
-  }
-  `;
-
-const slideDown = keyframes`
-  from {
-      transform: translateY(0);
-      opacity: 1;
-  }
-  to {
-      transform: translateY(100%);
-      opacity: 0;
-  }
-  `;
 
 const ModalOverlay = styled.div<{ $visible: boolean }>`
   width: 100%;
