@@ -1,9 +1,3 @@
-import {
-  getAccessTokenAPI,
-  getOAuthLoginAPI,
-  getOAuthRedirectAPI,
-} from './AuthAPI';
-import { getDefaultAddressAPI, postNewAddressAPI } from './PaymentAPI';
 import { getAnnouncementsAPI, getBannersAPI } from './homeAPI';
 import {
   getProductsAPI,
@@ -12,6 +6,13 @@ import {
 } from './productAPI';
 import { getSearchProductsAPI, getTrendingKeywordsAPI } from './searchAPI';
 import { getReviewStatisticsAPI, getReviewsAPI } from './reviewAPI';
+import {
+  getAccessTokenAPI,
+  getOAuthLoginAPI,
+  getOAuthRedirectAPI,
+} from './authAPI';
+import { getDefaultAddressAPI, postNewAddressAPI } from './paymentAPI';
+import { getCartsAPI } from './cartAPI';
 
 export {
   getBannersAPI,
@@ -27,5 +28,6 @@ export {
   getReviewStatisticsAPI,
   getDefaultAddressAPI,
   postNewAddressAPI,
+  getCartsAPI,
   getCategoryProductsAPI,
 };
