@@ -8,6 +8,7 @@ import KakaoLoginPage from './KakaoLoginPage';
 import ProductDetailPage from './ProductDetailPage';
 import ReviewPage from './ReviewPage';
 import PaymentPage from './PaymentPage';
+import CartPage from './CartPage';
 
 export {
   HomePage,
@@ -20,4 +21,5 @@ export {
   ReviewPage,
   KakaoLoginPage,
   PaymentPage,
+  CartPage,
 };
