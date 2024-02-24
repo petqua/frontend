@@ -79,6 +79,7 @@ export const router = createBrowserRouter([
         path: '/cart',
         element: <CartPage />,
         errorElement: <div>Unknown Error</div>,
+        loader: authorizedLoader,
       },
     ],
   },

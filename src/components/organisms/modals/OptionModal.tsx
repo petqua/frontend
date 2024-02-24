@@ -127,7 +127,7 @@ const Line = styled.div`
 `;
 
 const SexButton = styled.button`
-  border-radius: 30px;
+  border-radius: 3rem;
   border: 0.05rem solid ${({ theme }) => theme.color.gray[50]};
   padding: 0.6rem 3.2rem;
 `;
