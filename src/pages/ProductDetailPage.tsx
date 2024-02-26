@@ -1,6 +1,6 @@
-import { FlexBox, ProductImg, RegularText } from '../components/atoms';
 import { theme } from '../styles/theme';
 import { styled } from 'styled-components';
+import { FlexBox, RegularText } from '../components/atoms';
 import {
   Carousel,
   ProductListItem,
