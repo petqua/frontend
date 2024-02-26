@@ -46,7 +46,7 @@ const Carousel = ({
       carouselRef.current.style.transition = 'all 0.5s ease-in-out';
       isDetail &&
         (carouselRef.current.style.height =
-          (imgsRef.current[nextIdx + 1]?.offsetHeight || 0) + 'px');
+          (imgsRef.current[nextIdx + 1]?.offsetHeight || 0) / 10 + 'rem');
     }
   };
 
@@ -182,8 +182,8 @@ const Button = styled.button<{ $isLeft: boolean }>`
   background: rgba(222, 234, 255, 0.3);
   ${({ $isLeft }) =>
     $isLeft
-      ? 'left: 0; border-radius: 0px 8px 8px 0px;'
-      : 'right: 0; border-radius: 8px 0px 0px 8px;'}
+      ? 'left: 0; border-radius: 0 0.8rem 0.8rem 0;'
+      : 'right: 0; border-radius: 0.8rem 0 0 0.8rem;'}
 `;
 
 const Indicator = styled.div<{

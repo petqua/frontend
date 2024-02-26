@@ -9,7 +9,7 @@ import { ImageDetail } from '../../interfaces/carousel';
 const ImageDetail = ({ setIsOpenDetail, idx, carouselList }: ImageDetail) => {
   const [visible, setVisible] = useState(true);
 
-  const handleCloseConfirm = () => {
+  const handleCloseViewer = () => {
     setVisible(false);
     setTimeout(() => {
       setIsOpenDetail(false);
@@ -30,22 +30,22 @@ const ImageDetail = ({ setIsOpenDetail, idx, carouselList }: ImageDetail) => {
   }, []);
 
   return (
-    <ConfirmOverlay $visible={visible}>
+    <ViewerOverlay $visible={visible}>
       <CloseBtn>
         <IoCloseOutline
           size={32}
           color={theme.color.tint.white}
-          onClick={handleCloseConfirm}
+          onClick={handleCloseViewer}
         />
       </CloseBtn>
       <Carousel carouselList={carouselList} isDetail idx={idx} />
-    </ConfirmOverlay>
+    </ViewerOverlay>
   );
 };
 
 export default ImageDetail;
 
-const ConfirmOverlay = styled.div<{ $visible: boolean }>`
+const ViewerOverlay = styled.div<{ $visible: boolean }>`
   width: 100%;
   max-width: 50rem;
   height: 100vh;
@@ -61,7 +61,6 @@ const ConfirmOverlay = styled.div<{ $visible: boolean }>`
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.8);
   overflow: ${({ $visible }) => ($visible ? 'hidden' : 'auto')};
-
   animation: ${({ $visible }) => ($visible ? fadeIn : fadeOut)} 0.2s ease-in-out;
 `;
 
