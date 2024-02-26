@@ -36,8 +36,7 @@ const ReviewList = ({ score, setIsOpenModal }: ReviewList) => {
       if (!lastPage.hasNextPage) return undefined;
       return lastPage.productReviews[length].id;
     },
-    staleTime: 60 * 1000,
-    gcTime: 0,
+    staleTime: 0,
   });
 
   const handleSorter = (type: string) => {
