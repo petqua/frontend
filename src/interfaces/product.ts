@@ -61,7 +61,6 @@ export interface ProductDetailMainData {
   discountPrice: number;
   reviewCount: number;
   reviewAverageScore: number;
-  description: string;
 }
 
 export interface ProductDetailInfoData {
@@ -104,13 +103,9 @@ export interface GetProductDetailAPI {
   infoData: ProductDetailInfoData;
   etcData: {
     descriptionImageUrls: string[];
-    thumbnailUrl: string;
     wishCount: number;
-    canDeliverSafely: boolean;
-    canDeliverCommonly: boolean;
-    canPickUp: boolean;
-    hasDistinctSex: boolean;
     isWished?: boolean;
+    imageUrls?: string[];
   };
 }
 
