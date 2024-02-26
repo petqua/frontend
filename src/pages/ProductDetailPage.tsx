@@ -2,6 +2,7 @@ import { FlexBox, ProductImg, RegularText } from '../components/atoms';
 import { theme } from '../styles/theme';
 import { styled } from 'styled-components';
 import {
+  Carousel,
   ProductListItem,
   ReviewItem,
   RowScrollContainer,
@@ -65,7 +66,16 @@ const ProductDetailPage = () => {
 
   return (
     <>
-      <ProductImg size="100%" src={etcData?.thumbnailUrl || ''} />
+      <Carousel
+        carouselList={
+          etcData?.imageUrls?.map((url, idx) => ({
+            id: idx,
+            imageUrl: url,
+            linkUrl: '',
+          })) || []
+        }
+        canShowDetail
+      />
       <ProductDetailMain data={mainData} />
       <Notice src="/images/notice-ex.svg" alt="product-detail-notice" />
       <ProductDetailInfo data={infoData} />

@@ -49,9 +49,9 @@ const HomePage = () => {
     <>
       <TopNav alarm search basket logo />
       {bannersList && bannersList.length !== 0 ? (
-        <Carousel carouselList={bannersList} />
+        <Carousel carouselList={bannersList} isBlackIndicator />
       ) : (
-        <Carousel carouselList={CAROUSEL_MOCK_DATA} />
+        <Carousel carouselList={CAROUSEL_MOCK_DATA} isBlackIndicator />
       )}
       <Notification announcementList={announcementList} />
       <CategoryList />
