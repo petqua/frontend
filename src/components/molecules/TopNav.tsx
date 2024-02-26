@@ -1,4 +1,4 @@
-import { FlexBox, MediumText } from '../atoms';
+import { FlexBox, MediumText, RegularText } from '../atoms';
 import { theme } from '../../styles/theme';
 import { CiSearch } from 'react-icons/ci';
 import { GoChevronLeft } from 'react-icons/go';
@@ -11,7 +11,7 @@ interface TopNav {
   basket?: boolean;
   alarm?: boolean;
   wish?: boolean;
-  logo?: boolean;
+  searchBar?: boolean;
   title?: string;
   isBlue?: boolean; // 타이틀 파란색 여부
 }
@@ -22,7 +22,7 @@ const TopNav = ({
   basket,
   alarm,
   wish,
-  logo,
+  searchBar,
   title,
   isBlue,
 }: TopNav) => {
@@ -35,13 +35,14 @@ const TopNav = ({
           justify="flex-start"
           align="center"
           gap="1.4rem"
-          style={{ width: '6rem' }}
+          style={{ width: searchBar ? '' : '6rem' }}
         >
           {backBtn && (
             <GoChevronLeft
               size={24}
               color={theme.color.gray.main}
               onClick={() => navigate(-1)}
+              style={{ cursor: 'pointer' }}
             />
           )}
 
@@ -50,12 +51,19 @@ const TopNav = ({
               src="/icons/alarm.svg"
               alt="alarm"
               onClick={() => navigate('/alarm')}
+              style={{ cursor: 'pointer' }}
             />
           )}
         </FlexBox>
-        {logo ? (
-          <img src="/icons/logo-typo.svg" alt="logo" />
-        ) : (
+        {searchBar && (
+          <SearchBar onClick={() => navigate('/search')}>
+            <RegularText size={12} color={theme.color.gray.main}>
+              검색어를 입력해주세요
+            </RegularText>
+            <CiSearch size={20} color={theme.color.gray.main} />
+          </SearchBar>
+        )}
+        {title && (
           <MediumText
             size={16}
             color={isBlue ? theme.color.blue.main : theme.color.gray.main}
@@ -63,6 +71,7 @@ const TopNav = ({
             {title}
           </MediumText>
         )}
+
         <FlexBox
           justify="flex-end"
           align="center"
@@ -70,20 +79,20 @@ const TopNav = ({
           style={{ width: '6rem' }}
         >
           {search && <CiSearch size={24} onClick={() => navigate('/search')} />}
-          {basket && (
-            <img
-              src="/icons/basket.svg"
-              alt="basket"
-              style={{ width: '2.4rem', height: '2.4rem' }}
-              onClick={() => navigate('/cart')}
-            />
-          )}
           {wish && (
             <img
               src="/icons/bubble-like-gray.svg"
               alt="wish"
-              style={{ width: '2.2rem', height: '2.2rem' }}
+              style={{ width: '2.2rem', height: '2.2rem', cursor: 'pointer' }}
               onClick={() => navigate('/wish')}
+            />
+          )}
+          {basket && (
+            <img
+              src="/icons/basket.svg"
+              alt="basket"
+              style={{ width: '2.4rem', height: '2.4rem', cursor: 'pointer' }}
+              onClick={() => navigate('/cart')}
             />
           )}
         </FlexBox>
@@ -104,7 +113,19 @@ const Container = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1.2rem;
   position: fixed;
   top: 0;
   z-index: 10;
+`;
+
+const SearchBar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border-radius: 0.6rem;
+  background-color: ${({ theme }) => theme.color.blue[10]};
+  cursor: pointer;
 `;

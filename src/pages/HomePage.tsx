@@ -47,7 +47,7 @@ const HomePage = () => {
 
   return (
     <>
-      <TopNav alarm search basket logo />
+      <TopNav alarm wish basket searchBar />
       {bannersList && bannersList.length !== 0 ? (
         <Carousel carouselList={bannersList} />
       ) : (
