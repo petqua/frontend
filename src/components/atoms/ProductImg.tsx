@@ -4,7 +4,6 @@ import styled from 'styled-components';
 interface ProductImg {
   size: string;
   src: string;
-  isRound?: boolean;
   showWish?: boolean;
   isWish?: boolean;
   onClickWish?: UseMutateFunction<any, Error, void, unknown>;
@@ -15,7 +14,6 @@ const ProductImg = ({
   src,
   showWish,
   isWish,
-  isRound,
   onClickWish,
 }: ProductImg) => {
   return (
@@ -23,7 +21,6 @@ const ProductImg = ({
       <Image
         src={src || '/public/images/product-item-ex.svg'}
         alt="product-img"
-        style={{ borderRadius: isRound ? '1.2rem' : '' }}
       />
       {showWish && (
         <WishBtn
@@ -47,12 +44,14 @@ const ImgContainer = styled.div`
   aspect-ratio: 1;
   overflow: hidden;
   position: relative;
+  border-radius: 1.2rem;
 `;
 
 const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: contain;
+  border-radius: 1.2rem;
 `;
 
 const WishBtn = styled.img`

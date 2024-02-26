@@ -45,7 +45,7 @@ const ReviewItem = ({ data, isRecommend, isLastItem }: ReviewItem) => {
         {data?.images.length !== 0 && (
           <RowScrollContainer gap="0.8rem" row={1} col={5}>
             {data?.images.map((item, idx) => (
-              <ProductImg key={idx} size="12rem" isRound src={item} />
+              <ProductImg key={idx} size="12rem" src={item} />
             ))}
           </RowScrollContainer>
         )}
