@@ -89,6 +89,16 @@ const Carousel = ({
     }
   }, [curIdx]);
 
+  const formatIndex = (idx: number) => {
+    if (idx < 1) {
+      return carouselList.length;
+    } else if (idx > carouselList.length) {
+      return 1;
+    } else {
+      return idx;
+    }
+  };
+
   return (
     <>
       <Container>
@@ -126,7 +136,7 @@ const Carousel = ({
             size={14}
             color={isDetail ? theme.color.gray.main : theme.color.tint.white}
           >
-            {curIdx + 1} / {carouselList.length}
+            {formatIndex(curIdx + 1)} / {carouselList.length}
           </RegularText>
         </Indicator>
       </Container>
