@@ -37,6 +37,7 @@ const ReviewList = ({ score, setIsOpenModal }: ReviewList) => {
       return lastPage.productReviews[length].id;
     },
     staleTime: 60 * 1000,
+    gcTime: 0,
   });
 
   const handleSorter = (type: string) => {
