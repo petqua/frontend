@@ -14,6 +14,7 @@ import ReviewModal from './modals/ReviewModal';
 import OptionModal from './modals/OptionModal';
 import CartFishList from './CartFishList';
 import CartList from './CartList';
+import ImageDetail from './ImageDetail';
 
 export {
   CategoryList,
@@ -32,4 +33,5 @@ export {
   CartFishList,
   OptionModal,
   CartList,
+  ImageDetail,
 };
