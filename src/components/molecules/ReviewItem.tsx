@@ -11,8 +11,29 @@ import {
 import { FaRegThumbsUp, FaThumbsUp } from 'react-icons/fa6';
 import { ReviewItem } from '../../interfaces/review';
 import { formatDate } from '../../utils/format';
+import { useMutation } from '@tanstack/react-query';
+import { postReviewRecommendAPI } from '../../apis';
+import { useState } from 'react';
 
 const ReviewItem = ({ data, isRecommend, isLastItem }: ReviewItem) => {
+  const [showRecommended, setShowRecommended] = useState(data?.recommended);
+  const [showRecommendCount, setShowRecommendCount] = useState(
+    data?.recommendCount,
+  );
+
+  const { mutate } = useMutation({
+    mutationFn: () => postReviewRecommendAPI(data?.id),
+    onSuccess: () => {
+      setShowRecommended((prev) => !prev);
+      showRecommended
+        ? setShowRecommendCount((prev) => prev - 1)
+        : setShowRecommendCount((prev) => prev + 1);
+    },
+    onError: (err) => {
+      console.error(err);
+    },
+  });
+
   return (
     <>
       <FlexBox col padding="2.4rem 0" gap="1.6rem" style={{ width: '100%' }}>
@@ -59,8 +80,8 @@ const ReviewItem = ({ data, isRecommend, isLastItem }: ReviewItem) => {
         </RegularText>
 
         {isRecommend && (
-          <RecommendBtn>
-            {data?.recommended ? (
+          <RecommendBtn onClick={() => mutate()}>
+            {showRecommended ? (
               <FaThumbsUp size={16} color={theme.color.blue.main} />
             ) : (
               <FaRegThumbsUp size={16} color={theme.color.gray[50]} />
@@ -68,10 +89,10 @@ const ReviewItem = ({ data, isRecommend, isLastItem }: ReviewItem) => {
             <RegularText
               size={14}
               color={
-                data?.recommended ? theme.color.gray.main : theme.color.gray[50]
+                showRecommended ? theme.color.gray.main : theme.color.gray[50]
               }
             >
-              추천 {data?.recommendCount}
+              추천 {showRecommendCount}
             </RegularText>
           </RecommendBtn>
         )}

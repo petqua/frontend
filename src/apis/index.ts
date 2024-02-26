@@ -5,7 +5,11 @@ import {
   getCategoryProductsAPI,
 } from './productAPI';
 import { getSearchProductsAPI, getTrendingKeywordsAPI } from './searchAPI';
-import { getReviewStatisticsAPI, getReviewsAPI } from './reviewAPI';
+import {
+  getReviewStatisticsAPI,
+  getReviewsAPI,
+  postReviewRecommendAPI,
+} from './reviewAPI';
 import { getWishesAPI, postWishAPI } from './wishAPI';
 import {
   getAccessTokenAPI,
@@ -27,6 +31,7 @@ export {
   getProductDetailAPI,
   getReviewsAPI,
   getReviewStatisticsAPI,
+  postReviewRecommendAPI,
   getDefaultAddressAPI,
   postNewAddressAPI,
   getCartsAPI,
