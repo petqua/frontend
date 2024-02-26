@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { AddressForm, TopNav } from '../components/molecules';
+import { AddressForm, PaymentInfo, TopNav } from '../components/molecules';
 import { getCartsAPI, getDefaultAddressAPI } from '../apis';
 import { useEffect, useState } from 'react';
 import { usePaymentStore } from '../states';
@@ -25,6 +25,8 @@ const PaymentPage = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [paymentType, setPaymentType] = useState('신용/체크카드');
+
   useEffect(() => {
     if (address !== null) return;
     if (defaultAddressData) {
@@ -39,6 +41,7 @@ const PaymentPage = () => {
       <CustomHr height="0.8rem" color={theme.color.gray[30]} />
       <CartFishList cartData={cartData} />
       <CustomHr height="0.8rem" color={theme.color.gray[30]} />
+      <PaymentInfo paymentType={paymentType} setPaymentType={setPaymentType} />
       {isModalOpen && (
         <DeliveryAddressModal
           title="운송지 추가"
