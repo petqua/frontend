@@ -45,6 +45,11 @@ const bold12 = css`
   font-weight: 700;
 `;
 
+const bold10 = css`
+  font-size: 1rem;
+  font-weight: 700;
+`;
+
 const medium28 = css`
   font-size: 2.8rem;
   font-weight: 500;
@@ -172,6 +177,7 @@ const font = {
   bold16,
   bold14,
   bold12,
+  bold10,
   medium28,
   medium24,
   medium20,

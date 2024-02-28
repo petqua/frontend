@@ -15,6 +15,7 @@ import OptionModal from './modals/OptionModal';
 import CartFishList from './CartFishList';
 import CartList from './CartList';
 import ImageDetail from './ImageDetail';
+import CartFishListByStoreName from './CartFishListByStoreName';
 
 export {
   CategoryList,
@@ -34,4 +35,5 @@ export {
   OptionModal,
   CartList,
   ImageDetail,
+  CartFishListByStoreName,
 };

@@ -18,7 +18,13 @@ export interface CartItemDetails {
   productDiscountRate: number;
   productDiscountPrice: number;
   quantity: number;
-  isMale: boolean;
-  deliveryMethod: string;
+  sex: 'MALE' | 'FEMALE' | 'HERMAPHRODITE';
+  deliveryMethod: 'SAFETY' | 'COMMON' | 'PICKUP';
+  deliveryFee: number;
   isOnSale: boolean;
+  safeDeliveryFee: number;
+  commonDeliveryFee: number;
+  pickUpDeliveryFee: number;
+  maleAdditionalPrice: number;
+  femaleAdditionalPrice: number;
 }
