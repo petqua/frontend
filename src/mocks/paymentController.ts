@@ -46,9 +46,15 @@ export const mockGetCartsAPI = http.get('/api/carts', () => {
       productDiscountRate: 30,
       productDiscountPrice: 21000,
       quantity: 1,
-      isMale: true,
+      sex: 'MALE',
       deliveryMethod: 'SAFETY',
+      deliveryFee: 3000,
       isOnSale: true,
+      safeDeliveryFee: 5000,
+      commonDeliveryFee: 3000,
+      pickUpDeliveryFee: 0,
+      maleAdditionalPrice: 1000,
+      femaleAdditionalPrice: 1000,
     },
   ];
   return HttpResponse.json(data);
