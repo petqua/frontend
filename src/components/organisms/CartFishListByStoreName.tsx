@@ -36,7 +36,7 @@ const CartFishListByStoreName = ({
         cartData.map((item) => <CartFish key={item.id} {...item} />)}
       <FlexBox gap="1.8rem" align="end" style={{ marginLeft: 'auto' }}>
         <MediumText size={14} color={theme.color.gray[70]}>
-          총 입양급액
+          총 입양 금액
         </MediumText>
         <BoldText size={18} color={theme.color.blue[80]}>
           {totalPaymentPrice.toLocaleString()}원

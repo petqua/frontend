@@ -45,7 +45,7 @@ const CartFishList = memo(({ cartData }: CartFishListProps) => {
         color={theme.color.gray.main}
         style={{ marginLeft: '1.4rem', marginBottom: '1.2rem' }}
       >
-        어종정보
+        어종 정보
       </BoldText>
       {classifiedArray.map(({ storeName, items }, idx) => (
         <CartFishListByStoreName

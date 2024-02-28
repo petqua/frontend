@@ -52,7 +52,7 @@ const PaymentInfo = ({ paymentType, setPaymentType }: PaymentInfo) => {
   return (
     <Container>
       <BoldText size={18} color={theme.color.gray.main}>
-        결제정보
+        결제 정보
       </BoldText>
       <GridBox>
         {PAYMENT_TYPE.map((payment_type, idx) => (
