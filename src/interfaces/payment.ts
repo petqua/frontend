@@ -28,3 +28,10 @@ export interface CartItemDetails {
   maleAdditionalPrice: number;
   femaleAdditionalPrice: number;
 }
+
+export interface TotalFee {
+  totalAdoptionFee: number;
+  totalSafeDeliveryFee: number;
+  totalCommonDeliveryFee: number;
+  totalPickUpDeliveryFee: number;
+}

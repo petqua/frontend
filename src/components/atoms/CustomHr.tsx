@@ -9,10 +9,11 @@ const Hr = styled.hr<{ $height: string; $color: string }>`
 interface CustomHr {
   height: string;
   color: string;
+  style?: any;
 }
 
-const CustomHr = ({ height, color }: CustomHr) => {
-  return <Hr $height={height} $color={color} />;
+const CustomHr = ({ height, color, style }: CustomHr) => {
+  return <Hr $height={height} $color={color} style={{ ...style }} />;
 };
 
 export default CustomHr;

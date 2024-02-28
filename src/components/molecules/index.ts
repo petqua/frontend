@@ -24,6 +24,7 @@ import PopUp from './PopUp';
 import Confirm from './Confirm';
 import CartItem from './CartItem';
 import PaymentInfo from './PaymentInfo';
+import PaymentSummary from './PaymentSummary';
 
 export {
   ProductListItem,
@@ -52,4 +53,5 @@ export {
   Confirm,
   CartItem,
   PaymentInfo,
+  PaymentSummary,
 };

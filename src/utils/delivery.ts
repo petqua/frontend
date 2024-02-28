@@ -1,3 +1,4 @@
+import { CartItemDetails, TotalFee } from '../interfaces/payment';
 import { theme } from '../styles/theme';
 
 export const getKoreanDeliveryMethod = (method: string) => {
@@ -49,4 +50,34 @@ export const getTextColor = (method: string) => {
     default:
       return 'black';
   }
+};
+
+export const getTotalFee = (data: Array<CartItemDetails>) => {
+  return data.reduce(
+    (acc, { productDiscountPrice, deliveryFee, deliveryMethod }) => {
+      acc.totalAdoptionFee += productDiscountPrice + deliveryFee;
+      if (deliveryMethod === 'SAFETY') {
+        acc.totalSafeDeliveryFee += deliveryFee;
+      } else if (deliveryMethod === 'COMMON') {
+        acc.totalCommonDeliveryFee += deliveryFee;
+      } else {
+        acc.totalPickUpDeliveryFee += deliveryFee;
+      }
+      return acc;
+    },
+    {
+      totalAdoptionFee: 0,
+      totalSafeDeliveryFee: 0,
+      totalCommonDeliveryFee: 0,
+      totalPickUpDeliveryFee: 0,
+    },
+  );
+};
+
+export const getTotalDeliveryFee = (totalFee: TotalFee) => {
+  return (
+    totalFee.totalCommonDeliveryFee +
+    totalFee.totalSafeDeliveryFee +
+    totalFee.totalPickUpDeliveryFee
+  );
 };
