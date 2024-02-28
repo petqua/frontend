@@ -13,6 +13,19 @@ export const getKoreanDeliveryMethod = (method: string) => {
   }
 };
 
+export const getSex = (sex: string) => {
+  switch (sex) {
+    case 'MALE':
+      return '수컷';
+    case 'FEMALE':
+      return '암컷';
+    case 'HERMAPHRODITE':
+      return '자웅동체';
+    default:
+      return sex;
+  }
+};
+
 export const getBackgroundColor = (method: string) => {
   switch (method) {
     case 'SAFETY':

@@ -18,7 +18,7 @@ export interface CartItemDetails {
   productDiscountRate: number;
   productDiscountPrice: number;
   quantity: number;
-  sex: string;
+  sex: 'MALE' | 'FEMALE' | 'HERMAPHRODITE';
   deliveryMethod: 'SAFETY' | 'COMMON' | 'PICKUP';
   deliveryFee: number;
   isOnSale: boolean;

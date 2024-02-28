@@ -6,6 +6,7 @@ import { theme } from '../../styles/theme';
 import {
   getBackgroundColor,
   getKoreanDeliveryMethod,
+  getSex,
   getTextColor,
 } from '../../utils/payment';
 
@@ -84,9 +85,9 @@ const CartFish = memo((props: CartItemDetails) => {
             color={theme.color.gray[50]}
             style={{ marginTop: '1.3rem' }}
           >
-            {quantity}마리 | {sex === 'MALE' ? '수컷' : '암컷'}
+            {quantity}마리 | {getSex(sex)}
           </RegularText>
-          <FlexBox gap="0.8rem" style={{ width: '100%' }}>
+          <FlexBox gap="0.8rem" fullWidth>
             {isOnSale && (
               <>
                 <MediumText size={12} color={theme.color.tint.red}>
