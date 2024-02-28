@@ -47,21 +47,23 @@ export const getProductDetailAPI = async (
       storeName,
       discountRate,
       discountPrice,
+      wishCount,
       reviewCount,
       reviewAverageScore,
-      description,
+      imageUrls,
+      // descriptionTitle,
+      // descriptionContent,
+      descriptionImageUrls,
+      // safeDeliveryFee,
+      // commonDeliveryFee,
+      // pickUpDeliveryFee,
       optimalTemperatureMin,
       optimalTemperatureMax,
       difficultyLevel,
       optimalTankSize,
       temperament,
-      descriptionImageUrls,
-      thumbnailUrl,
-      wishCount,
-      canDeliverSafely,
-      canDeliverCommonly,
-      canPickUp,
-      hasDistinctSex,
+      // maleAdditionalPrice,
+      // femaleAdditionalPrice,
       isWished,
     } = data;
 
@@ -76,7 +78,6 @@ export const getProductDetailAPI = async (
       discountPrice,
       reviewCount,
       reviewAverageScore,
-      description,
     };
 
     const infoData = {
@@ -90,13 +91,11 @@ export const getProductDetailAPI = async (
     };
 
     const etcData = {
+      imageUrls,
+      // descriptionTitle,
+      // descriptionContent,
       descriptionImageUrls,
-      thumbnailUrl,
       wishCount,
-      canDeliverSafely,
-      canDeliverCommonly,
-      canPickUp,
-      hasDistinctSex,
       isWished,
     };
 

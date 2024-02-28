@@ -1,55 +1,23 @@
 import styled from 'styled-components';
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { useEffect, useRef, useState } from 'react';
+import { ImageDetail } from '../organisms';
+import { RegularText } from '../atoms';
+import { theme } from '../../styles/theme';
+import { GrNext, GrPrevious } from 'react-icons/gr';
+import { Carousel } from '../../interfaces/carousel';
 
-const Container = styled.div`
-  position: relative;
-  width: 100%;
-  height: 38rem;
-  @media ${({ theme }) => theme.device.mobile} {
-    height: 26rem;
-  }
-  overflow-x: clip;
-`;
-
-const CarouselBox = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
-`;
-
-const Img = styled.img`
-  min-width: 100%;
-  width: 100%;
-  height: 100%;
-`;
-
-interface Button {
-  $isLeft: boolean;
-}
-
-const Button = styled.button<Button>`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  ${({ $isLeft }) => ($isLeft ? 'left: 0;' : 'right: 0;')}
-  z-index: 1;
-`;
-
-interface Banner {
-  id: string;
-  imageUrl: string;
-  linkUrl: string;
-}
-
-interface Carousel {
-  carouselList: Array<Banner>;
-}
-
-const Carousel = ({ carouselList }: Carousel) => {
+const Carousel = ({
+  carouselList,
+  canShowDetail,
+  isDetail,
+  idx,
+  isBlackIndicator,
+}: Carousel) => {
+  const [isOpenDetail, setIsOpenDetail] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
+  const imgsRef = useRef<HTMLImageElement[] | null[]>([]);
 
-  const [curIdx, setCurIdx] = useState(0);
+  const [curIdx, setCurIdx] = useState(idx || 0);
 
   const carouselArray = [
     carouselList[carouselList.length - 1],
@@ -76,6 +44,9 @@ const Carousel = ({ carouselList }: Carousel) => {
     setCurIdx(nextIdx);
     if (carouselRef.current !== null) {
       carouselRef.current.style.transition = 'all 0.5s ease-in-out';
+      isDetail &&
+        (carouselRef.current.style.height =
+          (imgsRef.current[nextIdx + 1]?.offsetHeight || 0) / 10 + 'rem');
     }
   };
 
@@ -118,26 +89,121 @@ const Carousel = ({ carouselList }: Carousel) => {
     }
   }, [curIdx]);
 
+  const formatIndex = (idx: number) => {
+    if (idx < 1) {
+      return carouselList.length;
+    } else if (idx > carouselList.length) {
+      return 1;
+    } else {
+      return idx;
+    }
+  };
+
   return (
-    <Container>
-      <Button onClick={() => handleClick(-1)} $isLeft={true}>
-        <IoIosArrowBack size={36} />
-      </Button>
-      <CarouselBox
-        ref={carouselRef}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
-        {carouselArray.map(
-          (val, idx) => val && <Img key={idx} src={val.imageUrl} />,
-        )}
-      </CarouselBox>
-      <Button onClick={() => handleClick(1)} $isLeft={false}>
-        <IoIosArrowForward size={36} />
-      </Button>
-    </Container>
+    <>
+      <Container>
+        <Button onClick={() => handleClick(-1)} $isLeft={true}>
+          <GrPrevious size={24} color={theme.color.gray.main} />
+        </Button>
+        <CarouselBox
+          ref={carouselRef}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onClick={() => canShowDetail && setIsOpenDetail(true)}
+          $isDetail={isDetail || false}
+        >
+          {carouselArray.map(
+            (val, idx) =>
+              val && (
+                <Img
+                  key={idx}
+                  src={val.imageUrl}
+                  ref={(ref) => (imgsRef.current[idx] = ref)}
+                  $isDetail={isDetail || false}
+                />
+              ),
+          )}
+        </CarouselBox>
+        <Button onClick={() => handleClick(1)} $isLeft={false}>
+          <GrNext size={24} color={theme.color.gray.main} />
+        </Button>
+        <Indicator
+          $isDetail={isDetail || false}
+          $isBlackIndicator={isBlackIndicator || false}
+        >
+          <RegularText
+            size={14}
+            color={isDetail ? theme.color.gray.main : theme.color.tint.white}
+          >
+            {formatIndex(curIdx + 1)} / {carouselList.length}
+          </RegularText>
+        </Indicator>
+      </Container>
+      {isOpenDetail && (
+        <ImageDetail
+          setIsOpenDetail={setIsOpenDetail}
+          carouselList={carouselList}
+          idx={curIdx || 0}
+        />
+      )}
+    </>
   );
 };
 
 export default Carousel;
+
+const Container = styled.div`
+  position: relative;
+  width: 100%;
+  overflow-x: clip;
+`;
+
+const CarouselBox = styled.div<{ $isDetail: boolean }>`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  aspect-ratio: ${({ $isDetail }) => ($isDetail ? '' : '1.32')};
+`;
+
+const Img = styled.img<{ $isDetail: boolean }>`
+  min-width: 100%;
+  width: 100%;
+  height: ${({ $isDetail }) => ($isDetail ? '' : '100%')};
+  object-fit: contain;
+`;
+
+const Button = styled.button<{ $isLeft: boolean }>`
+  padding: 1.6rem 0.4rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  background: rgba(222, 234, 255, 0.3);
+  ${({ $isLeft }) =>
+    $isLeft
+      ? 'left: 0; border-radius: 0 0.8rem 0.8rem 0;'
+      : 'right: 0; border-radius: 0.8rem 0 0 0.8rem;'}
+`;
+
+const Indicator = styled.div<{
+  $isDetail: boolean;
+  $isBlackIndicator: boolean;
+}>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  padding: 0.6rem 1.2rem;
+  border-radius: 2rem;
+  background: ${({ $isDetail, $isBlackIndicator }) =>
+    $isDetail
+      ? 'rgba(255, 255, 255, 0.30)'
+      : $isBlackIndicator
+        ? 'rgba(0, 0, 0, 0.70)'
+        : 'rgba(0, 0, 0, 0.35)'};
+  ${({ $isDetail }) =>
+    $isDetail
+      ? 'bottom: -4rem; left: 50%; transform: translateX(-50%); border: 0.05rem solid ${({ theme }) => theme.color.gray[50]};'
+      : 'right: 1rem; bottom: 1.2rem;'};
+`;

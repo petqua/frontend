@@ -53,7 +53,6 @@ const ProductListItem = ({ isMain, isSmall, data }: ProductListItem) => {
         showWish={!isSmall && !isMain}
         isWish={showIsWished}
         onClickWish={mutate}
-        isRound
       />
 
       <FlexBox col gap="0.8rem" style={{ flex: isMain ? 1 : 0 }}>

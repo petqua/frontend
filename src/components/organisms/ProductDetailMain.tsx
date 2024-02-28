@@ -62,7 +62,8 @@ const ProductDetailMain = ({ data }: ProductDetailMain) => {
         color={theme.color.gray[70]}
         style={{ lineHeight: '160%' }}
       >
-        {data?.description}
+        {/* {data?.description} */}
+        상품 상세내용 작업 중...
       </RegularText>
     </FlexBox>
   );
