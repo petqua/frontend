@@ -8,7 +8,7 @@ import {
   getKoreanDeliveryMethod,
   getSex,
   getTextColor,
-} from '../../utils/payment';
+} from '../../utils/delivery';
 
 const Container = styled.div`
   padding: 1rem 1.7rem;
