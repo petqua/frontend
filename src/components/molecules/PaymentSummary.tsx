@@ -77,23 +77,14 @@ const PaymentSummary = memo(({ totalFee }: PaymentSummary) => {
       </FlexBox>
       {isToggled && (
         <FlexBox col gap="0.6rem">
-          <FlexBox>
-            <RegularText size={12} color={theme.color.gray[50]}>
-              • 일반 운송 &nbsp;&nbsp;-----------&nbsp;&nbsp; +
-              {totalCommonDeliveryFee.toLocaleString()}
-            </RegularText>
-          </FlexBox>
-          <FlexBox>
-            <RegularText size={12} color={theme.color.gray[50]}>
-              • 안전 운송 &nbsp;&nbsp;-----------&nbsp;&nbsp; +
-              {totalSafeDeliveryFee.toLocaleString()}
-            </RegularText>
-          </FlexBox>
-          <FlexBox>
-            <RegularText size={12} color={theme.color.gray[50]}>
-              • 매장 픽업 &nbsp;&nbsp;-----------&nbsp;&nbsp; + 무료
-            </RegularText>
-          </FlexBox>
+          <RegularText size={12} color={theme.color.gray[50]}>
+            • 일반 운송 &nbsp;&nbsp;-----------&nbsp;&nbsp; +
+            {totalCommonDeliveryFee.toLocaleString()}
+          </RegularText>
+          <RegularText size={12} color={theme.color.gray[50]}>
+            • 안전 운송 &nbsp;&nbsp;-----------&nbsp;&nbsp; +
+            {totalSafeDeliveryFee.toLocaleString()}
+          </RegularText>
         </FlexBox>
       )}
       <CustomHr
