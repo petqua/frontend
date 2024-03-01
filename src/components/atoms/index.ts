@@ -4,6 +4,7 @@ import KeywordText from './KeywordText';
 import ProductImg from './ProductImg';
 import ProfileImg from './ProfileImg';
 import { LightText, RegularText, MediumText, BoldText } from './Text';
+import CheckBox from './Checkbox';
 
 export {
   FlexBox,
@@ -15,4 +16,5 @@ export {
   KeywordText,
   CustomHr,
   ProfileImg,
+  CheckBox,
 };
