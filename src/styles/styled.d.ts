@@ -10,6 +10,7 @@ interface Font {
   bold16: RuleSet<object>;
   bold14: RuleSet<object>;
   bold12: RuleSet<object>;
+  bold10: RuleSet<object>;
   medium28: RuleSet<object>;
   medium24: RuleSet<object>;
   medium20: RuleSet<object>;

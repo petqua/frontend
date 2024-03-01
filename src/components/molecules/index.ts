@@ -23,6 +23,8 @@ import ReviewItem from './ReviewItem';
 import PopUp from './PopUp';
 import Confirm from './Confirm';
 import CartItem from './CartItem';
+import PaymentInfo from './PaymentInfo';
+import PaymentSummary from './PaymentSummary';
 import CartStoreSection from './CartStoreSection';
 
 export {
@@ -51,5 +53,7 @@ export {
   PopUp,
   Confirm,
   CartItem,
+  PaymentInfo,
+  PaymentSummary,
   CartStoreSection,
 };
