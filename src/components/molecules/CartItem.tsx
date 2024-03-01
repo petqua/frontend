@@ -1,56 +1,57 @@
 import { useState } from 'react';
 import { styled } from 'styled-components';
 import { theme } from '../../styles/theme';
-import { FlexBox, MediumText, RegularText, ProductImg } from '../atoms';
+import {
+  FlexBox,
+  MediumText,
+  RegularText,
+  ProductImg,
+  CheckBox,
+} from '../atoms';
 import { OptionModal } from '../organisms';
 import Confirm from './Confirm';
 import { LiaWindowClose } from 'react-icons/lia';
-import { FaCheck } from 'react-icons/fa6';
 import { CartItem } from '../../interfaces/cart';
+import {
+  getKoreanDeliveryMethod,
+  getSex,
+  getBackgroundColor,
+  getTextColor,
+} from '../../utils/delivery';
 
 const CartItem = ({ data, handleSelectItem }: CartItem) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenConfirm, setIsOpenConfirm] = useState(false);
-
-  const getMethod = (method: string) => {
-    if (method === 'COMMON') return '일반운송';
-    if (method === 'SAFETY') return '안전운송';
-    if (method === 'PICKUP') return '직접픽업';
-    return 'error';
-  };
-
-  const getSex = (sex: string) => {
-    if (sex === 'MALE') return '수컷';
-    if (sex === 'FEMALE') return '암컷';
-    if (sex === 'PICKUP') return '자웅동체';
-    return 'error';
-  };
+  // const {
+  //   safeDeliveryFee,
+  //   commonDeliveryFee,
+  //   pickUpDeliveryFee,
+  //   maleAdditionalPrice,
+  //   femaleAdditionalPrice,
+  //   quantity,
+  // } = data;
+  // const optionData = {
+  //   safeDeliveryFee,
+  //   commonDeliveryFee,
+  //   pickUpDeliveryFee,
+  //   maleAdditionalPrice,
+  //   femaleAdditionalPrice,
+  //   quantity,
+  // };
 
   return (
     <>
       <Container>
-        <CheckBox checked={data?.checked}>
-          <input
-            type="checkbox"
-            checked={data?.checked}
-            onChange={(e) =>
-              handleSelectItem(
-                data?.storeName,
-                data?.id,
-                e.currentTarget.checked,
-              )
-            }
-          />
-          <div>
-            <FaCheck
-              size={12}
-              color={theme.color.tint.white}
-              style={{
-                visibility: data?.checked ? 'visible' : 'hidden',
-              }}
-            />
-          </div>
-        </CheckBox>
+        <CheckBox
+          checked={data?.checked}
+          onChange={(e) =>
+            handleSelectItem(
+              data?.storeName,
+              data?.id,
+              e?.currentTarget.checked || false,
+            )
+          }
+        />
         <FlexBox col gap="1.6rem" style={{ flex: 1 }}>
           <FlexBox gap="1rem" align="center" fullWidth>
             <ProductImg size="9.6rem" src={''} />
@@ -68,7 +69,7 @@ const CartItem = ({ data, handleSelectItem }: CartItem) => {
                   >
                     {data?.productName}
                     <MethodTag $method={data?.deliveryMethod}>
-                      {getMethod(data?.deliveryMethod)}
+                      {getKoreanDeliveryMethod(data?.deliveryMethod)}
                     </MethodTag>
                   </MediumText>
                 </FlexBox>
@@ -122,7 +123,7 @@ const CartItem = ({ data, handleSelectItem }: CartItem) => {
                 style={{ textAlign: 'center' }}
               >
                 {`상품금액 ${data?.productDiscountPrice.toLocaleString()} + 
-              ${getMethod(data?.deliveryMethod)}비 
+              ${getKoreanDeliveryMethod(data?.deliveryMethod)}비 
               ${data?.deliveryFee.toLocaleString()} = 
               ${(
                 data?.productDiscountPrice + data?.deliveryFee
@@ -162,49 +163,11 @@ const OptionButton = styled.button`
   border: 0.05rem solid ${({ theme }) => theme.color.gray[50]};
 `;
 
-const CheckBox = styled.label<{ checked: boolean }>`
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  cursor: pointer;
-
-  input {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-  }
-
-  div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    border: ${({ checked, theme }) =>
-      checked ? 'none' : `solid 0.1rem ${theme.color.gray[50]}`};
-    background: ${({ checked, theme }) =>
-      checked ? theme.color.blue[80] : 'white'};
-  }
-`;
-
 const MethodTag = styled.div<{ $method: string }>`
   padding: 0.3rem 0.6rem;
   border-radius: 0.6rem;
-  background-color: ${({ $method, theme }) =>
-    $method === 'COMMON'
-      ? theme.color.gray[40]
-      : $method === 'SAFETY'
-        ? theme.color.blue[80]
-        : theme.color.gray.main};
-  color: ${({ $method, theme }) =>
-    $method === 'COMMON' ? theme.color.gray.main : theme.color.tint.white};
+  background-color: ${({ $method }) => getBackgroundColor($method)};
+  color: ${({ $method }) => getTextColor($method)};
   font-size: 1rem;
   font-weight: 700;
   display: inline-block;

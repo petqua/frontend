@@ -14,7 +14,7 @@ const CartList = ({ data, setData, checkedItemData }: CartList) => {
     totalCommonDeliveryFees,
     totalSafetyDeliveryFees,
   } = checkedItemData;
-  const [isOpenToggle, setIsOpenToggle] = useState(true);
+  const [isOpenToggle, setIsOpenToggle] = useState(false);
   const totalItemCount = data.reduce(
     (total, store) => total + store.items.length,
     0,
@@ -150,12 +150,14 @@ const CartList = ({ data, setData, checkedItemData }: CartList) => {
               <MediumText size={12} color={theme.color.gray.main}>
                 운송비
               </MediumText>
-              <ToggleButton
-                onClick={() => setIsOpenToggle((prev) => !prev)}
-                $isOpenToggle={isOpenToggle}
-              >
-                <IoIosArrowDown size={10} color={theme.color.gray[60]} />
-              </ToggleButton>
+              {totalCommonDeliveryFees + totalSafetyDeliveryFees !== 0 && (
+                <ToggleButton
+                  onClick={() => setIsOpenToggle((prev) => !prev)}
+                  $isOpenToggle={isOpenToggle}
+                >
+                  <IoIosArrowDown size={10} color={theme.color.gray[60]} />
+                </ToggleButton>
+              )}
             </FlexBox>
             {isOpenToggle && (
               <FlexBox col gap="0.6rem">
@@ -164,21 +166,16 @@ const CartList = ({ data, setData, checkedItemData }: CartList) => {
                   color={theme.color.gray[50]}
                   style={{ whiteSpace: 'pre-wrap' }}
                 >
-                  {`- 일반운송비   ---------   +${totalCommonDeliveryFees.toLocaleString()}`}
+                  • 일반운송비 &nbsp;&nbsp;-----------&nbsp;&nbsp; +{' '}
+                  {totalCommonDeliveryFees.toLocaleString()}
                 </RegularText>
                 <RegularText
                   size={12}
                   color={theme.color.gray[50]}
                   style={{ whiteSpace: 'pre-wrap' }}
                 >
-                  {`- 안전운송비   ---------   +${totalSafetyDeliveryFees.toLocaleString()}`}
-                </RegularText>
-                <RegularText
-                  size={12}
-                  color={theme.color.gray[50]}
-                  style={{ whiteSpace: 'pre-wrap' }}
-                >
-                  {'- 매장픽업      ---------   +0'}
+                  • 안전운송비 &nbsp;&nbsp;-----------&nbsp;&nbsp; +{' '}
+                  {totalSafetyDeliveryFees.toLocaleString()}
                 </RegularText>
               </FlexBox>
             )}
