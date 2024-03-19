@@ -11,12 +11,12 @@ interface Address {
   isDefaultAddress: boolean;
 }
 
-interface StoreState {
+interface PaymentState {
   address: Address | null;
   setAddress: (inputValue: Address) => void;
 }
 
-const usePaymentStore = create<StoreState>((set) => ({
+const usePaymentStore = create<PaymentState>((set) => ({
   address: null,
   setAddress: (inputAddress: Address) => set({ address: inputAddress }),
 }));
