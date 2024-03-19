@@ -4,7 +4,11 @@ import { Filter, TopNav } from '../components/molecules';
 import { ProductList, ListModal } from '../components/organisms';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
-import { getProductsAPI } from '../apis';
+import {
+  getCategoriesAPI,
+  getCategoryProductsAPI,
+  getProductsAPI,
+} from '../apis';
 
 interface ProductType {
   title: string;
@@ -71,10 +75,48 @@ const ProductListPage = () => {
     staleTime: 60 * 1000,
   });
 
+  const {
+    data: categoryData,
+    fetchNextPage: fetchCategoryNextPage,
+    hasNextPage: hasCategoryNextPage,
+    refetch,
+  } = useInfiniteQuery({
+    queryKey: ['products', type],
+    queryFn: ({ pageParam: lastViewedId }) =>
+      getCategoryProductsAPI({
+        family: types[type].title,
+        species: species?.split(','),
+        deliveryMethod,
+        sorter,
+        lastViewedId,
+        limit: 20,
+      }),
+    initialPageParam: -1,
+    getNextPageParam: (lastPage) => {
+      const length = lastPage.products.length - 1;
+      if (!lastPage.hasNextPage) return undefined;
+      return lastPage.products[length].id;
+    },
+    enabled: type !== 'recommend' && type !== 'new',
+    staleTime: 30 * 1000,
+  });
+
+  const { data: speciesData } = useQuery({
+    queryKey: ['species', type],
+    queryFn: () => getCategoriesAPI(types[type].title),
+    enabled: type !== 'recommend' && type !== 'new',
+    staleTime: 30 * 1000,
+  });
+
+  useEffect(() => {
+    refetch();
+  }, [species, deliveryMethod, sorter]);
+
   return (
     <>
       <TopNav
         backBtn
+        backToHome
         search
         basket
         isBlue={types[type].isBlue}
@@ -87,13 +129,15 @@ const ProductListPage = () => {
           </FlexBox>
         )}
         <ProductList
-          data={data?.pages || []}
+          data={(data || categoryData)?.pages || []}
           length={
-            type !== 'new' ? data?.pages[0].totalProductsCount : undefined
+            type === 'new'
+              ? undefined
+              : (data || categoryData)?.pages[0].totalProductsCount
           }
-          fetchNextPage={fetchNextPage}
+          fetchNextPage={fetchNextPage || fetchCategoryNextPage}
           isInfinite={types[type].isInfinite}
-          hasNextPage={hasNextPage}
+          hasNextPage={hasNextPage || hasCategoryNextPage}
         />
 
         {/* =================== 모달 =================== */}

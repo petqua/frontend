@@ -5,6 +5,7 @@ import {
   GetCategoryProductsAPIParams,
 } from '../interfaces/product';
 import { client } from './axiosInstance';
+import qs from 'qs';
 
 export const getProductsAPI = async ({
   lastViewedId,
@@ -127,6 +128,28 @@ export const getCategoryProductsAPI = async ({
         lastViewedId,
         limit,
         sorter,
+      },
+      paramsSerializer: (params) =>
+        qs.stringify(params, { arrayFormat: 'repeat' }),
+    });
+    return res.data;
+  } catch (error: any) {
+    if (error.response) {
+      console.error('Server Error:', error.response.data);
+    } else {
+      console.error('Error creating question:', error.message);
+    }
+    throw error;
+  }
+};
+
+export const getCategoriesAPI = async (
+  family: string,
+): Promise<string[]> => {
+  try {
+    const res = await client.get('/categories', {
+      params: {
+        family,
       },
     });
     return res.data;

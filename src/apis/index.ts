@@ -3,6 +3,7 @@ import {
   getProductsAPI,
   getProductDetailAPI,
   getCategoryProductsAPI,
+  getCategoriesAPI,
 } from './productAPI';
 import { getSearchProductsAPI, getTrendingKeywordsAPI } from './searchAPI';
 import {
@@ -36,6 +37,7 @@ export {
   postNewAddressAPI,
   getCartsAPI,
   getCategoryProductsAPI,
+  getCategoriesAPI,
   getWishesAPI,
   postWishAPI,
 };
