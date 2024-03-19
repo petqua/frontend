@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
 import { useMutation } from '@tanstack/react-query';
 import { postCartsAPI } from '../../../apis';
-import { usePopUpStore, useCartStore } from '../../../states';
+import { usePopUpStore } from '../../../states';
 import { OptionModalData } from '../../../interfaces/product';
 // import { useNavigate } from 'react-router-dom';
 
@@ -36,7 +36,7 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
   const [calculatedPrice, setCalculatedPrice] = useState(
     data?.productDiscountPrice || 0,
   );
-  const { setItems } = useCartStore();
+  // const { items, setItems } = useCartStore();
   const { setState, setAction, setIsOpenPopUp } = usePopUpStore();
 
   const sexData = [
@@ -239,7 +239,7 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
 
         {isEdit ? (
           <ButtonContainer>
-            <BlueButton text="변경 완료" onClick={patchOptionsMutate} />
+            <BlueButton text="변경 완료" onClick={() => {}} />
           </ButtonContainer>
         ) : (
           <ButtonContainer>
