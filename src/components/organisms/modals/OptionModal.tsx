@@ -107,6 +107,27 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
     },
   });
 
+  const handleAdopt = () => {
+    setItems([
+      {
+        storeName: data?.storeName || '',
+        items: [
+          {
+            ...data,
+            ...requestData,
+            storeName: data?.storeName || '',
+            productName: data?.productName || '',
+            productThumbnailUrl: data?.productThumbnailUrl || '',
+            productPrice: data?.productPrice || 0,
+            productDiscountRate: data?.productDiscountRate || 0,
+            productDiscountPrice: calculatedPrice * requestData.quantity,
+          },
+        ],
+      },
+    ]);
+    navigate('/payment');
+  };
+
   // 옵션 변경 기능
   const handleQuantity = (value: number) => {
     if (value !== -1 || requestData.quantity > 1) {

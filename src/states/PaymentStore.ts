@@ -11,14 +11,12 @@ interface Address {
   isDefaultAddress: boolean;
 }
 
-interface StoreState {
+interface PaymentStoreState {
   address: Address | null;
   setAddress: (inputValue: Address) => void;
 }
 
-const usePaymentStore = create<StoreState>((set) => ({
+export const usePaymentStore = create<PaymentStoreState>((set) => ({
   address: null,
   setAddress: (inputAddress: Address) => set({ address: inputAddress }),
 }));
-
-export default usePaymentStore;
