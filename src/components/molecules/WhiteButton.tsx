@@ -8,11 +8,21 @@ interface WhiteButton {
   onClick: () => void;
   style?: any;
   isDown?: boolean;
+  isRound?: boolean;
 }
 
-const WhiteButton = ({ text, onClick, style, isDown }: WhiteButton) => {
+const WhiteButton = ({
+  text,
+  onClick,
+  style,
+  isDown,
+  isRound,
+}: WhiteButton) => {
   return (
-    <Button onClick={onClick} style={{ ...style }}>
+    <Button
+      onClick={onClick}
+      style={{ borderRadius: isRound ? '0.6rem' : '0', ...style }}
+    >
       <MediumText
         size={16}
         color={theme.color.blue[70]}

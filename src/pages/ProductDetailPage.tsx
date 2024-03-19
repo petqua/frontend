@@ -1,5 +1,7 @@
 import { theme } from '../styles/theme';
 import { styled } from 'styled-components';
+import { useQuery } from '@tanstack/react-query';
+import { useNavigate, useParams } from 'react-router-dom';
 import { FlexBox, RegularText } from '../components/atoms';
 import {
   Carousel,
@@ -8,13 +10,13 @@ import {
   RowScrollContainer,
   WhiteButton,
 } from '../components/molecules';
-import { FaChevronRight } from 'react-icons/fa6';
 import {
   ProductDetailMain,
   ProductDetailInfo,
   ProductDetailContents,
   BottomPayBar,
   ReviewOverview,
+  OptionModal,
 } from '../components/organisms';
 import {
   getProductDetailAPI,
@@ -22,18 +24,21 @@ import {
   getReviewStatisticsAPI,
   getCategoryProductsAPI,
 } from '../apis';
-import { useQuery } from '@tanstack/react-query';
-import { useNavigate, useParams } from 'react-router-dom';
+import { FaChevronRight } from 'react-icons/fa6';
+import { useState } from 'react';
+import { OptionModalData } from '../interfaces/product';
 
 const ProductDetailPage = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
-  const { data: { mainData, infoData, etcData } = {}, isSuccess } = useQuery({
-    queryKey: ['product-detail', productId],
-    queryFn: () => getProductDetailAPI(parseInt(productId || '-1')),
-    staleTime: 60 * 1000,
-  });
+  const { data: { mainData, infoData, optionData, etcData } = {}, isSuccess } =
+    useQuery({
+      queryKey: ['product-detail', productId],
+      queryFn: () => getProductDetailAPI(parseInt(productId || '-1')),
+      staleTime: 60 * 1000,
+    });
 
   const { data: reviewOverviewData } = useQuery({
     queryKey: ['review-statistics', productId],
@@ -130,7 +135,16 @@ const ProductDetailPage = () => {
       <BottomPayBar
         wishCount={etcData?.wishCount || 0}
         isWished={etcData?.isWished || false}
+        setIsOpenModal={setIsOpenModal}
       />
+
+      {/* 모달 */}
+      {isOpenModal && (
+        <OptionModal
+          setIsOpenModal={setIsOpenModal}
+          data={optionData || ({} as OptionModalData)}
+        />
+      )}
     </>
   );
 };
