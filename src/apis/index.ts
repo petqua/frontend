@@ -17,7 +17,10 @@ import {
   getOAuthRedirectAPI,
 } from './authAPI';
 import { getDefaultAddressAPI, postNewAddressAPI } from './paymentAPI';
-import { getCartsAPI } from './cartAPI';
+import {
+  getCartsAPI,
+  postCartsAPI,
+} from './cartAPI';
 
 export {
   getBannersAPI,
@@ -35,6 +38,7 @@ export {
   getDefaultAddressAPI,
   postNewAddressAPI,
   getCartsAPI,
+  postCartsAPI,
   getCategoryProductsAPI,
   getWishesAPI,
   postWishAPI,
