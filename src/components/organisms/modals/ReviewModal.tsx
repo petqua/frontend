@@ -5,9 +5,9 @@ import { BlueButton, StarRating } from '../../molecules';
 import Modal from '../../molecules/Modal';
 
 interface ReviewModal {
-  value: number | undefined;
+  value: number | null;
   setIsOpenModal: React.Dispatch<SetStateAction<boolean>>;
-  setValue: React.Dispatch<SetStateAction<number | undefined>>;
+  setValue: React.Dispatch<SetStateAction<number | null>>;
   options: number[];
 }
 
@@ -50,7 +50,7 @@ const ReviewModal = ({
               onClick={() => {
                 selectedValue !== score
                   ? setSelectedValue(score)
-                  : setSelectedValue(undefined);
+                  : setSelectedValue(null);
               }}
             >
               <StarRating size={22} gap={0.01} score={score} />
