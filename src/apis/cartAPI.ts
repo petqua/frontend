@@ -48,3 +48,18 @@ export const patchCartsOptionsAPI = async (
     throw error;
   }
 };
+
+// 봉달 삭제 API
+export const deleteCartsAPI = async (id: number) => {
+  try {
+    const res = await client.delete(`/carts/${id}`);
+    return res.data;
+  } catch (error: any) {
+    if (error.response) {
+      console.error('Server Error:', error.response.data);
+    } else {
+      console.error('Error creating question:', error.message);
+    }
+    throw error;
+  }
+};

@@ -22,6 +22,7 @@ import {
   getCartsAPI,
   postCartsAPI,
   patchCartsOptionsAPI,
+  deleteCartsAPI,
 } from './cartAPI';
 
 export {
@@ -42,6 +43,7 @@ export {
   getCartsAPI,
   postCartsAPI,
   patchCartsOptionsAPI,
+  deleteCartsAPI,
   getCategoryProductsAPI,
   getCategoriesAPI,
   getWishesAPI,
