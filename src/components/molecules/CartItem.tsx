@@ -133,7 +133,9 @@ const CartItem = ({ data, handleSelectItem }: CartItem) => {
           )}
         </FlexBox>
       </Container>
-      {isOpenModal && <OptionModal setIsOpenModal={setIsOpenModal} />}
+      {isOpenModal && (
+        <OptionModal setIsOpenModal={setIsOpenModal} data={data} isEdit />
+      )}
       {isOpenConfirm && (
         <Confirm
           text="해당 어종을 봉달목록에서 삭제하시겠습니까?"

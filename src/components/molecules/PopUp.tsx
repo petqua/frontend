@@ -62,7 +62,7 @@ const PopUp = () => {
           size={14}
           color={theme.color.tint.white}
           style={{ textDecoration: 'underline', cursor: 'pointer' }}
-          onClick={() => navigate('/wish')}
+          onClick={() => navigate(`/${action}`)}
         >
           {getAction(action)} 가기 {'>'}
         </LightText>

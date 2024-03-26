@@ -73,6 +73,29 @@ export interface ProductDetailInfoData {
   temperament: string;
 }
 
+export interface ProductDetailOptionData {
+  productId: number;
+  safeDeliveryFee: number | null;
+  commonDeliveryFee: number | null;
+  pickUpDeliveryFee: number | null;
+  maleAdditionalPrice: number | null;
+  femaleAdditionalPrice: number | null;
+  storeName?: string;
+  productName?: string;
+  productThumbnailUrl?: string;
+  productPrice?: number;
+  productDiscountRate?: number;
+  productDiscountPrice: number;
+}
+
+export interface OptionModalData extends ProductDetailOptionData {
+  id?: number;
+  quantity?: number;
+  sex?: string;
+  deliveryMethod?: string | null;
+  deliveryFee?: number;
+}
+
 // API
 export interface GetProductsAPI {
   products: ProductListItemData[];
@@ -101,6 +124,7 @@ export interface GetWishesAPIParams {
 export interface GetProductDetailAPI {
   mainData: ProductDetailMainData;
   infoData: ProductDetailInfoData;
+  optionData: ProductDetailOptionData;
   etcData: {
     descriptionImageUrls: string[];
     wishCount: number;

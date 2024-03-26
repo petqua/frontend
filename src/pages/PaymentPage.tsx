@@ -5,19 +5,16 @@ import {
   PaymentSummary,
   TopNav,
 } from '../components/molecules';
-import { getCartsAPI, getDefaultAddressAPI } from '../apis';
+import { getDefaultAddressAPI } from '../apis';
 import { useEffect, useMemo, useState } from 'react';
 import { usePaymentStore } from '../states';
 import { CartFishList, DeliveryAddressModal } from '../components/organisms';
 import { CustomHr } from '../components/atoms';
 import { theme } from '../styles/theme';
-import { useParams } from 'react-router-dom';
 import { CartItemDetails } from '../interfaces/payment';
 import { getTotalFee } from '../utils/delivery';
 
 const PaymentPage = () => {
-  const { source } = useParams();
-
   const { address, setAddress } = usePaymentStore();
   const { data: defaultAddressData, isLoading } = useQuery({
     queryKey: ['defaultAddress'],
@@ -26,13 +23,13 @@ const PaymentPage = () => {
     gcTime: 60 * 1000,
   });
 
-  const { data: cartData } = useQuery({
-    queryKey: ['cart'],
-    queryFn: getCartsAPI,
-    staleTime: 30 * 1000,
-    gcTime: 60 * 1000,
-    enabled: source === 'cart',
-  });
+  // const { data: cartData } = useQuery({
+  //   queryKey: ['cart'],
+  //   queryFn: getCartsAPI,
+  //   staleTime: 30 * 1000,
+  //   gcTime: 60 * 1000,
+  //   enabled: source === 'cart',
+  // });
 
   // 추후에는 결제 페이지에서 넘어온 데이터 넣는 것으로 수정
   const MOCK_DATA: CartItemDetails[] = [
@@ -119,7 +116,7 @@ const PaymentPage = () => {
       <TopNav backBtn title="주문/결제" />
       {!isLoading && <AddressForm setIsModalOpen={setIsModalOpen} />}
       <CustomHr height="0.8rem" color={theme.color.gray[30]} />
-      <CartFishList cartData={source === 'cart' ? cartData : MOCK_DATA} />
+      <CartFishList cartData={MOCK_DATA} />
       <CustomHr height="0.8rem" color={theme.color.gray[30]} />
       <PaymentInfo paymentType={paymentType} setPaymentType={setPaymentType} />
       <CustomHr height="0.8rem" color={theme.color.gray[30]} />

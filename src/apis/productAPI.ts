@@ -54,16 +54,16 @@ export const getProductDetailAPI = async (
       // descriptionTitle,
       // descriptionContent,
       descriptionImageUrls,
-      // safeDeliveryFee,
-      // commonDeliveryFee,
-      // pickUpDeliveryFee,
+      safeDeliveryFee,
+      commonDeliveryFee,
+      pickUpDeliveryFee,
       optimalTemperatureMin,
       optimalTemperatureMax,
       difficultyLevel,
       optimalTankSize,
       temperament,
-      // maleAdditionalPrice,
-      // femaleAdditionalPrice,
+      maleAdditionalPrice,
+      femaleAdditionalPrice,
       isWished,
     } = data;
 
@@ -90,6 +90,22 @@ export const getProductDetailAPI = async (
       temperament,
     };
 
+    const optionData = {
+      productId: id,
+      safeDeliveryFee,
+      commonDeliveryFee,
+      pickUpDeliveryFee,
+      maleAdditionalPrice,
+      femaleAdditionalPrice,
+      // 입양하기 프로세스에 필요한 데이터
+      storeName,
+      productName: name,
+      productThumbnailUrl: imageUrls[0],
+      productPrice: price,
+      productDiscountRate: discountRate,
+      productDiscountPrice: discountPrice,
+    };
+
     const etcData = {
       imageUrls,
       // descriptionTitle,
@@ -99,7 +115,7 @@ export const getProductDetailAPI = async (
       isWished,
     };
 
-    return { mainData, infoData, etcData };
+    return { mainData, infoData, optionData, etcData };
   } catch (error: any) {
     if (error.response) {
       console.error('Server Error:', error.response.data);
