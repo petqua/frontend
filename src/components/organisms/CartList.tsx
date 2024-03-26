@@ -5,8 +5,10 @@ import { useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 import { CartList } from '../../interfaces/cart';
 import { CartStoreSection } from '../molecules';
+import { useCartStore } from '../../states';
 
-const CartList = ({ data, setData, checkedItemData }: CartList) => {
+const CartList = ({ checkedItemData }: CartList) => {
+  const { items, setItems } = useCartStore();
   const {
     totalCount,
     totalOriginalPrice,
@@ -15,7 +17,7 @@ const CartList = ({ data, setData, checkedItemData }: CartList) => {
     totalSafetyDeliveryFees,
   } = checkedItemData;
   const [isOpenToggle, setIsOpenToggle] = useState(false);
-  const totalItemCount = data.reduce(
+  const totalItemCount = items?.reduce(
     (total, store) => total + store.items.length,
     0,
   );
@@ -24,7 +26,7 @@ const CartList = ({ data, setData, checkedItemData }: CartList) => {
   const [selectAll, setSelectAll] = useState(true);
 
   const handleSelectAll = () => {
-    const newData = data.map((store) => ({
+    const newData = items?.map((store) => ({
       ...store,
       checked: !selectAll,
       items: store.items.map((item) => ({
@@ -34,11 +36,11 @@ const CartList = ({ data, setData, checkedItemData }: CartList) => {
     }));
 
     setSelectAll(!selectAll);
-    setData(newData);
+    setItems(newData);
   };
 
   const handleSelectStore = (storeName: string, value: boolean) => {
-    const newData = data.map((store) =>
+    const newData = items?.map((store) =>
       store.storeName === storeName
         ? {
             ...store,
@@ -48,8 +50,8 @@ const CartList = ({ data, setData, checkedItemData }: CartList) => {
         : store,
     );
 
-    setSelectAll(newData.every((item) => item.checked));
-    setData(newData);
+    setSelectAll(newData?.every((item) => item.checked));
+    setItems(newData);
   };
 
   const handleSelectItem = (
@@ -57,7 +59,7 @@ const CartList = ({ data, setData, checkedItemData }: CartList) => {
     itemId: number,
     value: boolean,
   ) => {
-    const newData = [...data];
+    const newData = [...items];
     const storeIndex = newData.findIndex(
       (store) => store.storeName === storeName,
     );
@@ -73,8 +75,8 @@ const CartList = ({ data, setData, checkedItemData }: CartList) => {
         );
 
         newData[storeIndex].checked = allItemsChecked;
+        setItems(newData);
         setSelectAll(newData.every((store) => store.checked));
-        setData(newData);
       }
     }
   };
@@ -98,7 +100,7 @@ const CartList = ({ data, setData, checkedItemData }: CartList) => {
           {totalItemCount} 입양건
         </MediumText>
       </FlexBox>
-      {data.map((el: any, idx: number) => (
+      {items?.map((el: any, idx: number) => (
         <CartStoreSection
           key={idx}
           data={el}
@@ -127,7 +129,7 @@ const CartList = ({ data, setData, checkedItemData }: CartList) => {
             총 입양 금액
           </MediumText>
           <MediumText size={12} color={theme.color.gray.main}>
-            {totalOriginalPrice.toLocaleString()} 원
+            {totalOriginalPrice?.toLocaleString()} 원
           </MediumText>
         </FlexBox>
         <FlexBox justify="space-between" align="center" fullWidth>
@@ -136,7 +138,7 @@ const CartList = ({ data, setData, checkedItemData }: CartList) => {
           </MediumText>
           <MediumText size={12} color={theme.color.tint.red}>
             {`-
-            ${(totalOriginalPrice - totalDiscountedPrices).toLocaleString()}
+            ${(totalOriginalPrice - totalDiscountedPrices)?.toLocaleString()}
             원`}
           </MediumText>
         </FlexBox>
@@ -167,7 +169,7 @@ const CartList = ({ data, setData, checkedItemData }: CartList) => {
                   style={{ whiteSpace: 'pre-wrap' }}
                 >
                   • 일반운송비 &nbsp;&nbsp;-----------&nbsp;&nbsp; +{' '}
-                  {totalCommonDeliveryFees.toLocaleString()}
+                  {totalCommonDeliveryFees?.toLocaleString()}
                 </RegularText>
                 <RegularText
                   size={12}
@@ -175,7 +177,7 @@ const CartList = ({ data, setData, checkedItemData }: CartList) => {
                   style={{ whiteSpace: 'pre-wrap' }}
                 >
                   • 안전운송비 &nbsp;&nbsp;-----------&nbsp;&nbsp; +{' '}
-                  {totalSafetyDeliveryFees.toLocaleString()}
+                  {totalSafetyDeliveryFees?.toLocaleString()}
                 </RegularText>
               </FlexBox>
             )}
@@ -183,7 +185,7 @@ const CartList = ({ data, setData, checkedItemData }: CartList) => {
           <MediumText size={12} color={theme.color.gray.main}>
             {(
               totalCommonDeliveryFees + totalSafetyDeliveryFees
-            ).toLocaleString()}{' '}
+            )?.toLocaleString()}{' '}
             원
           </MediumText>
         </FlexBox>
