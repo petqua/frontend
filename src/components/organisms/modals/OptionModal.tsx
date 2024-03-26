@@ -6,7 +6,7 @@ import Modal from '../../molecules/Modal';
 import styled from 'styled-components';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
 import { useMutation } from '@tanstack/react-query';
-import { postCartsAPI } from '../../../apis';
+import { patchCartsOptionsAPI, postCartsAPI } from '../../../apis';
 import { usePopUpStore } from '../../../states';
 import { OptionModalData } from '../../../interfaces/product';
 // import { useNavigate } from 'react-router-dom';
@@ -106,6 +106,31 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
       console.error(err);
     },
   });
+
+  const { mutate: patchOptionsMutate } = useMutation({
+    mutationKey: ['patchOptions', data?.id],
+    mutationFn: () => patchCartsOptionsAPI(data?.id, requestData),
+    onSuccess: () => {
+      const changedItems = items.map((store) => {
+        if (store.storeName === data.storeName) {
+          return {
+            ...store,
+            items: store.items.map((item) => {
+              if (item.id === data.id) {
+                return { ...item, ...requestData };
+              } else return item;
+            }),
+          };
+        } else return store;
+      });
+      setItems(changedItems);
+      handleCloseModal();
+    },
+    onError: (err) => {
+      console.error(err);
+    },
+  });
+
 
   // 옵션 변경 기능
   const handleQuantity = (value: number) => {
@@ -239,7 +264,7 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
 
         {isEdit ? (
           <ButtonContainer>
-            <BlueButton text="변경 완료" onClick={() => {}} />
+            <BlueButton text="변경 완료" onClick={patchOptionsMutate} />
           </ButtonContainer>
         ) : (
           <ButtonContainer>
