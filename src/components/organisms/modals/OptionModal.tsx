@@ -7,9 +7,9 @@ import styled from 'styled-components';
 import { FaMinus, FaPlus } from 'react-icons/fa6';
 import { useMutation } from '@tanstack/react-query';
 import { patchCartsOptionsAPI, postCartsAPI } from '../../../apis';
-import { usePopUpStore } from '../../../states';
+import { usePopUpStore, useCartStore } from '../../../states';
 import { OptionModalData } from '../../../interfaces/product';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface OptionModal {
   setIsOpenModal: React.Dispatch<SetStateAction<boolean>>;
@@ -25,7 +25,7 @@ interface RequestData {
 }
 
 const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [visible, setVisible] = useState(true);
   const [requestData, setRequestData] = useState<RequestData>({
     quantity: data?.quantity || 1,
@@ -36,7 +36,7 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
   const [calculatedPrice, setCalculatedPrice] = useState(
     data?.productDiscountPrice || 0,
   );
-  // const { items, setItems } = useCartStore();
+  const { items, setItems } = useCartStore();
   const { setState, setAction, setIsOpenPopUp } = usePopUpStore();
 
   const sexData = [
@@ -131,6 +131,26 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
     },
   });
 
+  const handleAdopt = () => {
+    setItems([
+      {
+        storeName: data?.storeName || '',
+        items: [
+          {
+            ...data,
+            ...requestData,
+            storeName: data?.storeName || '',
+            productName: data?.productName || '',
+            productThumbnailUrl: data?.productThumbnailUrl || '',
+            productPrice: data?.productPrice || 0,
+            productDiscountRate: data?.productDiscountRate || 0,
+            productDiscountPrice: calculatedPrice * requestData.quantity,
+          },
+        ],
+      },
+    ]);
+    navigate('/payment');
+  };
 
   // 옵션 변경 기능
   const handleQuantity = (value: number) => {
@@ -269,7 +289,7 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
         ) : (
           <ButtonContainer>
             <WhiteButton text="봉달하기" onClick={postCartsMutate} isRound />
-            <BlueButton text="입양하기" onClick={() => {}} />
+            <BlueButton text="입양하기" onClick={handleAdopt} />
           </ButtonContainer>
         )}
       </>
