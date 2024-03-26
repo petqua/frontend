@@ -3,6 +3,7 @@ import {
   getProductsAPI,
   getProductDetailAPI,
   getCategoryProductsAPI,
+  getCategoriesAPI,
 } from './productAPI';
 import { getSearchProductsAPI, getTrendingKeywordsAPI } from './searchAPI';
 import {
@@ -40,6 +41,7 @@ export {
   getCartsAPI,
   postCartsAPI,
   getCategoryProductsAPI,
+  getCategoriesAPI,
   getWishesAPI,
   postWishAPI,
 };

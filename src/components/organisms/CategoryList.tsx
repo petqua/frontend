@@ -18,47 +18,47 @@ const GridContainer = styled.div`
   }
 `;
 
-// 어디로 nav할 지도 정해서 추가해야함.
+// 어디로 nav할지도 정해서 추가해야함.
 const CATEGORY_ARRAY = [
   {
     name: '송사리과',
     src: '/icons/category/1.svg',
-    path: '/1',
+    path: '/product?type=killfish',
   },
   {
     name: '카라신과',
     src: '/icons/category/2.svg',
-    path: '/2',
+    path: '/product?type=characidae',
   },
   {
     name: '잉어과',
     src: '/icons/category/3.svg',
-    path: '/3',
+    path: '/product?type=carp',
   },
   {
     name: '기수어과',
     src: '/icons/category/4.svg',
-    path: '/4',
+    path: '/product?type=brackishWaterFish',
   },
   {
     name: '대형어',
     src: '/icons/category/5.svg',
-    path: '/5',
+    path: '/product?type=largeFish',
   },
   {
     name: '아나바스과',
     src: '/icons/category/6.svg',
-    path: '/6',
+    path: '/product?type=anabantidae',
   },
   {
     name: '메기과',
     src: '/icons/category/7.svg',
-    path: '/7',
+    path: '/product?type=siluridae',
   },
   {
     name: '더보기',
     src: '/icons/category/8.svg',
-    path: '/8',
+    path: '',
   },
 ];
 

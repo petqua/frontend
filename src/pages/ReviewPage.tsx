@@ -11,7 +11,7 @@ import { getReviewStatisticsAPI } from '../apis/reviewAPI';
 const ReviewPage = () => {
   const { productId } = useParams();
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [score, setScore] = useState<number | undefined>(undefined);
+  const [score, setScore] = useState<number | null>(null);
 
   const { data } = useQuery({
     queryKey: ['review-statistics', productId],

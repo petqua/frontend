@@ -13,19 +13,15 @@ const SearchResultPage = () => {
   const query = searchParams.get('search_query') as string;
 
   const sortOptions = [
-    { name: 'SALE_PRICE_ASC', title: '낮은 가격순' },
-    { name: 'SALE_PRICE_DESC', title: '높은 가격순' },
-    { name: 'REVIEW_COUNT_DESC', title: '리뷰 많은 순' },
+    'SALE_PRICE_ASC',
+    'SALE_PRICE_DESC',
+    'REVIEW_COUNT_DESC',
   ];
 
-  const transitOptions = [
-    { name: 'SECURE_TRANSPORT', title: '안전운송' },
-    { name: 'STANDARD_TRANSPORT', title: '일반운송' },
-    { name: 'DIRECT_VISIT', title: '직접방문' },
-  ];
+  const transitOptions = ['SAFETY', 'COMMON', 'PICK_UP'];
 
-  const [sort, setSort] = useState('필터');
-  const [transit, setTransit] = useState('운송 방법');
+  const [sort] = useState(null);
+  const [transit] = useState(null);
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const [currentFilter, setCurrentFilter] = useState('');
@@ -52,11 +48,13 @@ const SearchResultPage = () => {
       <SearchBar />
       <FlexBox gap="1rem" style={{ padding: '1.4rem' }}>
         <Filter
+          title="운송방법"
           value={transit}
           setIsOpenModal={setIsOpenModal}
           handleFilterClick={() => setCurrentFilter('transit')}
         />
         <Filter
+          title="필터"
           value={sort}
           setIsOpenModal={setIsOpenModal}
           handleFilterClick={() => setCurrentFilter('sort')}
@@ -72,11 +70,10 @@ const SearchResultPage = () => {
 
       {isOpenModal && (
         <ListModal
+          type={currentFilter === 'sort' ? 'sorter' : 'deliveryMethod'}
           options={currentFilter === 'sort' ? sortOptions : transitOptions}
-          title="필터"
           value={currentFilter === 'sort' ? sort : transit}
           setIsOpenModal={setIsOpenModal}
-          setValue={currentFilter === 'sort' ? setSort : setTransit}
         />
       )}
       <BottomNavBar activeButton="search" />

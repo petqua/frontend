@@ -3,7 +3,7 @@ export interface GetReviewsAPIParams {
   lastViewedId?: number;
   limit: number;
   sorter?: string;
-  score?: number;
+  score?: number | null;
   photoOnly?: boolean;
 }
 

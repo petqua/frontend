@@ -135,9 +135,9 @@ export interface GetProductDetailAPI {
 
 export interface GetCategoryProductsAPIParams {
   family: string;
-  species?: string[];
-  deliveryMethod?: string;
+  species?: string[] | null;
+  deliveryMethod?: string | null;
   lastViewedId?: number;
   limit: number;
-  sorter?: string;
+  sorter?: string | null;
 }
