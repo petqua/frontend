@@ -16,6 +16,7 @@ import {
   ProductDetailContents,
   BottomPayBar,
   ReviewOverview,
+  ShareModal,
   OptionModal,
 } from '../components/organisms';
 import {
@@ -31,7 +32,8 @@ import { OptionModalData } from '../interfaces/product';
 const ProductDetailPage = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenOptionModal, setIsOpenOptionModal] = useState(false);
+  const [isOpenShareModal, setIsOpenShareModal] = useState(false);
 
   const { data: { mainData, infoData, optionData, etcData } = {}, isSuccess } =
     useQuery({
@@ -81,7 +83,10 @@ const ProductDetailPage = () => {
         }
         canShowDetail
       />
-      <ProductDetailMain data={mainData} />
+      <ProductDetailMain
+        data={mainData}
+        setIsOpenShareModal={setIsOpenShareModal}
+      />
       <Notice src="/images/notice-ex.svg" alt="product-detail-notice" />
       <ProductDetailInfo data={infoData} />
       <ProductDetailContents data={etcData?.descriptionImageUrls} />
@@ -135,14 +140,21 @@ const ProductDetailPage = () => {
       <BottomPayBar
         wishCount={etcData?.wishCount || 0}
         isWished={etcData?.isWished || false}
-        setIsOpenModal={setIsOpenModal}
+        setIsOpenModal={setIsOpenOptionModal}
       />
 
-      {/* 모달 */}
-      {isOpenModal && (
+      {/* ================== Modal ================== */}
+      {isOpenOptionModal && (
         <OptionModal
-          setIsOpenModal={setIsOpenModal}
+          setIsOpenModal={setIsOpenOptionModal}
           data={optionData || ({} as OptionModalData)}
+        />
+      )}
+      {isOpenShareModal && (
+        <ShareModal
+          data={mainData}
+          imgUrl={etcData?.imageUrls[0] || ''}
+          setIsOpenModal={setIsOpenShareModal}
         />
       )}
     </>
