@@ -13,6 +13,7 @@ export interface ProductListItem {
 
 export interface ProductDetailMain {
   data: ProductDetailMainData | undefined;
+  setIsOpenShareModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface ProductDetailInfo {
@@ -131,7 +132,7 @@ export interface GetProductDetailAPI {
     descriptionImageUrls: string[];
     wishCount: number;
     isWished?: boolean;
-    imageUrls?: string[];
+    imageUrls: string[];
   };
 }
 
