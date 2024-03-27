@@ -74,15 +74,17 @@ const ProductDetailMain = ({
           </FlexBox>
         </FlexBox>
         <Line style={{ margin: '1.2rem 0 2.4rem 0' }} />
-      <RegularText
-        size={16}
+        <BoldText size={24} color={theme.color.gray[70]}>
+          {data?.descriptionTitle}
         </BoldText>
         <RegularText
           size={16}
-        {/* {data?.description} */}
-        상품 상세내용 작업 중...
-      </RegularText>
-    </FlexBox>
+          color={theme.color.gray[70]}
+          style={{ lineHeight: '160%' }}
+        >
+          {data?.descriptionContent}
+        </RegularText>
+      </FlexBox>
     </>
   );
 };

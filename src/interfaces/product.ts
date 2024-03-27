@@ -61,6 +61,8 @@ export interface ProductDetailMainData {
   discountPrice: number;
   reviewCount: number;
   reviewAverageScore: number;
+  descriptionTitle: string;
+  descriptionContent: string;
 }
 
 export interface ProductDetailInfoData {
