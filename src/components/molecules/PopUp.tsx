@@ -36,6 +36,8 @@ const PopUp = () => {
         if (state === 'filled') return '이미 봉달목록에 추가되어있습니다.';
         if (state === 'needLogin') return '봉달하려면 로그인이 필요해요!';
         return 'cart state error';
+      case 'share':
+        return '클립보드에 복사되었습니다.';
       default:
         return 'props error';
     }
@@ -57,26 +59,27 @@ const PopUp = () => {
       <MediumText size={16} color={theme.color.tint.white}>
         {getText(action, state)}
       </MediumText>
-      {(state === 'needLogin' ? false : true) ? (
-        <LightText
-          size={14}
-          color={theme.color.tint.white}
-          style={{ textDecoration: 'underline', cursor: 'pointer' }}
-          onClick={() => navigate(`/${action}`)}
-        >
-          {getAction(action)} 가기 {'>'}
-        </LightText>
-      ) : (
-        <LoginButton>
-          <MediumText
-            size={12}
+      {action !== 'share' &&
+        (state !== 'needLogin' ? (
+          <LightText
+            size={14}
             color={theme.color.tint.white}
-            onClick={() => navigate('/login')}
+            style={{ textDecoration: 'underline', cursor: 'pointer' }}
+            onClick={() => navigate(`/${action}`)}
           >
-            로그인하러가기
-          </MediumText>
-        </LoginButton>
-      )}
+            {getAction(action)} 가기 {'>'}
+          </LightText>
+        ) : (
+          <LoginButton>
+            <MediumText
+              size={12}
+              color={theme.color.tint.white}
+              onClick={() => navigate('/login')}
+            >
+              로그인하러가기
+            </MediumText>
+          </LoginButton>
+        ))}
     </Container>
   );
 };
