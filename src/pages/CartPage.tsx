@@ -102,7 +102,6 @@ const CartPage = () => {
     : ({} as CheckedItemData);
 
   const handlePay = () => {
-    console.log(items);
     navigate('/payment');
   };
 
