@@ -6,6 +6,13 @@ import GlobalStyle from './styles/GlobalStyles';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
+// window 객체에 Kakao가 존재한다는 것을 인식
+declare global {
+  interface Window {
+    Kakao: any;
+  }
+}
+
 const { DEV } = import.meta.env;
 
 const queryClient = new QueryClient({

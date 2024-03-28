@@ -5,67 +5,87 @@ import { styled } from 'styled-components';
 import { ProductDetailMain } from '../../interfaces/product';
 import { StarRating } from '../molecules';
 
-const ProductDetailMain = ({ data }: ProductDetailMain) => {
+const ProductDetailMain = ({
+  data,
+  setIsOpenShareModal,
+}: ProductDetailMain) => {
   return (
-    <FlexBox col gap="1.2rem" padding="1.4rem">
-      <FlexBox justify="space-between" align="center" style={{ width: '100%' }}>
-        <RegularText size={16} color={theme.color.gray[50]}>
-          {data?.storeName}
-        </RegularText>
-        <IoShareSocialOutline size={22} color={theme.color.gray[50]} />
-      </FlexBox>
-      <BoldText size={22} color={theme.color.gray.main}>
-        {data?.name}
-      </BoldText>
-      <RegularText size={12} color={theme.color.gray[70]}>
-        {data?.family}/{data?.species}
-      </RegularText>
-
-      <FlexBox align="center" gap="1rem" padding="0.4rem 0 2.8rem 0">
-        <StarRating score={data?.reviewAverageScore || 0} size={14} gap={0.2} />
-        <RegularText size={12} color={theme.color.gray[50]}>
-          {data?.reviewAverageScore.toFixed(1)}
-        </RegularText>
-        <RegularText size={12} color={theme.color.gray[50]}>
-          {data?.reviewCount}개 후기
-        </RegularText>
-      </FlexBox>
-
-      <FlexBox col gap="0.6rem" style={{ width: '100%' }}>
-        {data?.discountRate !== 0 && (
-          <RegularText
-            size={16}
-            color={theme.color.gray[50]}
-            style={{ textDecoration: 'line-through' }}
-          >
-            {data?.price.toLocaleString()}원
-          </RegularText>
-        )}
+    <>
+      <FlexBox col gap="1.2rem" padding="1.4rem">
         <FlexBox
           justify="space-between"
           align="center"
           style={{ width: '100%' }}
         >
-          <BoldText size={24} color={theme.color.gray.main}>
-            {data?.discountPrice.toLocaleString()}원
-          </BoldText>
-          {data?.discountRate !== 0 && (
-            <BoldText size={20} color={theme.color.tint.red}>
-              {data?.discountRate}%
-            </BoldText>
-          )}
+          <RegularText size={16} color={theme.color.gray[50]}>
+            {data?.storeName}
+          </RegularText>
+          <IoShareSocialOutline
+            size={22}
+            color={theme.color.gray[50]}
+            style={{ cursor: 'pointer' }}
+            onClick={() => setIsOpenShareModal(true)}
+          />
         </FlexBox>
+        <BoldText size={22} color={theme.color.gray.main}>
+          {data?.name}
+        </BoldText>
+        <RegularText size={12} color={theme.color.gray[70]}>
+          {data?.family}/{data?.species}
+        </RegularText>
+
+        <FlexBox align="center" gap="1rem" padding="0.4rem 0 2.8rem 0">
+          <StarRating
+            score={data?.reviewAverageScore || 0}
+            size={14}
+            gap={0.2}
+          />
+          <RegularText size={12} color={theme.color.gray[50]}>
+            {data?.reviewAverageScore.toFixed(1)}
+          </RegularText>
+          <RegularText size={12} color={theme.color.gray[50]}>
+            {data?.reviewCount}개 후기
+          </RegularText>
+        </FlexBox>
+
+        <FlexBox col gap="0.6rem" style={{ width: '100%' }}>
+          {data?.discountRate !== 0 && (
+            <RegularText
+              size={16}
+              color={theme.color.gray[50]}
+              style={{ textDecoration: 'line-through' }}
+            >
+              {data?.price.toLocaleString()}원
+            </RegularText>
+          )}
+          <FlexBox
+            justify="space-between"
+            align="center"
+            style={{ width: '100%' }}
+          >
+            <BoldText size={24} color={theme.color.gray.main}>
+              {data?.discountPrice.toLocaleString()}원
+            </BoldText>
+            {data?.discountRate !== 0 && (
+              <BoldText size={20} color={theme.color.tint.red}>
+                {data?.discountRate}%
+              </BoldText>
+            )}
+          </FlexBox>
+        </FlexBox>
+        <Line style={{ margin: '1.2rem 0 2.4rem 0' }} />
+        <BoldText size={24} color={theme.color.gray[70]}>
+          {data?.descriptionTitle}
+        </BoldText>
+        <RegularText
+          size={16}
+          color={theme.color.gray[70]}
+          style={{ lineHeight: '160%' }}
+        >
+          {data?.descriptionContent}
+        </RegularText>
       </FlexBox>
-      <Line style={{ margin: '1.2rem 0' }} />
-      <RegularText
-        size={16}
-        color={theme.color.gray[70]}
-        style={{ lineHeight: '160%' }}
-      >
-        {/* {data?.description} */}
-        상품 상세내용 작업 중...
-      </RegularText>
-    </FlexBox>
+    </>
   );
 };
 

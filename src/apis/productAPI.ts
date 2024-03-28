@@ -52,8 +52,8 @@ export const getProductDetailAPI = async (
       reviewCount,
       reviewAverageScore,
       imageUrls,
-      // descriptionTitle,
-      // descriptionContent,
+      descriptionTitle,
+      descriptionContent,
       descriptionImageUrls,
       safeDeliveryFee,
       commonDeliveryFee,
@@ -79,6 +79,8 @@ export const getProductDetailAPI = async (
       discountPrice,
       reviewCount,
       reviewAverageScore,
+      descriptionTitle,
+      descriptionContent,
     };
 
     const infoData = {
@@ -109,8 +111,6 @@ export const getProductDetailAPI = async (
 
     const etcData = {
       imageUrls,
-      // descriptionTitle,
-      // descriptionContent,
       descriptionImageUrls,
       wishCount,
       isWished,
@@ -159,9 +159,7 @@ export const getCategoryProductsAPI = async ({
   }
 };
 
-export const getCategoriesAPI = async (
-  family: string,
-): Promise<string[]> => {
+export const getCategoriesAPI = async (family: string): Promise<string[]> => {
   try {
     const res = await client.get('/categories', {
       params: {
