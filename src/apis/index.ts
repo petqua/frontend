@@ -21,6 +21,8 @@ import { getDefaultAddressAPI, postNewAddressAPI } from './paymentAPI';
 import {
   getCartsAPI,
   postCartsAPI,
+  patchCartsOptionsAPI,
+  deleteCartsAPI,
 } from './cartAPI';
 
 export {
@@ -40,6 +42,8 @@ export {
   postNewAddressAPI,
   getCartsAPI,
   postCartsAPI,
+  patchCartsOptionsAPI,
+  deleteCartsAPI,
   getCategoryProductsAPI,
   getCategoriesAPI,
   getWishesAPI,

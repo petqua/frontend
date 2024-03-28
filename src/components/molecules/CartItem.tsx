@@ -18,26 +18,44 @@ import {
   getBackgroundColor,
   getTextColor,
 } from '../../utils/delivery';
+import { deleteCartsAPI } from '../../apis';
+import { useMutation } from '@tanstack/react-query';
+import { useCartStore } from '../../states';
 
 const CartItem = ({ data, handleSelectItem }: CartItem) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenConfirm, setIsOpenConfirm] = useState(false);
-  // const {
-  //   safeDeliveryFee,
-  //   commonDeliveryFee,
-  //   pickUpDeliveryFee,
-  //   maleAdditionalPrice,
-  //   femaleAdditionalPrice,
-  //   quantity,
-  // } = data;
-  // const optionData = {
-  //   safeDeliveryFee,
-  //   commonDeliveryFee,
-  //   pickUpDeliveryFee,
-  //   maleAdditionalPrice,
-  //   femaleAdditionalPrice,
-  //   quantity,
-  // };
+  const calculatedPrice = {
+    productPrice: data?.productPrice * data?.quantity,
+    productDiscountPrice: data?.productDiscountPrice * data?.quantity,
+  };
+  const { items, setItems } = useCartStore();
+
+  const { mutate } = useMutation({
+    mutationKey: ['deleteCarts', data?.id],
+    mutationFn: () => deleteCartsAPI(data?.id || 0),
+    onSuccess: () => {
+      const changedItems = items
+        .map((store) => {
+          if (store.storeName === data.storeName) {
+            const deletedItems = store.items.filter(
+              (item) => item.id !== data.id,
+            );
+            return {
+              ...store,
+              items: deletedItems,
+            };
+          } else {
+            return store;
+          }
+        })
+        .filter((store) => store.items.length !== 0);
+      setItems(changedItems);
+    },
+    onError: (err) => {
+      console.error(err);
+    },
+  });
 
   return (
     <>
@@ -47,7 +65,7 @@ const CartItem = ({ data, handleSelectItem }: CartItem) => {
           onChange={(e) =>
             handleSelectItem(
               data?.storeName,
-              data?.id,
+              data?.id || 0,
               e?.currentTarget.checked || false,
             )
           }
@@ -68,8 +86,8 @@ const CartItem = ({ data, handleSelectItem }: CartItem) => {
                     style={{ lineHeight: '120%' }}
                   >
                     {data?.productName}
-                    <MethodTag $method={data?.deliveryMethod}>
-                      {getKoreanDeliveryMethod(data?.deliveryMethod)}
+                    <MethodTag $method={data?.deliveryMethod || ''}>
+                      {getKoreanDeliveryMethod(data?.deliveryMethod || '')}
                     </MethodTag>
                   </MediumText>
                 </FlexBox>
@@ -96,7 +114,7 @@ const CartItem = ({ data, handleSelectItem }: CartItem) => {
                         color={theme.color.gray[50]}
                         style={{ textDecoration: 'line-through' }}
                       >
-                        {data?.productPrice.toLocaleString()} 원
+                        {calculatedPrice.productPrice.toLocaleString()} 원
                       </RegularText>
                     </FlexBox>
                   )}
@@ -109,24 +127,24 @@ const CartItem = ({ data, handleSelectItem }: CartItem) => {
                     </RegularText>
                   </OptionButton>
                   <MediumText size={14} color={theme.color.gray.main}>
-                    {data?.productDiscountPrice.toLocaleString()} 원
+                    {calculatedPrice.productDiscountPrice.toLocaleString()} 원
                   </MediumText>
                 </FlexBox>
               </FlexBox>
             </FlexBox>
           </FlexBox>
-          {data?.deliveryMethod !== 'PICKUP' && (
+          {data?.deliveryMethod !== 'PICK_UP' && (
             <PriceCalculatorBox>
               <MediumText
                 size={12}
                 color={theme.color.blue[70]}
                 style={{ textAlign: 'center' }}
               >
-                {`상품금액 ${data?.productDiscountPrice.toLocaleString()} + 
-              ${getKoreanDeliveryMethod(data?.deliveryMethod)}비 
+                {`상품금액 ${calculatedPrice.productDiscountPrice.toLocaleString()} + 
+              ${getKoreanDeliveryMethod(data?.deliveryMethod || '')}비 
               ${data?.deliveryFee.toLocaleString()} = 
               ${(
-                data?.productDiscountPrice + data?.deliveryFee
+                calculatedPrice.productDiscountPrice + data?.deliveryFee
               ).toLocaleString()}`}
               </MediumText>
             </PriceCalculatorBox>
@@ -140,7 +158,7 @@ const CartItem = ({ data, handleSelectItem }: CartItem) => {
         <Confirm
           text="해당 어종을 봉달목록에서 삭제하시겠습니까?"
           setIsOpenConfirm={setIsOpenConfirm}
-          handleYes={() => {}}
+          handleYes={mutate}
         />
       )}
     </>
@@ -165,7 +183,7 @@ const OptionButton = styled.button`
   border: 0.05rem solid ${({ theme }) => theme.color.gray[50]};
 `;
 
-const MethodTag = styled.div<{ $method: string }>`
+const MethodTag = styled.span<{ $method: string }>`
   padding: 0.3rem 0.6rem;
   border-radius: 0.6rem;
   background-color: ${({ $method }) => getBackgroundColor($method)};

@@ -30,3 +30,36 @@ export const postCartsAPI = async (data: any) => {
     throw error;
   }
 };
+
+// 봉달 옵션 수정 API
+export const patchCartsOptionsAPI = async (
+  id: number | undefined,
+  data: any,
+) => {
+  try {
+    const res = await client.patch(`/carts/${id}/options`, data);
+    return res.data;
+  } catch (error: any) {
+    if (error.response) {
+      console.error('Server Error:', error.response.data);
+    } else {
+      console.error('Error creating question:', error.message);
+    }
+    throw error;
+  }
+};
+
+// 봉달 삭제 API
+export const deleteCartsAPI = async (id: number) => {
+  try {
+    const res = await client.delete(`/carts/${id}`);
+    return res.data;
+  } catch (error: any) {
+    if (error.response) {
+      console.error('Server Error:', error.response.data);
+    } else {
+      console.error('Error creating question:', error.message);
+    }
+    throw error;
+  }
+};

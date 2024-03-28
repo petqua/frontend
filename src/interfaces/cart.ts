@@ -1,7 +1,5 @@
-import { SetStateAction } from 'react';
-
 export interface CartItemData {
-  id: number;
+  id?: number;
   storeName: string;
   productId: number;
   productName: string;
@@ -11,21 +9,29 @@ export interface CartItemData {
   productDiscountPrice: number;
   quantity: number;
   sex: string;
-  deliveryMethod: string;
+  deliveryMethod: string | null;
   deliveryFee: number;
-  isOnSale: boolean;
-  safeDeliveryFee: number;
-  commonDeliveryFee: number;
-  pickUpDeliveryFee: number;
-  maleAdditionalPrice: number;
-  femaleAdditionalPrice: number;
-  checked: boolean;
+  isOnSale?: boolean;
+  safeDeliveryFee: number | null;
+  commonDeliveryFee: number | null;
+  pickUpDeliveryFee: number | null;
+  maleAdditionalPrice: number | null;
+  femaleAdditionalPrice: number | null;
+  checked?: boolean;
+}
+
+export interface CheckedItemData {
+  totalCount: number;
+  totalOriginalPrice: number;
+  totalDiscountedPrices: number;
+  totalCommonDeliveryFees: number;
+  totalSafetyDeliveryFees: number;
 }
 
 export interface CartStoreSectionData {
   storeName: string;
   items: CartItemData[];
-  checked: boolean;
+  checked?: boolean;
 }
 
 export interface CartStoreSection {
@@ -36,15 +42,7 @@ export interface CartStoreSection {
 }
 
 export interface CartList {
-  data: CartStoreSectionData[];
-  setData: React.Dispatch<SetStateAction<CartStoreSectionData[]>>;
-  checkedItemData: {
-    totalCount: number;
-    totalOriginalPrice: number;
-    totalDiscountedPrices: number;
-    totalCommonDeliveryFees: number;
-    totalSafetyDeliveryFees: number;
-  };
+  checkedItemData: CheckedItemData;
 }
 
 export interface CartItem {

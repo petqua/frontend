@@ -7,7 +7,7 @@ export const getKoreanDeliveryMethod = (method: string) => {
       return '일반운송';
     case 'SAFETY':
       return '안전운송';
-    case 'PICKUP':
+    case 'PICK_UP':
       return '직접방문';
     default:
       return method;
@@ -33,7 +33,7 @@ export const getBackgroundColor = (method: string) => {
       return theme.color.blue[80];
     case 'COMMON':
       return theme.color.gray[40];
-    case 'PICKUP':
+    case 'PICK_UP':
       return theme.color.gray.main;
     default:
       return 'white';
@@ -43,7 +43,7 @@ export const getBackgroundColor = (method: string) => {
 export const getTextColor = (method: string) => {
   switch (method) {
     case 'SAFETY':
-    case 'PICKUP':
+    case 'PICK_UP':
       return theme.color.tint.white;
     case 'COMMON':
       return theme.color.gray.main;

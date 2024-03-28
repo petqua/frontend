@@ -3,13 +3,13 @@ import { theme } from '../../styles/theme';
 import { FaCheck } from 'react-icons/fa6';
 
 interface CheckBox {
-  checked: boolean;
+  checked: boolean | undefined;
   onChange: (e?: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const CheckBox = ({ checked, onChange }: CheckBox) => {
   return (
-    <Container checked={checked}>
+    <Container checked={checked || false}>
       <input type="checkbox" checked={checked} onChange={onChange} />
       <div>
         <FaCheck
@@ -27,9 +27,6 @@ const CheckBox = ({ checked, onChange }: CheckBox) => {
 export default CheckBox;
 
 const Container = styled.label<{ checked: boolean }>`
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
   cursor: pointer;
 
   input {
