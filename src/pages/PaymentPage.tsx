@@ -8,7 +8,11 @@ import {
 import { getCartsAPI, getDefaultAddressAPI } from '../apis';
 import { useEffect, useMemo, useState } from 'react';
 import { usePaymentStore } from '../states';
-import { CartFishList, DeliveryAddressModal } from '../components/organisms';
+import {
+  CartFishList,
+  DeliveryAddressModal,
+  TossPaymentWidget,
+} from '../components/organisms';
 import { CustomHr } from '../components/atoms';
 import { theme } from '../styles/theme';
 import { useParams } from 'react-router-dom';
@@ -121,9 +125,9 @@ const PaymentPage = () => {
       <CustomHr height="0.8rem" color={theme.color.gray[30]} />
       <CartFishList cartData={source === 'cart' ? cartData : MOCK_DATA} />
       <CustomHr height="0.8rem" color={theme.color.gray[30]} />
-      <PaymentInfo paymentType={paymentType} setPaymentType={setPaymentType} />
-      <CustomHr height="0.8rem" color={theme.color.gray[30]} />
       <PaymentSummary totalFee={totalFee} />
+      <CustomHr height="0.8rem" color={theme.color.gray[30]} />
+      <TossPaymentWidget />
       {isModalOpen && (
         <DeliveryAddressModal
           title="운송지 추가"

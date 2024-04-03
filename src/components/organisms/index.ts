@@ -16,6 +16,7 @@ import CartFishList from './CartFishList';
 import CartList from './CartList';
 import ImageDetail from './ImageDetail';
 import CartFishListByStoreName from './CartFishListByStoreName';
+import TossPaymentWidget from './TossPaymentWidget';
 
 export {
   CategoryList,
@@ -36,4 +37,5 @@ export {
   CartList,
   ImageDetail,
   CartFishListByStoreName,
+  TossPaymentWidget,
 };
