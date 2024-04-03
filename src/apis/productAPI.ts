@@ -5,6 +5,7 @@ import {
   GetCategoryProductsAPIParams,
 } from '../interfaces/product';
 import { client } from './axiosInstance';
+import qs from 'qs';
 
 export const getProductsAPI = async ({
   lastViewedId,
@@ -51,19 +52,19 @@ export const getProductDetailAPI = async (
       reviewCount,
       reviewAverageScore,
       imageUrls,
-      // descriptionTitle,
-      // descriptionContent,
+      descriptionTitle,
+      descriptionContent,
       descriptionImageUrls,
-      // safeDeliveryFee,
-      // commonDeliveryFee,
-      // pickUpDeliveryFee,
+      safeDeliveryFee,
+      commonDeliveryFee,
+      pickUpDeliveryFee,
       optimalTemperatureMin,
       optimalTemperatureMax,
       difficultyLevel,
       optimalTankSize,
       temperament,
-      // maleAdditionalPrice,
-      // femaleAdditionalPrice,
+      maleAdditionalPrice,
+      femaleAdditionalPrice,
       isWished,
     } = data;
 
@@ -78,6 +79,8 @@ export const getProductDetailAPI = async (
       discountPrice,
       reviewCount,
       reviewAverageScore,
+      descriptionTitle,
+      descriptionContent,
     };
 
     const infoData = {
@@ -90,16 +93,30 @@ export const getProductDetailAPI = async (
       temperament,
     };
 
+    const optionData = {
+      productId: id,
+      safeDeliveryFee,
+      commonDeliveryFee,
+      pickUpDeliveryFee,
+      maleAdditionalPrice,
+      femaleAdditionalPrice,
+      // 입양하기 프로세스에 필요한 데이터
+      storeName,
+      productName: name,
+      productThumbnailUrl: imageUrls[0],
+      productPrice: price,
+      productDiscountRate: discountRate,
+      productDiscountPrice: discountPrice,
+    };
+
     const etcData = {
       imageUrls,
-      // descriptionTitle,
-      // descriptionContent,
       descriptionImageUrls,
       wishCount,
       isWished,
     };
 
-    return { mainData, infoData, etcData };
+    return { mainData, infoData, optionData, etcData };
   } catch (error: any) {
     if (error.response) {
       console.error('Server Error:', error.response.data);
@@ -127,6 +144,26 @@ export const getCategoryProductsAPI = async ({
         lastViewedId,
         limit,
         sorter,
+      },
+      paramsSerializer: (params) =>
+        qs.stringify(params, { arrayFormat: 'repeat' }),
+    });
+    return res.data;
+  } catch (error: any) {
+    if (error.response) {
+      console.error('Server Error:', error.response.data);
+    } else {
+      console.error('Error creating question:', error.message);
+    }
+    throw error;
+  }
+};
+
+export const getCategoriesAPI = async (family: string): Promise<string[]> => {
+  try {
+    const res = await client.get('/categories', {
+      params: {
+        family,
       },
     });
     return res.data;

@@ -14,6 +14,7 @@ interface TopNav {
   searchBar?: boolean;
   title?: string;
   isBlue?: boolean; // 타이틀 파란색 여부
+  backToHome?: boolean; // 상품 리스트 페이지에서 필터링에 관계없이 홈화면으로 바로 이동시 필요
 }
 
 const TopNav = ({
@@ -25,6 +26,7 @@ const TopNav = ({
   searchBar,
   title,
   isBlue,
+  backToHome,
 }: TopNav) => {
   const navigate = useNavigate();
 
@@ -41,7 +43,7 @@ const TopNav = ({
             <GoChevronLeft
               size={24}
               color={theme.color.gray.main}
-              onClick={() => navigate(-1)}
+              onClick={() => (backToHome ? navigate('/') : navigate(-1))}
               style={{ cursor: 'pointer' }}
             />
           )}

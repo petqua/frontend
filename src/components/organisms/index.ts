@@ -12,6 +12,8 @@ import DeliveryAddressModal from './modals/DeliveryAddressModal';
 import ListModal from './modals/ListModal';
 import ReviewModal from './modals/ReviewModal';
 import OptionModal from './modals/OptionModal';
+import SpeciesModal from './modals/SpeciesModal';
+import ShareModal from './modals/ShareModal';
 import CartFishList from './CartFishList';
 import CartList from './CartList';
 import ImageDetail from './ImageDetail';
@@ -31,6 +33,8 @@ export {
   ReviewList,
   ListModal,
   ReviewModal,
+  SpeciesModal,
+  ShareModal,
   DeliveryAddressModal,
   CartFishList,
   OptionModal,

@@ -3,6 +3,7 @@ import {
   getProductsAPI,
   getProductDetailAPI,
   getCategoryProductsAPI,
+  getCategoriesAPI,
 } from './productAPI';
 import { getSearchProductsAPI, getTrendingKeywordsAPI } from './searchAPI';
 import {
@@ -16,13 +17,20 @@ import {
   getOAuthLoginAPI,
   getOAuthRedirectAPI,
 } from './authAPI';
+
 import {
   getDefaultAddressAPI,
   postNewAddressAPI,
   postOrdersPaymentSuccessAPI,
   postOrdersPaymentFailAPI,
 } from './paymentAPI';
-import { getCartsAPI } from './cartAPI';
+
+import {
+  getCartsAPI,
+  postCartsAPI,
+  patchCartsOptionsAPI,
+  deleteCartsAPI,
+} from './cartAPI';
 
 export {
   getBannersAPI,
@@ -40,7 +48,11 @@ export {
   getDefaultAddressAPI,
   postNewAddressAPI,
   getCartsAPI,
+  postCartsAPI,
+  patchCartsOptionsAPI,
+  deleteCartsAPI,
   getCategoryProductsAPI,
+  getCategoriesAPI,
   getWishesAPI,
   postWishAPI,
   postOrdersPaymentSuccessAPI,

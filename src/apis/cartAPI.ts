@@ -1,16 +1,63 @@
+import { CartItemData } from '../interfaces/cart';
 import { client } from './axiosInstance';
 
 // 봉달 목록 조회 API
-export const getCartsAPI = async () => {
+export const getCartsAPI = async (): Promise<CartItemData[]> => {
   try {
     const res = await client.get('/carts');
     return res.data;
   } catch (error: any) {
     if (error.response) {
-      // 서버 응답이 있는 경우 (오류 상태 코드 처리)
       console.error('Server Error:', error.response.data);
     } else {
-      // 서버 응답이 없는 경우 (네트워크 오류 등)
+      console.error('Error creating question:', error.message);
+    }
+    throw error;
+  }
+};
+
+// 봉달 추가 API
+export const postCartsAPI = async (data: any) => {
+  try {
+    const res = await client.post('/carts', data);
+    return res.data;
+  } catch (error: any) {
+    if (error.response) {
+      console.error('Server Error:', error.response.data);
+    } else {
+      console.error('Error creating question:', error.message);
+    }
+    throw error;
+  }
+};
+
+// 봉달 옵션 수정 API
+export const patchCartsOptionsAPI = async (
+  id: number | undefined,
+  data: any,
+) => {
+  try {
+    const res = await client.patch(`/carts/${id}/options`, data);
+    return res.data;
+  } catch (error: any) {
+    if (error.response) {
+      console.error('Server Error:', error.response.data);
+    } else {
+      console.error('Error creating question:', error.message);
+    }
+    throw error;
+  }
+};
+
+// 봉달 삭제 API
+export const deleteCartsAPI = async (id: number) => {
+  try {
+    const res = await client.delete(`/carts/${id}`);
+    return res.data;
+  } catch (error: any) {
+    if (error.response) {
+      console.error('Server Error:', error.response.data);
+    } else {
       console.error('Error creating question:', error.message);
     }
     throw error;

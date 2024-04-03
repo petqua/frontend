@@ -16,7 +16,9 @@ const ProductList = ({
     <FlexBox col gap="2rem" style={{ padding: '1.4rem' }}>
       <MediumText size={14} color={theme.color.gray.main}>
         {/* 수입입고 소식 리스트를 위한 조건부 */}
-        {length ? `${length}마리 반려어` : '새로운 반려어가 왔어요!'}
+        {length === undefined
+          ? '새로운 반려어가 왔어요!'
+          : `${length}마리 반려어`}
       </MediumText>
       {isInfinite ? (
         <InfiniteScroll hasMore={hasNextPage} loadMore={() => fetchNextPage()}>

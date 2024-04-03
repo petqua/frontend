@@ -6,13 +6,19 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { postWishAPI } from '../../apis';
 import { useParams } from 'react-router-dom';
 import { usePopUpStore } from '../../states';
+import { SetStateAction } from 'react';
 
 interface BottomPayBar {
   wishCount: number;
   isWished: boolean;
+  setIsOpenModal: React.Dispatch<SetStateAction<boolean>>;
 }
 
-const BottomPayBar = ({ wishCount, isWished }: BottomPayBar) => {
+const BottomPayBar = ({
+  wishCount,
+  isWished,
+  setIsOpenModal,
+}: BottomPayBar) => {
   const { productId } = useParams();
   const queryClient = useQueryClient();
 
@@ -53,7 +59,11 @@ const BottomPayBar = ({ wishCount, isWished }: BottomPayBar) => {
           {wishCount}
         </RegularText>
       </FlexBox>
-      <BlueButton text="입양하기" onClick={() => {}} style={{ width: '85%' }} />
+      <BlueButton
+        text="입양하기"
+        onClick={() => setIsOpenModal(true)}
+        style={{ width: '85%' }}
+      />
 
       {/* ========== 팝업 창 ========== */}
       {isOpenPopUp && <PopUp />}
@@ -74,4 +84,5 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 1.4rem;
+  z-index: 10;
 `;

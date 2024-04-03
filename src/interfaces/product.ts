@@ -13,6 +13,7 @@ export interface ProductListItem {
 
 export interface ProductDetailMain {
   data: ProductDetailMainData | undefined;
+  setIsOpenShareModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface ProductDetailInfo {
@@ -61,6 +62,8 @@ export interface ProductDetailMainData {
   discountPrice: number;
   reviewCount: number;
   reviewAverageScore: number;
+  descriptionTitle: string;
+  descriptionContent: string;
 }
 
 export interface ProductDetailInfoData {
@@ -71,6 +74,29 @@ export interface ProductDetailInfoData {
   difficultyLevel: string;
   optimalTankSize: string;
   temperament: string;
+}
+
+export interface ProductDetailOptionData {
+  productId: number;
+  safeDeliveryFee: number | null;
+  commonDeliveryFee: number | null;
+  pickUpDeliveryFee: number | null;
+  maleAdditionalPrice: number | null;
+  femaleAdditionalPrice: number | null;
+  storeName?: string;
+  productName?: string;
+  productThumbnailUrl?: string;
+  productPrice?: number;
+  productDiscountRate?: number;
+  productDiscountPrice: number;
+}
+
+export interface OptionModalData extends ProductDetailOptionData {
+  id?: number;
+  quantity?: number;
+  sex?: string;
+  deliveryMethod?: string | null;
+  deliveryFee?: number;
 }
 
 // API
@@ -101,19 +127,20 @@ export interface GetWishesAPIParams {
 export interface GetProductDetailAPI {
   mainData: ProductDetailMainData;
   infoData: ProductDetailInfoData;
+  optionData: ProductDetailOptionData;
   etcData: {
     descriptionImageUrls: string[];
     wishCount: number;
     isWished?: boolean;
-    imageUrls?: string[];
+    imageUrls: string[];
   };
 }
 
 export interface GetCategoryProductsAPIParams {
   family: string;
-  species?: string[];
-  deliveryMethod?: string;
+  species?: string[] | null;
+  deliveryMethod?: string | null;
   lastViewedId?: number;
   limit: number;
-  sorter?: string;
+  sorter?: string | null;
 }

@@ -11,7 +11,10 @@ const CartStoreSection = ({
 }: CartStoreSection) => {
   const checkedItemsPrice = data.items.reduce((total, item) => {
     return (
-      total + (item.checked ? item.productDiscountPrice + item.deliveryFee : 0)
+      total +
+      (item.checked
+        ? item.productDiscountPrice * item.quantity + item.deliveryFee
+        : 0)
     );
   }, 0);
 

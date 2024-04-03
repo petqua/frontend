@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom';
 import { FaCheck } from 'react-icons/fa6';
 
 interface ReviewList {
-  score: number | undefined;
+  score: number | null;
   setIsOpenModal: React.Dispatch<SetStateAction<boolean>>;
 }
 
@@ -104,7 +104,12 @@ const ReviewList = ({ score, setIsOpenModal }: ReviewList) => {
             최신순
           </BoldText>
         </FlexBox>
-        <Filter value="필터" setIsOpenModal={setIsOpenModal} hasIcon />
+        <Filter
+          title="필터"
+          value={score ? '필터' : null}
+          setIsOpenModal={setIsOpenModal}
+          hasIcon
+        />
       </FilterContainer>
       <InfiniteScroll loadMore={() => fetchNextPage()} hasMore={hasNextPage}>
         {data?.pages?.map((items, firstIdx) => {

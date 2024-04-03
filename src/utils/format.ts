@@ -6,14 +6,35 @@ export const formatFilter = (name: string) => {
       return '높은 가격순';
     case 'REVIEW_COUNT_DESC':
       return '리뷰 많은 순';
-    case 'SECURE_TRANSPORT':
+    case 'SAFETY':
       return '안전운송';
-    case 'STANDARD_TRANSPORT':
+    case 'COMMON':
       return '일반운송';
-    case 'DIRECT_VISIT':
+    case 'PICK_UP':
       return '직접방문';
     default:
       return name;
+  }
+};
+
+export const getCategory = (category: string) => {
+  switch (category) {
+    case 'killfish':
+      return '송사리과';
+    case 'characidae':
+      return '카라신과';
+    case 'carp':
+      return '잉어과';
+    case 'brackishWaterFish':
+      return '기수어과';
+    case 'largeFish':
+      return '대형어';
+    case 'anabantidae':
+      return '아나바스과';
+    case 'siluridae':
+      return '메기과';
+    default:
+      return category;
   }
 };
 

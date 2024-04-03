@@ -11,7 +11,7 @@ interface Address {
   isDefaultAddress: boolean;
 }
 
-interface StoreState {
+interface PaymentState {
   address: Address | null;
   setAddress: (inputValue: Address) => void;
   shippingRequest: string;
@@ -20,7 +20,7 @@ interface StoreState {
   setCustomShippingRequest: (input: string) => void;
 }
 
-const usePaymentStore = create<StoreState>((set) => ({
+const usePaymentStore = create<PaymentState>((set) => ({
   address: null,
   setAddress: (inputAddress: Address) => set({ address: inputAddress }),
   shippingRequest: '배송시 요청사항을 선택해주세요',
