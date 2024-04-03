@@ -30,6 +30,8 @@ const TossPaymentWidget = () => {
     PaymentWidgetInstance['renderPaymentMethods']
   > | null>(null);
   const [price, setPrice] = useState(1);
+  // 추후에는 적정 가격으로 수정
+  setPrice(100000);
 
   // 결제 위젯 로드
   useEffect(() => {
@@ -107,7 +109,7 @@ const TossPaymentWidget = () => {
       });
 
       const orderId = orderResponse.orderId;
-      console.log(orderId);
+
       await paymentWidget?.requestPayment({
         orderId: orderId,
         orderName: '토스 티셔츠 외 2건',

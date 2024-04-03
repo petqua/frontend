@@ -1,10 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import {
-  AddressForm,
-  PaymentInfo,
-  PaymentSummary,
-  TopNav,
-} from '../components/molecules';
+import { AddressForm, PaymentSummary, TopNav } from '../components/molecules';
 import { getDefaultAddressAPI } from '../apis';
 import { useEffect, useMemo, useState } from 'react';
 import { usePaymentStore } from '../states';
@@ -104,7 +99,6 @@ const PaymentPage = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [paymentType, setPaymentType] = useState('신용/체크카드');
   // 지금은 그냥 MOCK_DATA로 테스트, 추후에 source에 따라서 cartData 또는 directData 로 변경
   const totalFee = useMemo(() => getTotalFee(MOCK_DATA), [MOCK_DATA]);
 
