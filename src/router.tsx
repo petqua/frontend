@@ -12,6 +12,8 @@ import {
   KakaoLoginPage,
   PaymentPage,
   CartPage,
+  TossSuccessRedirectPage,
+  TossFailRedirectPage,
 } from './pages';
 
 // 인증이 필요한 페이지에 대한 로더 함수
@@ -78,6 +80,18 @@ export const router = createBrowserRouter([
       {
         path: '/cart',
         element: <CartPage />,
+        errorElement: <div>Unknown Error</div>,
+        loader: authorizedLoader,
+      },
+      {
+        path: '/toss/success',
+        element: <TossSuccessRedirectPage />,
+        errorElement: <div>Unknown Error</div>,
+        loader: authorizedLoader,
+      },
+      {
+        path: '/toss/fail',
+        element: <TossFailRedirectPage />,
         errorElement: <div>Unknown Error</div>,
         loader: authorizedLoader,
       },

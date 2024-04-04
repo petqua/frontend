@@ -35,3 +35,35 @@ export interface TotalFee {
   totalCommonDeliveryFee: number;
   totalPickUpDeliveryFee: number;
 }
+
+export interface PaymentSuccess {
+  paymentType: string;
+  orderId: string;
+  paymentKey: string;
+  amount: number;
+}
+
+export interface PaymentFail {
+  code: string;
+  message: string;
+  orderId: string;
+}
+
+export interface Order {
+  shippingAddressId: number;
+  shippingRequest: string;
+  orderProductRequests: Array<{
+    productId: number;
+    storeId: number;
+    quantity: number;
+    originalPrice: number;
+    discountRate: number;
+    discountPrice: number;
+    orderPrice: number;
+    sex: string;
+    additionalPrice: number;
+    deliveryFee: number;
+    deliveryMethod: string;
+  }>;
+  totalAmount: number;
+}

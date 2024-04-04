@@ -1,14 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import {
-  AddressForm,
-  PaymentInfo,
-  PaymentSummary,
-  TopNav,
-} from '../components/molecules';
+import { AddressForm, PaymentSummary, TopNav } from '../components/molecules';
 import { getDefaultAddressAPI } from '../apis';
 import { useEffect, useMemo, useState } from 'react';
 import { usePaymentStore } from '../states';
-import { CartFishList, DeliveryAddressModal } from '../components/organisms';
+import {
+  CartFishList,
+  DeliveryAddressModal,
+  TossPaymentWidget,
+} from '../components/organisms';
 import { CustomHr } from '../components/atoms';
 import { theme } from '../styles/theme';
 import { CartItemDetails } from '../interfaces/payment';
@@ -100,7 +99,6 @@ const PaymentPage = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [paymentType, setPaymentType] = useState('신용/체크카드');
   // 지금은 그냥 MOCK_DATA로 테스트, 추후에 source에 따라서 cartData 또는 directData 로 변경
   const totalFee = useMemo(() => getTotalFee(MOCK_DATA), [MOCK_DATA]);
 
@@ -118,9 +116,9 @@ const PaymentPage = () => {
       <CustomHr height="0.8rem" color={theme.color.gray[30]} />
       <CartFishList cartData={MOCK_DATA} />
       <CustomHr height="0.8rem" color={theme.color.gray[30]} />
-      <PaymentInfo paymentType={paymentType} setPaymentType={setPaymentType} />
-      <CustomHr height="0.8rem" color={theme.color.gray[30]} />
       <PaymentSummary totalFee={totalFee} />
+      <CustomHr height="0.8rem" color={theme.color.gray[30]} />
+      <TossPaymentWidget />
       {isModalOpen && (
         <DeliveryAddressModal
           title="운송지 추가"

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { RegularText } from '../atoms';
 import { theme } from '../../styles/theme';
 import { IoIosArrowUp, IoIosArrowDown, IoIosCheckmark } from 'react-icons/io';
+import { usePaymentStore } from '../../states';
 
 const Container = styled.section`
   margin-top: 1rem;
@@ -54,27 +55,30 @@ const options = [
 const DeliveryRequestDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isCustomInputOpen, setIsCustomInputOpen] = useState(false);
-  const [selectedOption, setSelectedOption] =
-    useState('배송시 요청사항을 선택해주세요');
-  const [customInput, setCustomInput] = useState('');
+  const {
+    shippingRequest,
+    setShippingRequest,
+    customShippingRequest,
+    setCustomShippingRequest,
+  } = usePaymentStore();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
-    if (selectedOption === '직접 입력') {
+    if (shippingRequest === '직접 입력') {
       setIsCustomInputOpen(!isCustomInputOpen);
     }
   };
 
   const handleOptionSelect = (option: string) => {
     setIsCustomInputOpen(option === '직접 입력');
-    setSelectedOption(option);
+    setShippingRequest(option);
     setIsOpen(false);
   };
   return (
     <Container>
       <Header onClick={toggleDropdown}>
         <RegularText size={14} color={theme.color.gray[50]}>
-          {selectedOption}
+          {shippingRequest}
         </RegularText>
         {isOpen ? (
           <IoIosArrowUp size={24} color={theme.color.gray[50]} />
@@ -86,7 +90,7 @@ const DeliveryRequestDropdown = () => {
         <Ul>
           {options.map((option, index) => (
             <Option key={index} onClick={() => handleOptionSelect(option)}>
-              {option === selectedOption ? (
+              {option === shippingRequest ? (
                 <>
                   <RegularText size={14} color={theme.color.gray[70]}>
                     {option}
@@ -104,8 +108,8 @@ const DeliveryRequestDropdown = () => {
       )}
       {isCustomInputOpen && (
         <Textarea
-          value={customInput}
-          onChange={(e) => setCustomInput(e.target.value)}
+          value={customShippingRequest}
+          onChange={(e) => setCustomShippingRequest(e.target.value)}
           maxLength={120}
         />
       )}
