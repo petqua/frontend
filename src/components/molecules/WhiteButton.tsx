@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { theme } from '../../styles/theme';
 import { MediumText } from '../atoms';
-import { FaChevronDown } from 'react-icons/fa6';
+import { IoIosArrowDown } from '../atoms/Icon';
 
 interface WhiteButton {
   text: string;
@@ -31,7 +31,7 @@ const WhiteButton = ({
         {text}
       </MediumText>
       {/* 사용되는 다른 상황에 따라 유연하게 수정 */}
-      {isDown && <FaChevronDown size={12} color={theme.color.blue[70]} />}
+      {isDown && <IoIosArrowDown size={20} color={theme.color.blue[70]} />}
     </Button>
   );
 };

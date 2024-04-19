@@ -10,7 +10,6 @@ import {
 } from '../atoms';
 import { OptionModal } from '../organisms';
 import Confirm from './Confirm';
-import { LiaWindowClose } from 'react-icons/lia';
 import { CartItem } from '../../interfaces/cart';
 import {
   getKoreanDeliveryMethod,
@@ -21,6 +20,7 @@ import {
 import { deleteCartsAPI } from '../../apis';
 import { useMutation } from '@tanstack/react-query';
 import { useCartStore } from '../../states';
+import { AiOutlineCloseSquare } from '../atoms/Icon';
 
 const CartItem = ({ data, handleSelectItem }: CartItem) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -91,7 +91,7 @@ const CartItem = ({ data, handleSelectItem }: CartItem) => {
                     </MethodTag>
                   </MediumText>
                 </FlexBox>
-                <LiaWindowClose
+                <AiOutlineCloseSquare
                   size={18}
                   color={theme.color.gray[50]}
                   style={{ cursor: 'pointer' }}

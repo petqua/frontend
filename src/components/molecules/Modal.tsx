@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { BoldText, FlexBox } from '../atoms';
 import { theme } from '../../styles/theme';
 import styled from 'styled-components';
-import { IoChevronBackOutline, IoClose } from 'react-icons/io5';
 import { fadeIn, fadeOut, slideUp, slideDown } from '../../styles/keyframes';
+import { IoChevronBackOutline, IoClose } from '../atoms/Icon';
 
 interface Modal {
   children: React.ReactNode;

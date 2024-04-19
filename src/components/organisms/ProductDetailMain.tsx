@@ -1,9 +1,9 @@
 import { theme } from '../../styles/theme';
 import { FlexBox, BoldText, RegularText } from '../atoms';
-import { IoShareSocialOutline } from 'react-icons/io5';
 import { styled } from 'styled-components';
 import { ProductDetailMain } from '../../interfaces/product';
 import { StarRating } from '../molecules';
+import { IoShareSocialOutline } from '../atoms/Icon';
 
 const ProductDetailMain = ({
   data,

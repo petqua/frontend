@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { CiSearch } from 'react-icons/ci';
 import { KeywordText } from '../atoms';
 import { useSearchStore } from '../../states';
 import { useNavigate } from 'react-router-dom';
+import { IoSearchOutline } from '../atoms/Icon';
 
 interface TrendingKeyword {
   id: number;
@@ -66,7 +66,7 @@ const TrendingKeywordList = ({ data, debouncedQuery }: TrendingKeywordList) => {
               handleClick(item.keyword);
             }}
           >
-            <CiSearch size={22} />
+            <IoSearchOutline size={22} />
             <KeywordText keyword={item.keyword} query={debouncedQuery} />
           </RecommendLi>
         ))}

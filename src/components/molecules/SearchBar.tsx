@@ -1,10 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { useSearchStore } from '../../states';
-import { IoIosArrowBack } from 'react-icons/io';
-import { CiSearch } from 'react-icons/ci';
-import { TiDelete } from 'react-icons/ti';
 import { theme } from '../../styles/theme';
+import { IoIosArrowBack, IoSearchOutline, TiDelete } from '../atoms/Icon';
 
 const TopBar = styled.header`
   display: flex;
@@ -87,7 +85,7 @@ const SearchBar = () => {
           </button>
         ) : (
           <button>
-            <CiSearch size={22} />
+            <IoSearchOutline size={22} />
           </button>
         )}
       </InputDiv>

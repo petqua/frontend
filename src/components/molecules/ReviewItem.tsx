@@ -8,12 +8,12 @@ import {
   ProfileImg,
   RegularText,
 } from '../atoms';
-import { FaRegThumbsUp, FaThumbsUp } from 'react-icons/fa6';
 import { ReviewItem } from '../../interfaces/review';
 import { formatDate } from '../../utils/format';
 import { useMutation } from '@tanstack/react-query';
 import { postReviewRecommendAPI } from '../../apis';
 import { useState } from 'react';
+import { FaRegThumbsUp, FaThumbsUp } from '../atoms/Icon';
 
 const ReviewItem = ({ data, isRecommend, isLastItem }: ReviewItem) => {
   const [showRecommended, setShowRecommended] = useState(data?.recommended);

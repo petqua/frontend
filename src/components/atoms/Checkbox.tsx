@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { theme } from '../../styles/theme';
-import { FaCheck } from 'react-icons/fa6';
+import { FaCheck } from './Icon';
 
 interface CheckBox {
   checked: boolean | undefined;

@@ -2,8 +2,8 @@ import { styled } from 'styled-components';
 import { useSearchStore } from '../../states';
 import { BoldText, FlexBox, MediumText, RegularText } from '../atoms';
 import { theme } from '../../styles/theme';
-import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
+import { AiOutlineCloseCircle } from '../atoms/Icon';
 
 const Container = styled.div`
   width: 100%;

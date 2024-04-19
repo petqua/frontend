@@ -3,8 +3,8 @@ import { styled } from 'styled-components';
 import { fadeIn, fadeOut } from '../../styles/keyframes';
 import { theme } from '../../styles/theme';
 import { Carousel } from '../molecules';
-import { IoCloseOutline } from 'react-icons/io5';
 import { ImageDetail } from '../../interfaces/carousel';
+import { IoCloseOutline } from '../atoms/Icon';
 
 const ImageDetail = ({ setIsOpenDetail, idx, carouselList }: ImageDetail) => {
   const [visible, setVisible] = useState(true);
