@@ -1,6 +1,6 @@
 import { theme } from '../../styles/theme';
 import { FlexBox } from '../atoms';
-import { FaStar, FaStarHalf } from 'react-icons/fa';
+import { FaStar, FaStarHalf } from '../atoms/Icon';
 
 interface StarRating {
   score: number;

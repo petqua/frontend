@@ -4,11 +4,12 @@ import { theme } from '../../../styles/theme';
 import { BlueButton, WhiteButton } from '../../molecules';
 import Modal from '../../molecules/Modal';
 import styled from 'styled-components';
-import { FaMinus, FaPlus } from 'react-icons/fa6';
 import { useMutation } from '@tanstack/react-query';
 import { patchCartsOptionsAPI, postCartsAPI } from '../../../apis';
 import { usePopUpStore, useCartStore } from '../../../states';
 import { OptionModalData } from '../../../interfaces/product';
+import { FaMinus, FaPlus } from '../../atoms/Icon';
+// import { useNavigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 interface OptionModal {
@@ -206,7 +207,7 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
               }}
             >
               <FaMinus
-                size={16}
+                size={12}
                 color={theme.color.gray[50]}
                 style={{ cursor: 'pointer' }}
                 onClick={() => handleQuantity(-1)}
@@ -215,7 +216,7 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
                 {requestData.quantity}
               </RegularText>
               <FaPlus
-                size={16}
+                size={12}
                 color={theme.color.gray[50]}
                 style={{ cursor: 'pointer' }}
                 onClick={() => handleQuantity(1)}

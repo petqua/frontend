@@ -1,12 +1,11 @@
 import { SetStateAction, useState } from 'react';
 import { RegularText, FlexBox } from '../../atoms';
 import { theme } from '../../../styles/theme';
-import { FaCheck } from 'react-icons/fa6';
-import { GoPlus } from 'react-icons/go';
 import Modal from '../../molecules/Modal';
 import styled from 'styled-components';
 import { useSearchParams } from 'react-router-dom';
 import { BlueButton } from '../../molecules';
+import { FaCheck, FaPlus } from '../../atoms/Icon';
 
 interface SpeciesModal {
   value: string[];
@@ -66,7 +65,7 @@ const SpeciesModal = ({ setIsOpenModal, value, options }: SpeciesModal) => {
                 {isSelected ? (
                   <FaCheck size={16} color={theme.color.gray.main} />
                 ) : (
-                  <GoPlus size={20} color={theme.color.gray[60]} />
+                  <FaPlus size={20} color={theme.color.gray[60]} />
                 )}
               </FlexBox>
             );

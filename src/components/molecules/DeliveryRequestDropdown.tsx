@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { RegularText } from '../atoms';
 import { theme } from '../../styles/theme';
-import { IoIosArrowUp, IoIosArrowDown, IoIosCheckmark } from 'react-icons/io';
+import { IoIosArrowDown, IoIosArrowUp, IoIosCheckmark } from '../atoms/Icon';
 import { usePaymentStore } from '../../states';
 
 const Container = styled.section`

@@ -1,9 +1,8 @@
 import { FlexBox, MediumText, RegularText } from '../atoms';
 import { theme } from '../../styles/theme';
-import { CiSearch } from 'react-icons/ci';
-import { GoChevronLeft } from 'react-icons/go';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
+import { IoIosArrowBack, IoSearchOutline } from '../atoms/Icon';
 
 interface TopNav {
   backBtn?: boolean;
@@ -40,7 +39,7 @@ const TopNav = ({
           style={{ width: searchBar ? '' : '6rem' }}
         >
           {backBtn && (
-            <GoChevronLeft
+            <IoIosArrowBack
               size={24}
               color={theme.color.gray.main}
               onClick={() => (backToHome ? navigate('/') : navigate(-1))}
@@ -62,7 +61,7 @@ const TopNav = ({
             <RegularText size={12} color={theme.color.gray.main}>
               검색어를 입력해주세요
             </RegularText>
-            <CiSearch size={20} color={theme.color.gray.main} />
+            <IoSearchOutline size={20} color={theme.color.gray.main} />
           </SearchBar>
         )}
         {title && (
@@ -80,7 +79,9 @@ const TopNav = ({
           gap="1.6rem"
           style={{ width: '6rem' }}
         >
-          {search && <CiSearch size={24} onClick={() => navigate('/search')} />}
+          {search && (
+            <IoSearchOutline size={24} onClick={() => navigate('/search')} />
+          )}
           {wish && (
             <img
               src="/icons/bubble-like-gray.svg"

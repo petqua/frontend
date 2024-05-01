@@ -2,10 +2,10 @@ import { styled } from 'styled-components';
 import { theme } from '../../styles/theme';
 import { BoldText, MediumText, FlexBox, RegularText, CheckBox } from '../atoms';
 import { useState } from 'react';
-import { IoIosArrowDown } from 'react-icons/io';
 import { CartList } from '../../interfaces/cart';
 import { CartStoreSection } from '../molecules';
 import { useCartStore } from '../../states';
+import { IoIosArrowDown } from '../atoms/Icon';
 
 const CartList = ({ checkedItemData }: CartList) => {
   const { items, setItems } = useCartStore();

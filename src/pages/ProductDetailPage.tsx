@@ -25,9 +25,9 @@ import {
   getReviewStatisticsAPI,
   getCategoryProductsAPI,
 } from '../apis';
-import { FaChevronRight } from 'react-icons/fa6';
 import { useState } from 'react';
 import { OptionModalData } from '../interfaces/product';
+import { FaChevronRight } from '../components/atoms/Icon';
 
 const ProductDetailPage = () => {
   const { productId } = useParams();

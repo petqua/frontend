@@ -1,12 +1,11 @@
 import styled from 'styled-components';
-import { GoHomeFill } from 'react-icons/go';
-import { CiSearch } from 'react-icons/ci';
-import { BsPerson } from 'react-icons/bs';
+
 import ChatIcon from '../../assets/chat.svg?react';
 import DoubleFish from '../../assets/double-fish.svg?react';
 import { RegularText } from '../atoms';
 import { theme } from '../../styles/theme';
 import { useNavigate } from 'react-router-dom';
+import { BsPerson, IoSearchOutline, IoHomeOutline } from '../atoms/Icon';
 
 const Footer = styled.footer`
   position: fixed;
@@ -41,10 +40,10 @@ const BottomNavBar = ({ activeButton }: BottomNavBar) => {
   const navigate = useNavigate();
   return (
     <Footer>
-      <NavButton>
-        <GoHomeFill
+      <NavButton onClick={() => navigate('/')}>
+        <IoHomeOutline
           size={26}
-          fill={activeButton === 'home' ? theme.color.blue[70] : undefined}
+          color={activeButton === 'home' ? theme.color.blue[70] : undefined}
         />
         <RegularText
           size={10}
@@ -57,10 +56,10 @@ const BottomNavBar = ({ activeButton }: BottomNavBar) => {
           홈
         </RegularText>
       </NavButton>
-      <NavButton>
-        <CiSearch
+      <NavButton onClick={() => navigate('/search')}>
+        <IoSearchOutline
           size={26}
-          fill={activeButton === 'search' ? theme.color.blue[70] : undefined}
+          color={activeButton === 'search' ? theme.color.blue[70] : undefined}
         />
         <RegularText
           size={10}
@@ -107,10 +106,10 @@ const BottomNavBar = ({ activeButton }: BottomNavBar) => {
           물생활
         </RegularText>
       </NavButton>
-      <NavButton onClick={() => navigate('/login')}>
+      <NavButton onClick={() => navigate('/myPage')}>
         <BsPerson
           size={26}
-          fill={activeButton === 'profile' ? theme.color.blue[70] : undefined}
+          color={activeButton === 'profile' ? theme.color.blue[70] : undefined}
         />
         <RegularText
           size={10}

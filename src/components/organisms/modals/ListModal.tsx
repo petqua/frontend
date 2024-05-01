@@ -1,10 +1,10 @@
 import { SetStateAction, useState } from 'react';
 import { RegularText, BoldText, FlexBox } from '../../atoms';
 import { theme } from '../../../styles/theme';
-import { FaCheck } from 'react-icons/fa6';
 import Modal from '../../molecules/Modal';
 import { formatFilter } from '../../../utils/format';
 import { useSearchParams } from 'react-router-dom';
+import { FaCheck } from '../../atoms/Icon';
 
 interface ListModal {
   value: string | null;

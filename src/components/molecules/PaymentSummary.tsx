@@ -3,11 +3,12 @@ import { theme } from '../../styles/theme';
 import { BoldText, CustomHr, FlexBox, RegularText } from '../atoms';
 import { TotalFee } from '../../interfaces/payment';
 import { getTotalDeliveryFee } from '../../utils/delivery';
+
+import { memo, useState } from 'react';
 import {
   IoChevronDownCircleSharp,
   IoChevronUpCircleSharp,
-} from 'react-icons/io5';
-import { memo, useState } from 'react';
+} from '../atoms/Icon';
 
 const Container = styled.section`
   padding: 2.4rem 1.4rem;

@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from 'react';
 import { ImageDetail } from '../organisms';
 import { RegularText } from '../atoms';
 import { theme } from '../../styles/theme';
-import { GrNext, GrPrevious } from 'react-icons/gr';
 import { Carousel } from '../../interfaces/carousel';
+import { GrNext, GrPrevious } from '../atoms/Icon';
 
 const Carousel = ({
   carouselList,

@@ -1,10 +1,11 @@
 import { SetStateAction } from 'react';
-import { FaAngleDown } from 'react-icons/fa6';
+
 import { theme } from '../../styles/theme';
 import styled from 'styled-components';
 import { MediumText } from '../atoms';
 import { formatFilter } from '../../utils/format';
-import { IoOptionsOutline } from 'react-icons/io5';
+import { FaAngleDown, IoOptionsOutline } from '../atoms/Icon';
+
 
 interface Filter {
   title: string;
