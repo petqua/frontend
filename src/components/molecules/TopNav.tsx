@@ -11,6 +11,7 @@ interface TopNav {
   alarm?: boolean;
   wish?: boolean;
   searchBar?: boolean;
+  option?: boolean;
   title?: string;
   isBlue?: boolean; // 타이틀 파란색 여부
   backToHome?: boolean; // 상품 리스트 페이지에서 필터링에 관계없이 홈화면으로 바로 이동시 필요
@@ -23,6 +24,7 @@ const TopNav = ({
   alarm,
   wish,
   searchBar,
+  option,
   title,
   isBlue,
   backToHome,
@@ -88,6 +90,14 @@ const TopNav = ({
               alt="wish"
               style={{ width: '2.2rem', height: '2.2rem', cursor: 'pointer' }}
               onClick={() => navigate('/wish')}
+            />
+          )}
+          {option && (
+            <img
+              src="/icons/option.svg"
+              alt="option"
+              style={{ width: '2.4rem', height: '2.4rem', cursor: 'pointer' }}
+              onClick={() => navigate('/option')}
             />
           )}
           {basket && (
