@@ -7,16 +7,12 @@ import {
   RegularText,
   ProductImg,
   CheckBox,
+  MethodTag,
 } from '../atoms';
 import { OptionModal } from '../organisms';
 import Confirm from './Confirm';
 import { CartItem } from '../../interfaces/cart';
-import {
-  getKoreanDeliveryMethod,
-  getSex,
-  getBackgroundColor,
-  getTextColor,
-} from '../../utils/delivery';
+import { getKoreanDeliveryMethod, getSex } from '../../utils/delivery';
 import { deleteCartsAPI } from '../../apis';
 import { useMutation } from '@tanstack/react-query';
 import { useCartStore } from '../../states';
@@ -86,9 +82,7 @@ const CartItem = ({ data, handleSelectItem }: CartItem) => {
                     style={{ lineHeight: '120%' }}
                   >
                     {data?.productName}
-                    <MethodTag $method={data?.deliveryMethod || ''}>
-                      {getKoreanDeliveryMethod(data?.deliveryMethod || '')}
-                    </MethodTag>
+                    <MethodTag deliveryMethod={data?.deliveryMethod || ''} />
                   </MediumText>
                 </FlexBox>
                 <AiOutlineCloseSquare
@@ -181,20 +175,6 @@ const OptionButton = styled.button`
   padding: 0.4rem 0.6rem;
   border-radius: 0.4rem;
   border: 0.05rem solid ${({ theme }) => theme.color.gray[50]};
-`;
-
-const MethodTag = styled.span<{ $method: string }>`
-  padding: 0.3rem 0.6rem;
-  border-radius: 0.6rem;
-  background-color: ${({ $method }) => getBackgroundColor($method)};
-  color: ${({ $method }) => getTextColor($method)};
-  font-size: 1rem;
-  font-weight: 700;
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 0.4rem;
-  line-height: 1;
-  margin-bottom: 0.2rem;
 `;
 
 const PriceCalculatorBox = styled.div`
