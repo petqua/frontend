@@ -56,7 +56,7 @@ const Confirm = ({ setIsOpenConfirm, text, handleYes }: Confirm) => {
           >
             <RegularText
               size={16}
-              color={theme.color.gray.main}
+              color={theme.color.tint.red}
               onClick={() => {
                 handleYes();
                 handleCloseConfirm();
@@ -66,7 +66,7 @@ const Confirm = ({ setIsOpenConfirm, text, handleYes }: Confirm) => {
             </RegularText>
           </Button>
           <Button onClick={handleCloseConfirm}>
-            <RegularText size={16} color={theme.color.tint.red}>
+            <RegularText size={16} color={theme.color.gray.main}>
               아니오
             </RegularText>
           </Button>
