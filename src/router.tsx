@@ -12,8 +12,12 @@ import {
   KakaoLoginPage,
   PaymentPage,
   CartPage,
+  MyPage,
+  OptionPage,
   TossSuccessRedirectPage,
   TossFailRedirectPage,
+  OrderListPage,
+  OrderDetailPage,
 } from './pages';
 
 // 인증이 필요한 페이지에 대한 로더 함수
@@ -94,6 +98,30 @@ export const router = createBrowserRouter([
         element: <TossFailRedirectPage />,
         errorElement: <div>Unknown Error</div>,
         loader: authorizedLoader,
+      },
+      {
+        path: '/myPage',
+        element: <MyPage />,
+        errorElement: <div>Unknown Error</div>,
+        // loader: authorizedLoader,
+      },
+      {
+        path: '/option',
+        element: <OptionPage />,
+        errorElement: <div>Unknown Error</div>,
+        // loader: authorizedLoader,
+      },
+      {
+        path: '/order',
+        element: <OrderListPage />,
+        errorElement: <div>Unknown Error</div>,
+        // loader: authorizedLoader,
+      },
+      {
+        path: '/order/:orderId',
+        element: <OrderDetailPage />,
+        errorElement: <div>Unknown Error</div>,
+        // loader: authorizedLoader,
       },
     ],
   },
