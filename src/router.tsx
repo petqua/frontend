@@ -1,24 +1,28 @@
 import { createBrowserRouter, redirect } from 'react-router-dom';
 import { FullScreen } from './components/molecules';
-import {
-  HomePage,
-  WishListPage,
-  ProductListPage,
-  SearchPage,
-  SearchResultPage,
-  ProductDetailPage,
-  LoginPage,
-  ReviewPage,
-  KakaoLoginPage,
-  PaymentPage,
-  CartPage,
-  MyPage,
-  OptionPage,
-  TossSuccessRedirectPage,
-  TossFailRedirectPage,
-  OrderListPage,
-  OrderDetailPage,
-} from './pages';
+import React from 'react';
+
+const HomePage = React.lazy(() => import('./pages/HomePage'));
+const WishListPage = React.lazy(() => import('./pages/WishListPage'));
+const ProductListPage = React.lazy(() => import('./pages/ProductListPage'));
+const SearchPage = React.lazy(() => import('./pages/SearchPage'));
+const SearchResultPage = React.lazy(() => import('./pages/SearchResultPage'));
+const ProductDetailPage = React.lazy(() => import('./pages/ProductDetailPage'));
+const LoginPage = React.lazy(() => import('./pages/LoginPage'));
+const ReviewPage = React.lazy(() => import('./pages/ReviewPage'));
+const KakaoLoginPage = React.lazy(() => import('./pages/KakaoLoginPage'));
+const PaymentPage = React.lazy(() => import('./pages/PaymentPage'));
+const CartPage = React.lazy(() => import('./pages/CartPage'));
+const MyPage = React.lazy(() => import('./pages/MyPage'));
+const OptionPage = React.lazy(() => import('./pages/OptionPage'));
+const TossSuccessRedirectPage = React.lazy(
+  () => import('./pages/TossSuccessRedirectPage'),
+);
+const TossFailRedirectPage = React.lazy(
+  () => import('./pages/TossFailRedirectPage'),
+);
+const OrderListPage = React.lazy(() => import('./pages/OrderListPage'));
+const OrderDetailPage = React.lazy(() => import('./pages/OrderDetailPage'));
 
 // 인증이 필요한 페이지에 대한 로더 함수
 const authorizedLoader = () => {
@@ -85,7 +89,7 @@ export const router = createBrowserRouter([
         path: '/cart',
         element: <CartPage />,
         errorElement: <div>Unknown Error</div>,
-        loader: authorizedLoader,
+        // loader: authorizedLoader,
       },
       {
         path: '/toss/success',
