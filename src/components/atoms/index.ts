@@ -5,6 +5,7 @@ import ProductImg from './ProductImg';
 import ProfileImg from './ProfileImg';
 import { LightText, RegularText, MediumText, BoldText } from './Text';
 import CheckBox from './Checkbox';
+import MethodTag from './MethodTag';
 
 export {
   FlexBox,
@@ -17,4 +18,5 @@ export {
   CustomHr,
   ProfileImg,
   CheckBox,
+  MethodTag,
 };

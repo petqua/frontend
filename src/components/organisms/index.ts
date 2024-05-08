@@ -19,6 +19,7 @@ import CartList from './CartList';
 import ImageDetail from './ImageDetail';
 import CartFishListByStoreName from './CartFishListByStoreName';
 import TossPaymentWidget from './TossPaymentWidget';
+import TotalPayInfo from './TotalPayInfo';
 
 export {
   CategoryList,
@@ -42,4 +43,5 @@ export {
   ImageDetail,
   CartFishListByStoreName,
   TossPaymentWidget,
+  TotalPayInfo,
 };

@@ -9,8 +9,12 @@ import ProductDetailPage from './ProductDetailPage';
 import ReviewPage from './ReviewPage';
 import PaymentPage from './PaymentPage';
 import CartPage from './CartPage';
+import MyPage from './MyPage';
+import OptionPage from './OptionPage';
 import TossSuccessRedirectPage from './TossSuccessRedirectPage';
 import TossFailRedirectPage from './TossFailRedirectPage';
+import OrderListPage from './OrderListPage';
+import OrderDetailPage from './OrderDetailPage';
 
 export {
   HomePage,
@@ -24,6 +28,10 @@ export {
   KakaoLoginPage,
   PaymentPage,
   CartPage,
+  MyPage,
+  OptionPage,
   TossSuccessRedirectPage,
   TossFailRedirectPage,
+  OrderListPage,
+  OrderDetailPage,
 };
