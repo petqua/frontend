@@ -3,7 +3,11 @@ import { BottomNavBar, Filter, SearchBar } from '../components/molecules';
 import { useState } from 'react';
 import { FlexBox } from '../components/atoms';
 
-import { ProductList, ListModal } from '../components/organisms';
+import {
+  ProductList,
+  ListModal,
+  SkeletonProductList,
+} from '../components/organisms';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getSearchProductsAPI } from '../apis';
 
@@ -26,7 +30,7 @@ const SearchResultPage = () => {
 
   const [currentFilter, setCurrentFilter] = useState('');
 
-  const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
+  const { data, fetchNextPage, hasNextPage, isLoading } = useInfiniteQuery({
     queryKey: ['products', 'search', query],
     queryFn: ({ pageParam }) =>
       getSearchProductsAPI({
@@ -60,14 +64,17 @@ const SearchResultPage = () => {
           handleFilterClick={() => setCurrentFilter('sort')}
         />
       </FlexBox>
-      <ProductList
-        data={data?.pages || []}
-        length={data?.pages[0].totalProductsCount || 0}
-        fetchNextPage={fetchNextPage}
-        isInfinite={true}
-        hasNextPage={hasNextPage}
-      />
-
+      {isLoading ? (
+        <SkeletonProductList />
+      ) : (
+        <ProductList
+          data={data?.pages || []}
+          length={data?.pages[0].totalProductsCount || 0}
+          fetchNextPage={fetchNextPage}
+          isInfinite={true}
+          hasNextPage={hasNextPage}
+        />
+      )}
       {isOpenModal && (
         <ListModal
           type={currentFilter === 'sort' ? 'sorter' : 'deliveryMethod'}
