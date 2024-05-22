@@ -66,7 +66,7 @@ const WithdrawalPage = () => {
             회원 탈퇴 시 <br />
             고객님의 모든 정보가 소멸되며
             <br />
-            이전으로 <span color={theme.color.blue[80]}>복구 불가능</span>
+            이전으로 <span style={{color: theme.color.blue[80]}}>복구 불가능</span>
             합니다.
             <br />
           </BoldText>
