@@ -1,13 +1,32 @@
+import { useNavigate } from 'react-router-dom';
 import { FlexBox } from '../components/atoms';
-import { MenuItem, TopNav } from '../components/molecules';
+import { Confirm, MenuItem, TopNav } from '../components/molecules';
+import { useState } from 'react';
 
 const OptionPage = () => {
+  const navigate = useNavigate();
+  const [isOpenLogoutConfirm, setIsOpenLogoutConfirm] = useState(false);
+
   const MENU_LIST = [
     { text: '알림 설정', path: '' },
     { text: '운송지 관리', path: '' },
-    { text: '회원탈퇴', onClick: () => {} },
-    { text: '로그아웃', onClick: () => {} },
+    {
+      text: '회원탈퇴',
+      onClick: () => {
+        navigate('/withdrawal');
+      },
+    },
+    {
+      text: '로그아웃',
+      onClick: () => {
+        setIsOpenLogoutConfirm(true);
+      },
+    },
   ];
+
+  const onClickLogout = () => {
+    alert('로그아웃');
+  };
 
   return (
     <>
@@ -22,6 +41,13 @@ const OptionPage = () => {
           />
         ))}
       </FlexBox>
+      {isOpenLogoutConfirm && (
+        <Confirm
+          text="로그아웃 하시겠습니까?"
+          setIsOpenConfirm={setIsOpenLogoutConfirm}
+          handleYes={onClickLogout}
+        />
+      )}
     </>
   );
 };
