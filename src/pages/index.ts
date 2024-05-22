@@ -15,6 +15,7 @@ import TossSuccessRedirectPage from './TossSuccessRedirectPage';
 import TossFailRedirectPage from './TossFailRedirectPage';
 import OrderListPage from './OrderListPage';
 import OrderDetailPage from './OrderDetailPage';
+import ProfileEditPage from './ProfileEditPage';
 
 export {
   HomePage,
@@ -34,4 +35,5 @@ export {
   TossFailRedirectPage,
   OrderListPage,
   OrderDetailPage,
+  ProfileEditPage,
 };

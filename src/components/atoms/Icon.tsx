@@ -22,6 +22,7 @@ import { IoOptionsOutline } from '@react-icons/all-files/io5/IoOptionsOutline';
 import { IoChevronBackOutline } from '@react-icons/all-files/io5/IoChevronBackOutline';
 import { IoClose } from '@react-icons/all-files/io5/IoClose';
 import { IoCloseOutline } from '@react-icons/all-files/io5/IoCloseOutline';
+import { IoCloseCircleSharp } from '@react-icons/all-files/io5/IoCloseCircleSharp';
 import { IoChevronDownCircleSharp } from '@react-icons/all-files/io5/IoChevronDownCircleSharp';
 import { IoChevronUpCircleSharp } from '@react-icons/all-files/io5/IoChevronUpCircleSharp';
 import { IoShareSocialOutline } from '@react-icons/all-files/io5/IoShareSocialOutline';
@@ -56,4 +57,5 @@ export {
   IoShareSocialOutline,
   FaMinus,
   FaPlus,
+  IoCloseCircleSharp,
 };
