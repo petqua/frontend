@@ -53,8 +53,12 @@ const MyPage = () => {
           </BoldText>
         </FlexBox>
         <ProfileBtn onClick={() => navigate('')}>
-          <MediumText color={theme.color.gray[60]} size={12}>
-            프로필 보기
+          <MediumText
+            color={theme.color.gray[60]}
+            size={12}
+            onClick={() => navigate('/myPage/edit')}
+          >
+            프로필 수정
           </MediumText>
         </ProfileBtn>
       </FlexBox>
