@@ -6,6 +6,7 @@ import {
   FlexBox,
   ProductImg,
   ProfileImg,
+  RecommendButton,
   RegularText,
 } from '../atoms';
 import { ReviewItem } from '../../interfaces/review';
@@ -13,7 +14,6 @@ import { formatDate } from '../../utils/format';
 import { useMutation } from '@tanstack/react-query';
 import { postReviewRecommendAPI } from '../../apis';
 import { useState } from 'react';
-import { FaRegThumbsUp, FaThumbsUp } from '../atoms/Icon';
 
 const ReviewItem = ({ data, isRecommend, isLastItem }: ReviewItem) => {
   const [showRecommended, setShowRecommended] = useState(data?.recommended);
@@ -71,31 +71,24 @@ const ReviewItem = ({ data, isRecommend, isLastItem }: ReviewItem) => {
           </RowScrollContainer>
         )}
 
-        <RegularText
-          size={14}
-          color={theme.color.gray[70]}
-          style={{ lineHeight: '150%', padding: '0 1.4rem' }}
-        >
-          {data?.content}
-        </RegularText>
+        <FlexBox col padding="0 1.4rem" gap="1.6rem" fullWidth>
+          <RegularText
+            size={14}
+            color={theme.color.gray[70]}
+            style={{ lineHeight: '150%' }}
+          >
+            {data?.content}
+          </RegularText>
 
-        {isRecommend && (
-          <RecommendBtn onClick={() => mutate()}>
-            {showRecommended ? (
-              <FaThumbsUp size={16} color={theme.color.blue.main} />
-            ) : (
-              <FaRegThumbsUp size={16} color={theme.color.gray[50]} />
-            )}
-            <RegularText
-              size={14}
-              color={
-                showRecommended ? theme.color.gray.main : theme.color.gray[50]
-              }
-            >
-              추천 {showRecommendCount}
-            </RegularText>
-          </RecommendBtn>
-        )}
+          {isRecommend && (
+            <RecommendButton
+              recommended={showRecommended}
+              count={showRecommendCount}
+              onClick={mutate}
+              isMargin
+            />
+          )}
+        </FlexBox>
       </FlexBox>
       {!isLastItem && <Line />}
     </>
@@ -103,18 +96,6 @@ const ReviewItem = ({ data, isRecommend, isLastItem }: ReviewItem) => {
 };
 
 export default ReviewItem;
-
-const RecommendBtn = styled.button`
-  width: 48%;
-  padding: 1rem;
-  margin: 0 1.4rem;
-  border: 0.05rem solid ${({ theme }) => theme.color.gray[50]};
-  border-radius: 0.4rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.8rem;
-`;
 
 const Line = styled.div`
   width: calc(100% - 2.8rem);
