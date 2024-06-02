@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import { RowScrollContainer, StarRating } from '.';
 import { theme } from '../../styles/theme';
 import {
