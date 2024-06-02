@@ -35,7 +35,7 @@ const MyPage = () => {
 
   const MENU_LIST = [
     { text: '내 입양내역 조회', path: '/order' },
-    { text: '입양 후기', path: '' },
+    { text: '입양 후기', path: '/review?category=write' },
     { text: '찜목록', path: '/wish' },
     { text: '고객센터', path: '' },
   ];

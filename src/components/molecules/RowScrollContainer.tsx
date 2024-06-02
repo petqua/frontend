@@ -32,7 +32,8 @@ const RowScrollContainer = ({
 export default RowScrollContainer;
 
 const Container = styled.div`
-  width: 100%;
+  width: fit-content;
+  max-width: 100%;
   padding: 0 1.2rem;
   display: grid;
   overflow-y: hidden;

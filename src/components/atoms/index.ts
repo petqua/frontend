@@ -6,6 +6,7 @@ import ProfileImg from './ProfileImg';
 import { LightText, RegularText, MediumText, BoldText } from './Text';
 import CheckBox from './Checkbox';
 import MethodTag from './MethodTag';
+import RecommendButton from './RecommendButton';
 
 export {
   FlexBox,
@@ -19,4 +20,5 @@ export {
   ProfileImg,
   CheckBox,
   MethodTag,
+  RecommendButton,
 };

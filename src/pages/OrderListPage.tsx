@@ -1,88 +1,9 @@
 import { styled } from 'styled-components';
-import { BlueButton, Confirm, TopNav } from '../components/molecules';
-import {
-  BoldText,
-  FlexBox,
-  MediumText,
-  MethodTag,
-  ProductImg,
-  RegularText,
-} from '../components/atoms';
+import { BlueButton, OrderProductItem, TopNav } from '../components/molecules';
+import { BoldText, FlexBox, MediumText } from '../components/atoms';
 import { theme } from '../styles/theme';
 import { useNavigate } from 'react-router-dom';
 import { FaChevronRight } from '../components/atoms/Icon';
-import { useState } from 'react';
-
-const OrderProductItem = ({ data }: { data: any }) => {
-  const [isOpenConfirm, setIsOpenConfirm] = useState(false);
-
-  return (
-    <>
-      <FlexBox col padding="1.8rem 0" gap="2rem">
-        <FlexBox gap="1rem">
-          <ProductImg size="9.6rem" src="" />
-          <FlexBox
-            col
-            justify="space-between"
-            padding="0.2rem 0"
-            style={{ flex: 1, height: '9.6rem' }}
-          >
-            <FlexBox col gap="0.8rem">
-              <RegularText size={12} color={theme.color.gray[50]}>
-                {data.storeName}
-              </RegularText>
-              <FlexBox align="center" gap="0.4rem">
-                <MediumText size={16} color={theme.color.gray.main}>
-                  {data.name}
-                </MediumText>
-                <MethodTag deliveryMethod={data.deliveryMethod} />
-              </FlexBox>
-            </FlexBox>
-            <FlexBox col gap="0.8rem">
-              <RegularText size={12} color={theme.color.gray[50]}>
-                {data.count}마리 | {data.sex}
-              </RegularText>
-              <BoldText size={16} color={theme.color.gray.main}>
-                {data.price.toLocaleString()} 원
-              </BoldText>
-            </FlexBox>
-          </FlexBox>
-        </FlexBox>
-
-        {/* Button Container */}
-        <FlexBox fullWidth gap="0.6rem">
-          <Button onClick={() => alert('교환/환불 카카오채널 이동')}>
-            <RegularText size={14} color={theme.color.gray.main}>
-              교환/환불요청
-            </RegularText>
-          </Button>
-          <Button onClick={() => setIsOpenConfirm(true)}>
-            <RegularText size={14} color={theme.color.gray.main}>
-              입양확정
-            </RegularText>
-          </Button>
-        </FlexBox>
-      </FlexBox>
-      {isOpenConfirm && (
-        <Confirm
-          text="입양을 확정할까요?"
-          setIsOpenConfirm={setIsOpenConfirm}
-          handleYes={() => {}}
-        />
-      )}
-    </>
-  );
-};
-
-const Button = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  padding: 1rem;
-  border-radius: 0.4rem;
-  border: 0.05rem solid ${({ theme }) => theme.color.gray.main};
-`;
 
 const OrderItem = ({ data }: { data: any }) => {
   const navigate = useNavigate();

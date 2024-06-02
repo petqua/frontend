@@ -27,6 +27,8 @@ import PaymentInfo from './PaymentInfo';
 import PaymentSummary from './PaymentSummary';
 import CartStoreSection from './CartStoreSection';
 import MenuItem from './MenuItem';
+import OrderProductItem from './OrderProductItem';
+import MyReviewItem from './MyReviewItem';
 
 export {
   ProductListItem,
@@ -58,4 +60,6 @@ export {
   PaymentSummary,
   CartStoreSection,
   MenuItem,
+  OrderProductItem,
+  MyReviewItem,
 };

@@ -17,6 +17,8 @@ const MyPage = React.lazy(() => import('./pages/MyPage'));
 const OptionPage = React.lazy(() => import('./pages/OptionPage'));
 const WithdrawalPage = React.lazy(() => import('./pages/WithdrawalPage'));
 const ProfileEditPage = React.lazy(() => import('./pages/ProfileEditPage'));
+const MyReviewPage = React.lazy(() => import('./pages/MyReviewPage'));
+const ReviewWritePage = React.lazy(() => import('./pages/ReviewWritePage'));
 const TossSuccessRedirectPage = React.lazy(
   () => import('./pages/TossSuccessRedirectPage'),
 );
@@ -138,6 +140,18 @@ export const router = createBrowserRouter([
       {
         path: '/myPage/edit',
         element: <ProfileEditPage />,
+        errorElement: <div>Unknown Error</div>,
+        // loader: authorizedLoader,
+      },
+      {
+        path: '/review',
+        element: <MyReviewPage />,
+        errorElement: <div>Unknown Error</div>,
+        // loader: authorizedLoader,
+      },
+      {
+        path: '/review/write',
+        element: <ReviewWritePage />,
         errorElement: <div>Unknown Error</div>,
         // loader: authorizedLoader,
       },
