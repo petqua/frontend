@@ -2,10 +2,11 @@ import { FlexBox, MediumText, RegularText } from '../atoms';
 import { theme } from '../../styles/theme';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { IoIosArrowBack, IoSearchOutline } from '../atoms/Icon';
+import { IoIosArrowBack, IoSearchOutline, IoCloseOutline } from '../atoms/Icon';
 
 interface TopNav {
   backBtn?: boolean;
+  cancelBtn?: boolean;
   search?: boolean;
   basket?: boolean;
   alarm?: boolean;
@@ -19,6 +20,7 @@ interface TopNav {
 
 const TopNav = ({
   backBtn,
+  cancelBtn,
   search,
   basket,
   alarm,
@@ -45,6 +47,15 @@ const TopNav = ({
               size={24}
               color={theme.color.gray.main}
               onClick={() => (backToHome ? navigate('/') : navigate(-1))}
+              style={{ cursor: 'pointer' }}
+            />
+          )}
+
+          {cancelBtn && (
+            <IoCloseOutline
+              size={24}
+              color={theme.color.gray.main}
+              onClick={() => (navigate(-1))}
               style={{ cursor: 'pointer' }}
             />
           )}
