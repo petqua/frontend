@@ -7,6 +7,7 @@ interface BlueButton {
   onClick: () => void;
   isBigText?: boolean;
   isMargin?: boolean;
+  disabled?: boolean;
   style?: any;
 }
 
@@ -14,19 +15,21 @@ const BlueButton = ({
   text,
   onClick,
   isBigText,
-  isMargin,
+  isMargin = false,
+  disabled,
   style,
 }: BlueButton) => {
   return (
     <Button
       onClick={onClick}
-      style={{
-        width: isMargin ? 'calc(100% - 2.8rem)' : '100%',
-        margin: isMargin ? '0 1.4rem' : '0',
-        ...style,
-      }}
+      style={{ ...style }}
+      $isMargin={isMargin}
+      disabled={disabled}
     >
-      <MediumText size={isBigText ? 20 : 16} color={theme.color.tint.white}>
+      <MediumText
+        size={isBigText ? 20 : 16}
+        color={disabled ? theme.color.gray[50] : theme.color.tint.white}
+      >
         {text}
       </MediumText>
     </Button>
@@ -35,8 +38,12 @@ const BlueButton = ({
 
 export default BlueButton;
 
-const Button = styled.button`
+const Button = styled.button<{ $isMargin: boolean }>`
+  width: ${({ $isMargin }) => ($isMargin ? 'calc(100% - 2.8rem)' : '100%')};
+  margin: ${({ $isMargin }) => ($isMargin ? '0 1.4rem' : '0')};
   padding: 1.4rem;
-  background-color: ${({ theme }) => theme.color.blue[80]};
+  background-color: ${({ theme, disabled }) =>
+    disabled ? theme.color.gray[30] : theme.color.blue[80]};
   border-radius: 0.8rem;
+  cursor: ${({ disabled }) => (disabled ? 'default' : 'cursor')};
 `;

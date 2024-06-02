@@ -15,6 +15,8 @@ const PaymentPage = React.lazy(() => import('./pages/PaymentPage'));
 const CartPage = React.lazy(() => import('./pages/CartPage'));
 const MyPage = React.lazy(() => import('./pages/MyPage'));
 const OptionPage = React.lazy(() => import('./pages/OptionPage'));
+const WithdrawalPage = React.lazy(() => import('./pages/WithdrawalPage'));
+const ProfileEditPage = React.lazy(() => import('./pages/ProfileEditPage'));
 const TossSuccessRedirectPage = React.lazy(
   () => import('./pages/TossSuccessRedirectPage'),
 );
@@ -116,6 +118,12 @@ export const router = createBrowserRouter([
         // loader: authorizedLoader,
       },
       {
+        path: '/withdrawal',
+        element: <WithdrawalPage />,
+        errorElement: <div>Unknown Error</div>,
+        // loader: authorizedLoader,
+      },
+      {
         path: '/order',
         element: <OrderListPage />,
         errorElement: <div>Unknown Error</div>,
@@ -124,6 +132,12 @@ export const router = createBrowserRouter([
       {
         path: '/order/:orderId',
         element: <OrderDetailPage />,
+        errorElement: <div>Unknown Error</div>,
+        // loader: authorizedLoader,
+      },
+      {
+        path: '/myPage/edit',
+        element: <ProfileEditPage />,
         errorElement: <div>Unknown Error</div>,
         // loader: authorizedLoader,
       },
