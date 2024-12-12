@@ -27,7 +27,7 @@ const ProductImg = ({
   return (
     <ImgContainer style={{ width: size, borderRadius: `${borderRadius}rem` }}>
       <Image
-        src={src || '/public/images/product-item-ex.svg'}
+        src={src || '/images/product-item-ex.svg'}
         alt="product-img"
       />
       {showWish && (

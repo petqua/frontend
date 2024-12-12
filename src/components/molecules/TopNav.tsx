@@ -64,7 +64,7 @@ const TopNav = ({
             <img
               src="/icons/alarm.svg"
               alt="alarm"
-              onClick={() => navigate('/alarm')}
+              onClick={() => navigate('/login')}
               style={{ cursor: 'pointer' }}
             />
           )}

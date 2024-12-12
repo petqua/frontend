@@ -23,7 +23,7 @@ const Image = styled.img`
 const CategoryImg = ({ size, src }: CategoryImg) => {
   return (
     <ImgContainer style={{ width: size, height: size }}>
-      <Image src={src || '/public/images/product-item-ex.svg'} />
+      <Image src={src || 'images/product-item-ex.svg'} />
     </ImgContainer>
   );
 };
