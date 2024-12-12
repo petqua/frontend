@@ -64,4 +64,5 @@ export {
   patchSignOutAPI,
   deleteMembersAPI,
   patchMembersProfileAPI,
+  postSignUpAPI,
 };

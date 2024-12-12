@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { getOAuthLoginAPI } from '../apis';
+import { getOAuthLoginAPI, postSignUpAPI } from '../apis';
 import { useAuthStore } from '../states';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,8 +10,14 @@ const KakaoLoginPage = () => {
 
   const kakaoLoginHandler = async () => {
     const res = await getOAuthLoginAPI('kakao', code);
-    const accessToken = res.headers['authorization'];
-    setAccessToken(accessToken);
+    console.log(res);
+    if (res.data.signUpToken) {
+      const response = await postSignUpAPI(true, res.data.signUpToken);
+      console.log('signup', response);
+    } else {
+      const accessToken = res.headers['authorization'];
+      setAccessToken(accessToken);
+    }
     navigate('/');
   };
 
