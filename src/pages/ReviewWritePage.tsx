@@ -8,6 +8,9 @@ import {
 } from '../components/molecules';
 import { theme } from '../styles/theme';
 import styled from 'styled-components';
+import { useMutation } from '@tanstack/react-query';
+import { postReviewAPI } from '../apis/reviewAPI';
+import { useNavigate } from 'react-router-dom';
 
 interface Section {
   text: string;
@@ -31,14 +34,30 @@ const Section = ({ text, isPhoto, children }: Section) => {
 };
 
 const ReviewWritePage = () => {
+  const navigate = useNavigate();
+
   const [text, setText] = useState<string>('');
   const [imgList, setImgList] = useState<string[]>([]);
   const [starRate, setStarRate] = useState<number>(0);
   const [showStarRate, setShowStarRate] = useState<number>(starRate);
 
-  const onClickSubmit = () => {
-    alert('리뷰를 등록하였습니다.');
-  };
+  // 리뷰 작성하기 API
+  const { mutate } = useMutation({
+    mutationFn: () =>
+      postReviewAPI({
+        productId: 1,
+        content: text,
+        score: starRate,
+        images: imgList,
+      }),
+    onSuccess: () => {
+      alert('리뷰를 등록하였습니다.');
+      navigate(-1);
+    },
+    onError: (err) => {
+      console.error(err);
+    },
+  });
 
   // 별점 이벤트
   const handleMouseEnter = (e: React.MouseEvent<SVGElement>) => {
@@ -132,7 +151,7 @@ const ReviewWritePage = () => {
         <BlueButton
           text="등록하기"
           isMargin
-          onClick={onClickSubmit}
+          onClick={mutate}
           disabled={text.length < 10}
         />
       </FlexBox>

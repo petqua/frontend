@@ -7,6 +7,13 @@ export interface GetReviewsAPIParams {
   photoOnly?: boolean;
 }
 
+export interface PostReviewAPIParams {
+  productId: number;
+  score: number;
+  content: string;
+  images: string[];
+}
+
 export interface GetReviewsAPI {
   productReviews: ReviewItemData[];
   hasNextPage: boolean;

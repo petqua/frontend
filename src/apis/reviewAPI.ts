@@ -3,8 +3,10 @@ import {
   GetReviewsAPIParams,
   GetReviewsAPI,
   GetReviewStatisticsAPI,
+  PostReviewAPIParams,
 } from '../interfaces/review';
 
+// 상품후기 조건조회 API
 export const getReviewsAPI = async ({
   productId,
   lastViewedId,
@@ -34,6 +36,7 @@ export const getReviewsAPI = async ({
   }
 };
 
+// 상품후기 통계조회 API
 export const getReviewStatisticsAPI = async (
   productId: number,
 ): Promise<GetReviewStatisticsAPI> => {
@@ -71,10 +74,35 @@ export const getReviewStatisticsAPI = async (
   }
 };
 
+// 상품후기 추천 토글 API
 export const postReviewRecommendAPI = async (productReviewId: number) => {
   try {
     const res = await client.post('/product-reviews/recommendation', {
       productReviewId,
+    });
+    return res.data;
+  } catch (error: any) {
+    if (error.response) {
+      console.error('Server Error:', error.response.data);
+    } else {
+      console.error('Error creating question:', error.message);
+    }
+    throw error;
+  }
+};
+
+// 상품후기 작성 API
+export const postReviewAPI = async ({
+  productId,
+  score,
+  content,
+  images,
+}: PostReviewAPIParams) => {
+  try {
+    const res = await client.post(`/products/${productId}/reviews`, {
+      score,
+      content,
+      images,
     });
     return res.data;
   } catch (error: any) {
