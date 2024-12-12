@@ -1,0 +1,16 @@
+{
+  "name": "petqua",
+  "short_name": "petqua",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0160FF",
+  "icons": [
+    {
+      "src": "icons/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

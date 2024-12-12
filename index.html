@@ -17,6 +17,22 @@
       integrity="sha384-kDljxUXHaJ9xAb2AzRd59KxjrFjzHa5TAoFQ6GbYTCAG0bjM55XohjjDT7tDDC01"
       crossorigin="anonymous"
     ></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        // Register a service worker hosted at the root of the
+        // site using the default scope.
+        navigator.serviceWorker
+          .register('/sw.js')
+          .then((registration) => {
+            console.log('Service worker registration succeeded:', registration);
+          })
+          .catch((err) => {
+            console.log('Service worker registration failed:', error);
+          });
+      } else {
+        console.log('Service workers are not supported.');
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
