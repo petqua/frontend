@@ -17,6 +17,7 @@ import {
   getOAuthLoginAPI,
   getOAuthRedirectAPI,
   patchSignOutAPI,
+  deleteMembersAPI,
 } from './authAPI';
 
 import {
@@ -61,5 +62,6 @@ export {
   postOrdersPaymentSuccessAPI,
   postOrdersPaymentFailAPI,
   patchSignOutAPI,
+  deleteMembersAPI,
   patchMembersProfileAPI,
 };

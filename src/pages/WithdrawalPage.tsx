@@ -3,6 +3,9 @@ import { BlueButton, TopNav, WhiteButton } from '../components/molecules';
 import { BoldText, CheckBox, FlexBox, RegularText } from '../components/atoms';
 import { theme } from '../styles/theme';
 import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import { deleteMembersAPI } from '../apis';
+import { useAuthStore } from '../states';
 
 const InfoListItem = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -28,13 +31,26 @@ const InfoListItem = ({ children }: { children: React.ReactNode }) => {
 const WithdrawalPage = () => {
   const navigate = useNavigate();
   const [checked, setChecked] = useState(false);
+  const { accessToken, logout } = useAuthStore();
+
+  const { mutate } = useMutation({
+    mutationFn: () => deleteMembersAPI(),
+    onSuccess: () => {
+      console.log(accessToken);
+      logout();
+      alert('회원탈퇴 되었습니다.');
+      navigate(-1);
+    },
+    onError: (err) => {
+      console.error(err);
+    },
+  });
 
   const onClickWithdrawal = () => {
     if (!checked) {
       alert('안내사항에 동의해주세요');
     } else {
-      alert('회원탈퇴 되었습니다.');
-      navigate(-1);
+      mutate();
     }
   };
 
@@ -66,7 +82,8 @@ const WithdrawalPage = () => {
             회원 탈퇴 시 <br />
             고객님의 모든 정보가 소멸되며
             <br />
-            이전으로 <span style={{color: theme.color.blue[80]}}>복구 불가능</span>
+            이전으로{' '}
+            <span style={{ color: theme.color.blue[80] }}>복구 불가능</span>
             합니다.
             <br />
           </BoldText>
