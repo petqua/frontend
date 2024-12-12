@@ -4,7 +4,6 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
 import GlobalStyle from './styles/GlobalStyles';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Suspense } from 'react';
 
 // window 객체에 Kakao가 존재한다는 것을 인식
@@ -13,8 +12,6 @@ declare global {
     Kakao: any;
   }
 }
-
-const { DEV } = import.meta.env;
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,7 +25,7 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      {DEV && <ReactQueryDevtools initialIsOpen={true} />}
+      {/* {DEV && <ReactQueryDevtools initialIsOpen={true} />} */}
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Suspense fallback={<></>}>
