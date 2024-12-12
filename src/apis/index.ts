@@ -16,6 +16,7 @@ import {
   getAccessTokenAPI,
   getOAuthLoginAPI,
   getOAuthRedirectAPI,
+  patchSignOutAPI,
 } from './authAPI';
 
 import {
@@ -57,4 +58,5 @@ export {
   postWishAPI,
   postOrdersPaymentSuccessAPI,
   postOrdersPaymentFailAPI,
+  patchSignOutAPI,
 };
