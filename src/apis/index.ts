@@ -33,6 +33,8 @@ import {
   deleteCartsAPI,
 } from './cartAPI';
 
+import { patchMembersProfileAPI, postSignUpAPI } from './memberAPI';
+
 export {
   getBannersAPI,
   getAnnouncementsAPI,
@@ -59,4 +61,5 @@ export {
   postOrdersPaymentSuccessAPI,
   postOrdersPaymentFailAPI,
   patchSignOutAPI,
+  patchMembersProfileAPI,
 };

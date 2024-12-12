@@ -5,6 +5,8 @@ import { theme } from '../styles/theme';
 import { useState } from 'react';
 import { IoCloseCircleSharp } from '../components/atoms/Icon';
 import { useNavigate } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+import { patchMembersProfileAPI } from '../apis';
 
 const ProfileEditPage = () => {
   const navigate = useNavigate();
@@ -13,15 +15,25 @@ const ProfileEditPage = () => {
   const [nickname, setNickname] = useState('');
   const [isError, setIsError] = useState('');
 
+  const { mutate } = useMutation({
+    mutationFn: () => patchMembersProfileAPI(nickname),
+    onSuccess: () => {
+      setIsError('');
+      alert('수정이 완료되었습니다.');
+      navigate(-2);
+    },
+    onError: (err) => {
+      console.error(err);
+    },
+  });
+
   const onClickBtn = () => {
     if (nickname === '펫쿠아') {
       setIsError('이미 존재하는 닉네임입니다.');
-    } else if (specialCharRegex.test(nickname)){
+    } else if (specialCharRegex.test(nickname)) {
       setIsError('특수문자를 제외해주세요.');
     } else {
-      setIsError('');
-      alert('프로필 수정완료');
-      navigate(-2);
+      mutate();
     }
   };
 
@@ -38,7 +50,7 @@ const ProfileEditPage = () => {
             gap="1rem"
             fullWidth
             style={{
-              border: `0.05rem solid ${isError!=='' ? theme.color.tint.red : theme.color.gray[50]}`,
+              border: `0.05rem solid ${isError !== '' ? theme.color.tint.red : theme.color.gray[50]}`,
             }}
           >
             <Input
@@ -58,12 +70,10 @@ const ProfileEditPage = () => {
             )}
           </FlexBox>
           <LightText
-            color={isError!=='' ? theme.color.tint.red : theme.color.gray[70]}
+            color={isError !== '' ? theme.color.tint.red : theme.color.gray[70]}
             size={12}
           >
-            {isError !== ''
-              ? isError
-              : '현재 닉네임 : 펫쿠아'}
+            {isError !== '' ? isError : '현재 닉네임 : 펫쿠아'}
           </LightText>
         </FlexBox>
 
