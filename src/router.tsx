@@ -1,6 +1,7 @@
 import { createBrowserRouter, redirect } from 'react-router-dom';
 import { FullScreen } from './components/molecules';
 import React from 'react';
+import { GroupingPage, ResultPage } from './pages';
 
 const HomePage = React.lazy(() => import('./pages/HomePage'));
 const WishListPage = React.lazy(() => import('./pages/WishListPage'));
@@ -152,6 +153,18 @@ export const router = createBrowserRouter([
       {
         path: '/review/write',
         element: <ReviewWritePage />,
+        errorElement: <div>Unknown Error</div>,
+        // loader: authorizedLoader,
+      },
+      {
+        path: '/grouping',
+        element: <GroupingPage />,
+        errorElement: <div>Unknown Error</div>,
+        // loader: authorizedLoader,
+      },
+      {
+        path: '/result',
+        element: <ResultPage />,
         errorElement: <div>Unknown Error</div>,
         // loader: authorizedLoader,
       },

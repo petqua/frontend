@@ -19,6 +19,8 @@ import WithdrawalPage from './WithdrawalPage';
 import ProfileEditPage from './ProfileEditPage';
 import MyReviewPage from './MyReviewPage';
 import ReviewWritePage from './ReviewWritePage';
+import GroupingPage from './GroupingPage';
+import ResultPage from './ResultPage';
 
 export {
   HomePage,
@@ -42,4 +44,6 @@ export {
   ProfileEditPage,
   MyReviewPage,
   ReviewWritePage,
+  GroupingPage,
+  ResultPage,
 };

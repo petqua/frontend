@@ -19,7 +19,7 @@ const WebViewBox = styled.div`
   min-width: 20rem;
   min-height: 100vh;
   background-color: #ffffff;
-  padding-bottom: 9rem;
+  padding-bottom: 7.2rem;
   position: relative;
 `;
 

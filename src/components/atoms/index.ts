@@ -7,6 +7,7 @@ import { LightText, RegularText, MediumText, BoldText } from './Text';
 import CheckBox from './Checkbox';
 import MethodTag from './MethodTag';
 import RecommendButton from './RecommendButton';
+import AnalysisResult from './AnalysisResult';
 
 export {
   FlexBox,
@@ -21,4 +22,5 @@ export {
   CheckBox,
   MethodTag,
   RecommendButton,
+  AnalysisResult,
 };

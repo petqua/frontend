@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 import ChatIcon from '../../assets/chat.svg?react';
-import DoubleFish from '../../assets/double-fish.svg?react';
 import { RegularText } from '../atoms';
 import { theme } from '../../styles/theme';
 import { useNavigate } from 'react-router-dom';
 import { BsPerson, IoSearchOutline, IoHomeOutline } from '../atoms/Icon';
+import DoubleFish from '../atoms/DoubleFish';
 
 const Footer = styled.footer`
   position: fixed;
@@ -72,10 +72,12 @@ const BottomNavBar = ({ activeButton }: BottomNavBar) => {
           검색
         </RegularText>
       </NavButton>
-      <NavButton>
+      <NavButton onClick={() => navigate('/grouping')}>
         <DoubleFish
           stroke={
-            activeButton === 'grouping' ? theme.color.blue[70] : undefined
+            activeButton === 'grouping'
+              ? theme.color.blue[70]
+              : theme.color.gray.main
           }
         />
         <RegularText
