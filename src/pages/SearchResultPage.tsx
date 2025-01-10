@@ -1,20 +1,13 @@
-import { useLocation } from 'react-router-dom';
 import { BottomNavBar, Filter, SearchBar } from '../components/molecules';
 import { useState } from 'react';
 import { FlexBox } from '../components/atoms';
 
-import {
-  ProductList,
-  ListModal,
-  SkeletonProductList,
-} from '../components/organisms';
-import { useInfiniteQuery } from '@tanstack/react-query';
-import { getSearchProductsAPI } from '../apis';
+import { ProductList, ListModal } from '../components/organisms';
 
 const SearchResultPage = () => {
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const query = searchParams.get('search_query') as string;
+  //const location = useLocation();
+  //const searchParams = new URLSearchParams(location.search);
+  //const query = searchParams.get('search_query') as string;
 
   const sortOptions = [
     'SALE_PRICE_ASC',
@@ -29,7 +22,7 @@ const SearchResultPage = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const [currentFilter, setCurrentFilter] = useState('');
-
+  /*
   const { data, fetchNextPage, hasNextPage, isLoading } = useInfiniteQuery({
     queryKey: ['products', 'search', query],
     queryFn: ({ pageParam }) =>
@@ -46,6 +39,33 @@ const SearchResultPage = () => {
     },
     staleTime: 10 * 1000,
   });
+  */
+  const fakeData: any = [
+    {
+      products: [
+        {
+          id: 1,
+          name: '알비노 풀레드 아시안 고정구피',
+          categoryId: 1,
+          price: 49000,
+          storeName: 'S아쿠아',
+          discountRate: 30,
+          discountPrice: 49000,
+          wishCount: 23,
+          reviewCount: 50,
+          reviewAverageScore: 5,
+          thumbnailUrl:
+            'https://docs.petqua.co.kr/products/thumbnails/thumbnail1.jpeg',
+          safeDeliveryFee: 49000,
+          commonDeliveryFee: 49000,
+          pickUpDeliveryFee: 49000,
+          isWished: true,
+        },
+      ],
+      hasNextPage: true,
+      totalProductsCount: 50,
+    },
+  ];
 
   return (
     <>
@@ -64,17 +84,23 @@ const SearchResultPage = () => {
           handleFilterClick={() => setCurrentFilter('sort')}
         />
       </FlexBox>
-      {isLoading ? (
+      <ProductList
+        data={fakeData || []}
+        length={1}
+        isInfinite={true}
+        hasNextPage={false}
+      />
+      {/* {isLoading ? (
         <SkeletonProductList />
       ) : (
         <ProductList
-          data={data?.pages || []}
-          length={data?.pages[0].totalProductsCount || 0}
+          data={fakeData?.pages || []}
+          length={fakeData?.pages[0].totalProductsCount || 0}
           fetchNextPage={fetchNextPage}
           isInfinite={true}
           hasNextPage={hasNextPage}
         />
-      )}
+      )} */}
       {isOpenModal && (
         <ListModal
           type={currentFilter === 'sort' ? 'sorter' : 'deliveryMethod'}

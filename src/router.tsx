@@ -88,7 +88,7 @@ export const router = createBrowserRouter([
         path: '/payment/:source',
         element: <PaymentPage />,
         errorElement: <div>Unknown Error</div>,
-        loader: authorizedLoader,
+        //loader: authorizedLoader,
       },
       {
         path: '/cart',

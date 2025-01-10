@@ -71,11 +71,60 @@ const ProductDetailPage = () => {
     enabled: isSuccess,
   });
 
+  const fakeEtcData: any = {
+    imageUrls: [
+      'https://docs.petqua.co.kr/products/thumbnails/thumbnail1.jpeg',
+    ],
+    descriptionImageUrls: [
+      'https://docs.petqua.co.kr/products/thumbnails/thumbnail1.jpeg',
+    ],
+    wishCount: 23,
+    isWished: true,
+  };
+
+  const fakeMainData = {
+    id: 1,
+    storeName: 'S아쿠아',
+    name: '알비노 풀레드 아시안 고정구피',
+    family: '난태생, 송사리과',
+    species: '고정구피',
+    reviewAverageScore: 4.5,
+    reviewCount: 50,
+    discountRate: 30,
+    price: 50000,
+    discountPrice: 35000,
+    descriptionTitle: '물생활 핵 인싸어, 레드 브론즈 구피',
+    descriptionContent:
+      '레드 턱시도라고도 불리며 지느러미가 아름다운 구피입니다',
+  };
+
+  const fakeReviewOverviewData = {
+    scoreFiveCount: 3,
+    scoreFourCount: 0,
+    scoreThreeCount: 0,
+    scoreTwoCount: 2,
+    scoreOneCount: 0,
+    scoreCounts: [3, 0, 0, 2, 0],
+    productSatisfaction: 60,
+    totalReviewCount: 5,
+    averageScore: 3.8,
+  };
+
+  const fakeInfoData = {
+    species: '고정구피',
+    family: '난태생, 송사리과',
+    optimalTemperatureMin: 10,
+    optimalTemperatureMax: 20,
+    difficultyLevel: '하',
+    optimalTankSize: '1자어항',
+    temperament: '사나움',
+  };
+
   return (
     <>
       <Carousel
         carouselList={
-          etcData?.imageUrls?.map((url, idx) => ({
+          fakeEtcData?.imageUrls?.map((url: any, idx: any) => ({
             id: idx,
             imageUrl: url,
             linkUrl: '',
@@ -84,15 +133,15 @@ const ProductDetailPage = () => {
         canShowDetail
       />
       <ProductDetailMain
-        data={mainData}
+        data={fakeMainData}
         setIsOpenShareModal={setIsOpenShareModal}
       />
       <Notice src="/images/notice-ex.svg" alt="product-detail-notice" />
-      <ProductDetailInfo data={infoData} />
+      <ProductDetailInfo data={fakeInfoData} />
       <ProductDetailContents data={etcData?.descriptionImageUrls} />
 
       {/* 리뷰 */}
-      <ReviewOverview data={reviewOverviewData} />
+      <ReviewOverview data={fakeReviewOverviewData} />
       <FlexBox col>
         {reviewData?.productReviews.map((item, idx) => (
           <ReviewItem

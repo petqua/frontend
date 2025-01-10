@@ -34,7 +34,7 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
     deliveryMethod: data?.deliveryMethod || null,
     deliveryFee: data?.deliveryFee || 0,
   });
-  const [calculatedPrice, setCalculatedPrice] = useState(
+  const [_calculatedPrice, setCalculatedPrice] = useState(
     data?.productDiscountPrice || 0,
   );
   const { items, setItems } = useCartStore();
@@ -131,7 +131,7 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
       console.error(err);
     },
   });
-
+  /*
   const handleAdopt = () => {
     setItems([
       {
@@ -151,6 +151,28 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
       },
     ]);
     navigate('/payment');
+  };
+*/
+  const fakeHandleAdopt = () => {
+    setItems([
+      {
+        storeName: data?.storeName || '',
+        items: [
+          {
+            ...data,
+            ...requestData,
+            storeName: 'S아쿠아',
+            productName: '알비노 풀레드 아시안 고정구피',
+            productThumbnailUrl:
+              'https://docs.petqua.co.kr/products/thumbnails/thumbnail1.jpeg',
+            productPrice: 50000,
+            productDiscountRate: 30,
+            productDiscountPrice: 35000 * requestData.quantity,
+          },
+        ],
+      },
+    ]);
+    navigate('/payment/1');
   };
 
   // 옵션 변경 기능
@@ -178,6 +200,8 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
     setCalculatedPrice(data?.productDiscountPrice + deliveryFee);
   };
 
+  const fakeCalculatedPrice = 35000;
+
   return (
     <Modal visible={visible} handleCloseModal={handleCloseModal}>
       <>
@@ -188,8 +212,11 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
           fullWidth
           style={{ userSelect: 'none' }}
         >
-          <BoldText size={18} color={theme.color.gray.main}>
+          {/*<BoldText size={18} color={theme.color.gray.main}>
             {(calculatedPrice * requestData.quantity).toLocaleString()}원
+          </BoldText>*/}
+          <BoldText size={18} color={theme.color.gray.main}>
+            {(fakeCalculatedPrice * requestData.quantity).toLocaleString()}원
           </BoldText>
           <Line />
           <FlexBox justify="space-between" align="center" fullWidth>
@@ -290,7 +317,7 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
         ) : (
           <ButtonContainer>
             <WhiteButton text="봉달하기" onClick={postCartsMutate} isRound />
-            <BlueButton text="입양하기" onClick={handleAdopt} />
+            <BlueButton text="입양하기" onClick={fakeHandleAdopt} />
           </ButtonContainer>
         )}
       </>

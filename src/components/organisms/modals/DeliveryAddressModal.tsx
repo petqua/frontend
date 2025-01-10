@@ -1,11 +1,10 @@
-import { SetStateAction, useEffect, useState } from 'react';
+import { SetStateAction, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { theme } from '../../../styles/theme';
 import { postNewAddressAPI } from '../../../apis';
 import { Address } from '../../../interfaces/payment';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { usePaymentStore } from '../../../states';
-import { useDaumPostcodePopup } from 'react-daum-postcode';
 import Modal from '../../molecules/Modal';
 import { FlexBox, MediumText } from '../../atoms';
 
@@ -100,10 +99,10 @@ const InputAddressForm = ({
   addressInfo,
   setAddressInfo,
 }: InputAddressFormProps) => {
+  /*
   const scriptUrl =
     'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
-  const open = useDaumPostcodePopup(scriptUrl);
-
+  //const open = useDaumPostcodePopup(scriptUrl);
   const handleComplete = (data: any) => {
     const zipCode = data.zonecode;
     let fullAddress = data.address;
@@ -121,9 +120,95 @@ const InputAddressForm = ({
       setAddressInfo((prev) => ({ ...prev, zipCode, address: fullAddress }));
     }
   };
-  const handleClick = () => {
-    open({ onComplete: handleComplete });
+*/
+  // 여기서부터 아이프레임
+  const layerRef = useRef<HTMLDivElement>(null);
+
+  // Daum Postcode API 로드
+  const loadPostcode = () => {
+    const { daum } = window as any; // Daum Postcode 객체
+    const elementLayer = layerRef.current;
+
+    if (!elementLayer) return;
+
+    new daum.Postcode({
+      oncomplete: (data: any) => {
+        console.log('oncomplete callback executed');
+        console.log('Selected address:', data);
+        // 주소 처리 로직
+        const zipCode = data.zonecode;
+        let fullAddress = data.address;
+        let extraAddress = '';
+
+        if (data.addressType === 'R') {
+          if (data.bname !== '') {
+            extraAddress += data.bname;
+          }
+          if (data.buildingName !== '') {
+            extraAddress +=
+              extraAddress !== ''
+                ? `, ${data.buildingName}`
+                : data.buildingName;
+          }
+          fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
+          setAddressInfo((prev) => ({
+            ...prev,
+            zipCode,
+            address: fullAddress,
+          }));
+        }
+        // 레이어 숨기기
+        elementLayer.style.display = 'none';
+      },
+      width: '100%',
+      height: '100%',
+      maxSuggestItems: 5,
+    }).embed(elementLayer);
+
+    // 레이어 보이기
+    elementLayer.style.display = 'block';
+
+    // 레이어 위치 조정
+    adjustLayerPosition();
   };
+
+  // 레이어 위치 중앙 배치
+  const adjustLayerPosition = () => {
+    const elementLayer = layerRef.current;
+
+    if (!elementLayer) return;
+
+    const width = 340; // iframe 너비
+    const height = 600; // iframe 높이
+    const borderWidth = 0; // 경계선 두께
+
+    elementLayer.style.width = `${width}px`;
+    elementLayer.style.height = `${height}px`;
+    elementLayer.style.border = `${borderWidth}px solid #ddd`;
+    elementLayer.style.left = `${
+      (window.innerWidth || document.documentElement.clientWidth) / 2 -
+      width / 2 -
+      borderWidth
+    }px`;
+    elementLayer.style.top = `${
+      (window.innerHeight || document.documentElement.clientHeight) / 2 -
+      height / 2 -
+      borderWidth
+    }px`;
+  };
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src =
+      'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
+    script.onload = () => console.log('Daum Postcode script loaded');
+    script.onerror = () => console.error('Failed to load Daum Postcode script');
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <FlexBox padding="0 1.4rem" gap="1.9rem" style={{ width: '100%' }}>
@@ -136,7 +221,9 @@ const InputAddressForm = ({
       </MediumText>
       <FlexBox col gap="1.6rem" style={{ width: '100%' }}>
         <FlexBox gap="1.8rem" style={{ width: '100%' }}>
-          <FindAddressButton onClick={handleClick}>주소 찾기</FindAddressButton>
+          <FindAddressButton onClick={loadPostcode}>
+            주소 찾기
+          </FindAddressButton>
           <Input
             name="zipCode"
             value={addressInfo.zipCode}
@@ -165,6 +252,17 @@ const InputAddressForm = ({
           <label>기본 운송지로 저장</label>
         </CheckBoxContainer>
       </FlexBox>
+      <div
+        ref={layerRef}
+        style={{
+          display: 'none',
+          position: 'fixed',
+          overflow: 'hidden',
+          zIndex: 1000,
+          backgroundColor: '#fff',
+          WebkitOverflowScrolling: 'touch',
+        }}
+      ></div>
     </FlexBox>
   );
 };
@@ -216,6 +314,7 @@ const DeliveryAddressModal = ({
       queryClient.invalidateQueries({ queryKey: ['defaultAddress'] });
     },
     onError: () => {
+      setAddress({ ...addressInfo, id: 1 });
       console.error('배송지 추가 error');
     },
   });
