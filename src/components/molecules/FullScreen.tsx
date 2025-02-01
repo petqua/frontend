@@ -11,7 +11,7 @@ const Container = styled.div`
   background-color: aliceblue;
 `;
 
-const WebViewBox = styled.div`
+const WebViewBox = styled.div<{ $noPadding: boolean }>`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -19,7 +19,8 @@ const WebViewBox = styled.div`
   min-width: 20rem;
   min-height: 100vh;
   background-color: #ffffff;
-  padding-bottom: 7.2rem;
+  padding-bottom: ${({ $noPadding }) =>
+    $noPadding ? '0' : '7.2rem'}; // <-- 변경된 부분
   position: relative;
 `;
 
@@ -37,7 +38,7 @@ const FullScreen = () => {
 
   return (
     <Container>
-      <WebViewBox>
+      <WebViewBox $noPadding={currentPath === '/payment/1'}>
         <Outlet />
       </WebViewBox>
     </Container>

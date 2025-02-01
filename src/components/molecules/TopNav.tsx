@@ -55,7 +55,7 @@ const TopNav = ({
             <IoCloseOutline
               size={24}
               color={theme.color.gray.main}
-              onClick={() => (navigate(-1))}
+              onClick={() => navigate(-1)}
               style={{ cursor: 'pointer' }}
             />
           )}
@@ -64,7 +64,7 @@ const TopNav = ({
             <img
               src="/icons/alarm.svg"
               alt="alarm"
-              onClick={() => navigate('/login')}
+              onClick={() => navigate('/alarm')}
               style={{ cursor: 'pointer' }}
             />
           )}

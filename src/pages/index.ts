@@ -21,6 +21,7 @@ import MyReviewPage from './MyReviewPage';
 import ReviewWritePage from './ReviewWritePage';
 import GroupingPage from './GroupingPage';
 import ResultPage from './ResultPage';
+import AlarmPage from './AlarmPage';
 
 export {
   HomePage,
@@ -46,4 +47,5 @@ export {
   ReviewWritePage,
   GroupingPage,
   ResultPage,
+  AlarmPage,
 };

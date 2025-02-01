@@ -24,7 +24,7 @@ export interface ProductList {
   length?: number;
   data: GetProductsAPI[];
   isInfinite: boolean;
-  fetchNextPage?: (
+  fetchNextPage: (
     options?: FetchNextPageOptions | undefined,
   ) => Promise<
     InfiniteQueryObserverResult<InfiniteData<GetProductsAPI, unknown>, Error>

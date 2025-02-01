@@ -26,6 +26,7 @@ interface RequestData {
 }
 
 const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
+  console.log(data);
   const navigate = useNavigate();
   const [visible, setVisible] = useState(true);
   const [requestData, setRequestData] = useState<RequestData>({
@@ -34,7 +35,7 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
     deliveryMethod: data?.deliveryMethod || null,
     deliveryFee: data?.deliveryFee || 0,
   });
-  const [_calculatedPrice, setCalculatedPrice] = useState(
+  const [calculatedPrice, setCalculatedPrice] = useState(
     data?.productDiscountPrice || 0,
   );
   const { items, setItems } = useCartStore();
@@ -45,13 +46,15 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
       key: 'FEMALE',
       name: '암',
       selected: requestData.sex === 'FEMALE',
-      disabled: data?.femaleAdditionalPrice === null,
+      disabled: false,
+      //disabled: data?.maleAdditionalPrice === null,
     },
     {
       key: 'MALE',
       name: '수',
       selected: requestData.sex === 'MALE',
-      disabled: data?.maleAdditionalPrice === null,
+      disabled: false,
+      //disabled: data?.maleAdditionalPrice === null,
     },
   ];
 
@@ -61,21 +64,24 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
       name: '일반운송',
       selected: requestData.deliveryMethod === 'COMMON',
       deliveryFee: data?.commonDeliveryFee,
-      disabled: data?.commonDeliveryFee === null,
+      disabled: false,
+      //disabled: data?.commonDeliveryFee === null,
     },
     {
       key: 'SAFETY',
       name: '안전운송',
       selected: requestData.deliveryMethod === 'SAFETY',
       deliveryFee: data?.safeDeliveryFee,
-      disabled: data?.safeDeliveryFee === null,
+      disabled: false,
+      //disabled: data?.safeDeliveryFee === null,
     },
     {
       key: 'PICK_UP',
       name: '직접방문',
       selected: requestData.deliveryMethod === 'PICK_UP',
       deliveryFee: data?.pickUpDeliveryFee,
-      disabled: data?.pickUpDeliveryFee === null,
+      disabled: false,
+      //disabled: data?.pickUpDeliveryFee === null,
     },
   ];
 
@@ -131,7 +137,7 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
       console.error(err);
     },
   });
-  /*
+
   const handleAdopt = () => {
     setItems([
       {
@@ -146,28 +152,6 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
             productPrice: data?.productPrice || 0,
             productDiscountRate: data?.productDiscountRate || 0,
             productDiscountPrice: calculatedPrice * requestData.quantity,
-          },
-        ],
-      },
-    ]);
-    navigate('/payment');
-  };
-*/
-  const fakeHandleAdopt = () => {
-    setItems([
-      {
-        storeName: data?.storeName || '',
-        items: [
-          {
-            ...data,
-            ...requestData,
-            storeName: 'S아쿠아',
-            productName: '알비노 풀레드 아시안 고정구피',
-            productThumbnailUrl:
-              'https://docs.petqua.co.kr/products/thumbnails/thumbnail1.jpeg',
-            productPrice: 50000,
-            productDiscountRate: 30,
-            productDiscountPrice: 35000 * requestData.quantity,
           },
         ],
       },
@@ -200,8 +184,6 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
     setCalculatedPrice(data?.productDiscountPrice + deliveryFee);
   };
 
-  const fakeCalculatedPrice = 35000;
-
   return (
     <Modal visible={visible} handleCloseModal={handleCloseModal}>
       <>
@@ -212,11 +194,8 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
           fullWidth
           style={{ userSelect: 'none' }}
         >
-          {/*<BoldText size={18} color={theme.color.gray.main}>
-            {(calculatedPrice * requestData.quantity).toLocaleString()}원
-          </BoldText>*/}
           <BoldText size={18} color={theme.color.gray.main}>
-            {(fakeCalculatedPrice * requestData.quantity).toLocaleString()}원
+            {(calculatedPrice * requestData.quantity).toLocaleString()}원
           </BoldText>
           <Line />
           <FlexBox justify="space-between" align="center" fullWidth>
@@ -317,7 +296,7 @@ const OptionModal = ({ setIsOpenModal, data, isEdit }: OptionModal) => {
         ) : (
           <ButtonContainer>
             <WhiteButton text="봉달하기" onClick={postCartsMutate} isRound />
-            <BlueButton text="입양하기" onClick={fakeHandleAdopt} />
+            <BlueButton text="입양하기" onClick={handleAdopt} />
           </ButtonContainer>
         )}
       </>

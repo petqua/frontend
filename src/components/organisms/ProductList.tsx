@@ -2,11 +2,16 @@ import { theme } from '../../styles/theme';
 import { FlexBox, MediumText } from '../atoms';
 import { ProductListItem } from '../molecules';
 import { ProductList } from '../../interfaces/product';
-//import InfiniteScroll from 'react-infinite-scroller';
+import InfiniteScroll from 'react-infinite-scroller';
 import styled from 'styled-components';
 
-const ProductList = ({ length, data }: ProductList) => {
-  console.log(data);
+const ProductList = ({
+  length,
+  data,
+  isInfinite,
+  fetchNextPage,
+  hasNextPage,
+}: ProductList) => {
   return (
     <FlexBox col gap="2rem" style={{ padding: '1.4rem' }}>
       <MediumText size={14} color={theme.color.gray.main}>
@@ -15,7 +20,7 @@ const ProductList = ({ length, data }: ProductList) => {
           ? '새로운 반려어가 왔어요!'
           : `${length}마리 반려어`}
       </MediumText>
-      {/* {isInfinite ? (
+      {isInfinite ? (
         <InfiniteScroll hasMore={hasNextPage} loadMore={() => fetchNextPage()}>
           <ListContainer>
             {data.map((items) => {
@@ -31,12 +36,7 @@ const ProductList = ({ length, data }: ProductList) => {
             <ProductListItem key={item.id} data={item} />
           ))}
         </ListContainer>
-      )}*/}
-      <ListContainer>
-        {data[0]?.products.map((item) => (
-          <ProductListItem key={item.id} data={item} />
-        ))}
-      </ListContainer>
+      )}
     </FlexBox>
   );
 };
