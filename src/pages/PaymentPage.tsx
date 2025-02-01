@@ -17,7 +17,7 @@ import OrderConfirmationModal from '../components/organisms/modals/OrderConfirma
 
 const PaymentPage = () => {
   const { address, setAddress } = usePaymentStore();
-  const { data: defaultAddressData, isLoading } = useQuery({
+  const { data: defaultAddressData } = useQuery({
     queryKey: ['defaultAddress'],
     queryFn: getDefaultAddressAPI,
     staleTime: 30 * 1000,
@@ -114,7 +114,8 @@ const PaymentPage = () => {
   return (
     <>
       <TopNav backBtn title="주문/결제" />
-      {!isLoading && <AddressForm setIsModalOpen={setIsModalOpen} />}
+      {/*<AddressForm setIsModalOpen={setIsModalOpen} />*/}
+      {<AddressForm setIsModalOpen={setIsModalOpen} />}
       <CustomHr height="0.8rem" color={theme.color.gray[30]} />
       <CartFishList cartData={MOCK_DATA} />
       <CustomHr height="0.8rem" color={theme.color.gray[30]} />
