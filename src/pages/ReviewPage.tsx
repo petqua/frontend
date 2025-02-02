@@ -7,6 +7,7 @@ import {
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import { getReviewStatisticsAPI } from '../apis/reviewAPI';
+import { TopNav } from '../components/molecules';
 
 const ReviewPage = () => {
   const { productId } = useParams();
@@ -21,6 +22,7 @@ const ReviewPage = () => {
 
   return (
     <>
+      <TopNav backBtn wish basket title="리뷰" />
       <ReviewOverview data={data} />
       <ReviewList score={score} setIsOpenModal={setIsOpenModal} />
       {isOpenModal && (
