@@ -8,6 +8,7 @@ import {
   ProductListItem,
   ReviewItem,
   RowScrollContainer,
+  TopNav,
   WhiteButton,
 } from '../components/molecules';
 import {
@@ -73,6 +74,7 @@ const ProductDetailPage = () => {
 
   return (
     <>
+      <TopNav backBtn wish basket />
       <Carousel
         carouselList={
           etcData?.imageUrls?.map((url, idx) => ({

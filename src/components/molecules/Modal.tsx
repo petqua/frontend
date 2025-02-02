@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BoldText, FlexBox } from '../atoms';
 import { theme } from '../../styles/theme';
 import styled from 'styled-components';
@@ -22,6 +22,17 @@ const Modal = ({
   hasInput,
   hasBackBtn,
 }: Modal) => {
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+  // 키보드 감지
+  useEffect(() => {
+    const handleResize = () => {
+      setIsKeyboardOpen(window.innerHeight < 600); // 기준값 조정 가능
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // 모달 사용 시 스크롤 방지
   useEffect(() => {
     document.body.style.cssText = `
@@ -38,7 +49,11 @@ const Modal = ({
 
   return (
     <ModalOverlay onClick={handleCloseModal} $visible={visible}>
-      <Container onClick={(e) => e.stopPropagation()} $visible={visible}>
+      <Container
+        onClick={(e) => e.stopPropagation()}
+        $visible={visible}
+        $isKeyboardOpen={isKeyboardOpen}
+      >
         {!hasInput && <Bar />}
         <FlexBox
           align="center"
@@ -96,7 +111,7 @@ const ModalOverlay = styled.div<{ $visible: boolean }>`
   animation: ${({ $visible }) => ($visible ? fadeIn : fadeOut)} 0.3s ease-in-out;
 `;
 
-const Container = styled.div<{ $visible: boolean }>`
+const Container = styled.div<{ $visible: boolean; $isKeyboardOpen: boolean }>`
   width: 100%;
   min-width: 20rem;
   max-width: 50rem;
@@ -115,6 +130,10 @@ const Container = styled.div<{ $visible: boolean }>`
 
   animation: ${({ $visible }) => ($visible ? slideUp : slideDown)} 0.3s
     ease-in-out;
+
+  /* 키보드가 열렸을 때 높이 조정 */
+  max-height: ${({ $isKeyboardOpen }) => ($isKeyboardOpen ? '80vh' : 'auto')};
+  overflow-y: auto;
 `;
 
 const Bar = styled.div`

@@ -99,28 +99,6 @@ const InputAddressForm = ({
   addressInfo,
   setAddressInfo,
 }: InputAddressFormProps) => {
-  /*
-  const scriptUrl =
-    'https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js';
-  //const open = useDaumPostcodePopup(scriptUrl);
-  const handleComplete = (data: any) => {
-    const zipCode = data.zonecode;
-    let fullAddress = data.address;
-    let extraAddress = '';
-
-    if (data.addressType === 'R') {
-      if (data.bname !== '') {
-        extraAddress += data.bname;
-      }
-      if (data.buildingName !== '') {
-        extraAddress +=
-          extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
-      }
-      fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
-      setAddressInfo((prev) => ({ ...prev, zipCode, address: fullAddress }));
-    }
-  };
-*/
   // 여기서부터 아이프레임
   const layerRef = useRef<HTMLDivElement>(null);
 
@@ -133,8 +111,6 @@ const InputAddressForm = ({
 
     new daum.Postcode({
       oncomplete: (data: any) => {
-        console.log('oncomplete callback executed');
-        console.log('Selected address:', data);
         // 주소 처리 로직
         const zipCode = data.zonecode;
         let fullAddress = data.address;
@@ -167,34 +143,6 @@ const InputAddressForm = ({
 
     // 레이어 보이기
     elementLayer.style.display = 'block';
-
-    // 레이어 위치 조정
-    adjustLayerPosition();
-  };
-
-  // 레이어 위치 중앙 배치
-  const adjustLayerPosition = () => {
-    const elementLayer = layerRef.current;
-
-    if (!elementLayer) return;
-
-    const width = 340; // iframe 너비
-    const height = 600; // iframe 높이
-    const borderWidth = 0; // 경계선 두께
-
-    elementLayer.style.width = `${width}px`;
-    elementLayer.style.height = `${height}px`;
-    elementLayer.style.border = `${borderWidth}px solid #ddd`;
-    elementLayer.style.left = `${
-      (window.innerWidth || document.documentElement.clientWidth) / 2 -
-      width / 2 -
-      borderWidth
-    }px`;
-    elementLayer.style.top = `${
-      (window.innerHeight || document.documentElement.clientHeight) / 2 -
-      height / 2 -
-      borderWidth
-    }px`;
   };
 
   useEffect(() => {
@@ -256,6 +204,11 @@ const InputAddressForm = ({
         ref={layerRef}
         style={{
           display: 'none',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          maxWidth: '500px',
           position: 'fixed',
           overflow: 'hidden',
           zIndex: 1000,
